@@ -1,0 +1,20 @@
+#!/bin/bash
+#
+# 	postinst -- Post installation script for !!BLD_PRODUCT!!-dev.
+#
+#	Copyright (c) Embedthis Software LLC, 2003-2009. All Rights Reserved.
+#
+
+action=$1
+
+case $action in
+configure)					# when new
+	oldVersion=$2
+	;;
+abort-upgrade)				# when old
+	;;
+abort-remove)
+	# sometimes conflictor's-postinst abort-remove in-favor package new-version
+	;;
+esac
+exit 0

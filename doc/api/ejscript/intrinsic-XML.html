@@ -1,0 +1,605 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+   <title>Class XML</title>
+
+   <link rel="stylesheet" type="text/css" href="doc.css" />
+</head>
+
+<body>
+<div class='body'>
+
+<div class="content">
+
+<a name='top'></a>
+<h1 class='className'>XML</h1>
+<div class='classBlock'>
+<table class='classHead' summary='XML'>
+   <tr><td><strong>Module</strong></td><td>ejs</td></tr>
+   <tr><td><strong>Namespace</strong></td><td>intrinsic</td></tr>
+   <tr><td><strong>Definition</strong></td><td>final  class XML</td></tr>
+<tr><td><strong>Specified</strong></td><td>Ecma-357.</td></tr>
+   <tr><td><strong>Inheritance</strong></td><td>XML <img src='images/inherit.gif' alt='inherit'/> <a href='intrinsic-Object.html'>Object</a>       </td></tr>
+</table>
+
+<p class='classBrief'>The XML class, and the entire XML API, is based on ECMA-357, ECMAScript for XML (E4X).</p>
+
+<p class='classDescription'>The XML class is a  core class in the E4X specification; it provides the ability to load, parse and save XML documents.</p>
+
+</div>
+
+
+<hr />
+<a name='Properties'></a>
+<h2 class='classSection'>Properties</h2>
+<table class='itemTable' summary='properties'>
+   <tr><th>Qualifiers</th><th>Property</th><th>Type</th><th width='95%'>Description</th></tr>
+   <tr><td nowrap align='center'>public static </td><td>ignoreComments</td><td><a href='intrinsic-Boolean.html'>Boolean</a></td><td>TODO - doc. </td></tr>
+   <tr><td nowrap align='center'>public static </td><td>ignoreProcessingInstructions</td><td><a href='intrinsic-Boolean.html'>Boolean</a></td><td>&nbsp;</td></tr>
+   <tr><td nowrap align='center'>public static </td><td>ignoreWhitespace</td><td><a href='intrinsic-Boolean.html'>Boolean</a></td><td>&nbsp;</td></tr>
+   <tr><td nowrap align='center'>public static </td><td>prettyIndent</td><td><a href='intrinsic-Boolean.html'>Boolean</a></td><td>&nbsp;</td></tr>
+   <tr><td nowrap align='center'>public static </td><td>prettyPrinting</td><td><a href='intrinsic-Boolean.html'>Boolean</a></td><td>&nbsp;</td></tr>
+</table>
+
+<hr />
+<a name='Methods'></a>
+<h2 class='classSection'>XML Methods</h2>
+<table class='apiIndex' summary='methods'>
+   <tr><th>Qualifiers</th><th width='95%'>Method</th></tr>
+   <tr class='apiDef'><td class='apiType'>public </td><td><a href='#addNamespace'><b>addNamespace</b></a>(ns: <a href='intrinsic-Namespace.html'>Namespace</a>): <a href='intrinsic-XML.html'>XML</a></tr>   <tr class='apiDef'><td class='apiType'>public </td><td><a href='#appendChild'><b>appendChild</b></a>(child: <a href='intrinsic-XML.html'>XML</a>): <a href='intrinsic-XML.html'>XML</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Append a child to this XML object.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public </td><td><a href='#attribute'><b>attribute</b></a>(name: <a href='intrinsic-String.html'>String</a>): <a href='intrinsic-XMLList.html'>XMLList</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Get an XMLList containing all of the attributes of this object with the given name.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public </td><td><a href='#attributes'><b>attributes</b></a>(): <a href='intrinsic-XMLList.html'>XMLList</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Get an XMLList containing all of the attributes of this object.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public </td><td><a href='#child'><b>child</b></a>(name: <a href='intrinsic-String.html'>String</a>): <a href='intrinsic-XMLList.html'>XMLList</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Get an XMLList containing the list of children (properties) in this XML object with the given name.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public </td><td><a href='#childIndex'><b>childIndex</b></a>(): <a href='intrinsic-Number.html'>Number</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Get the position of this object within the context of its parent.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public </td><td><a href='#children'><b>children</b></a>(): <a href='intrinsic-XMLList.html'>XMLList</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Get an XMLList containing the children (properties) of this object in order.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public </td><td><a href='#comments'><b>comments</b></a>(): <a href='intrinsic-XMLList.html'>XMLList</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Get an XMLList containing the properties of this object that are comments.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public </td><td><a href='#contains'><b>contains</b></a>(obj: <a href='intrinsic-Object.html'>Object</a>): <a href='intrinsic-Boolean.html'>Boolean</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Compare an XML object to another one or an XMLList with only one XML object in it.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public </td><td><a href='#copy'><b>copy</b></a>(): <a href='intrinsic-XML.html'>XML</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Deep copy an XML object.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public </td><td><a href='#defaultSettings'><b>defaultSettings</b></a>(): <a href='intrinsic-Object.html'>Object</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Get the defaults settings for an XML object.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public </td><td><a href='#descendants'><b>descendants</b></a>(name: <a href='intrinsic-String.html'>String</a>): <a href='intrinsic-Object.html'>Object</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Get all the descendants (that have the same name) of this XML object.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public </td><td><a href='#elements'><b>elements</b></a>(name: <a href='intrinsic-String.html'>String</a>): <a href='intrinsic-XMLList.html'>XMLList</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Get all the children of this XML node that are elements having the given name.</td></tr>
+   <tr class='apiDef'><td class='apiType'>iterator override </td><td><a href='#get'><b>get</b></a>(deep: <a href='intrinsic-Boolean.html'>Boolean</a>): <a href='iterator-Iterator.html'>Iterator</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Get an iterator for this node to be used by "for (v in node)".</td></tr>
+   <tr class='apiDef'><td class='apiType'>iterator override </td><td><a href='#getValues'><b>getValues</b></a>(deep: <a href='intrinsic-Boolean.html'>Boolean</a>): <a href='iterator-Iterator.html'>Iterator</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Get an iterator for this node to be used by "for each (v in node)".</td></tr>
+   <tr class='apiDef'><td class='apiType'>public </td><td><a href='#hasComplexContent'><b>hasComplexContent</b></a>(): <a href='intrinsic-Boolean.html'>Boolean</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Determine whether this XML object has complex content.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public </td><td><a href='#hasSimpleContent'><b>hasSimpleContent</b></a>(): <a href='intrinsic-Boolean.html'>Boolean</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Determine whether this XML object has simple content.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public </td><td><a href='#inScopeNamespaces'><b>inScopeNamespaces</b></a>(): <a href='intrinsic-Array.html'>Array</a></tr>   <tr class='apiDef'><td class='apiType'>public </td><td><a href='#insertChildAfter'><b>insertChildAfter</b></a>(marker: <a href='intrinsic-Object.html'>Object</a>, child: <a href='intrinsic-Object.html'>Object</a>): <a href='intrinsic-XML.html'>XML</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Insert a child object into an XML object immediately after a specified marker object.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public </td><td><a href='#insertChildBefore'><b>insertChildBefore</b></a>(marker: <a href='intrinsic-Object.html'>Object</a>, child: <a href='intrinsic-Object.html'>Object</a>): <a href='intrinsic-XML.html'>XML</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Insert a child object into an XML object immediately before a specified marker object.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public override </td><td><a href='#length'><b>length</b></a>(): <a href='intrinsic-Number.html'>Number</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Return the length of an XML object; the length is defined as 1.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public </td><td><a href='#load'><b>load</b></a>(filename: <a href='intrinsic-String.html'>String</a>): <a href='intrinsic-Void.html'>Void</a></tr><tr class='apiBrief'><td>&nbsp;</td><td></td></tr>
+   <tr class='apiDef'><td class='apiType'>public </td><td><a href='#localName'><b>localName</b></a>(): <a href='intrinsic-String.html'>String</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Get the local name portion of the complete name of this XML object.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public </td><td><a href='#name'><b>name</b></a>(): <a href='intrinsic-String.html'>String</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Get the qualified name of this XML object.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public </td><td><a href='#namespace'><b>namespace</b></a>(prefix: <a href='intrinsic-String.html'>String</a>): <a href='intrinsic-Object.html'>Object</a></tr>   <tr class='apiDef'><td class='apiType'>public </td><td><a href='#namespaceDeclarations'><b>namespaceDeclarations</b></a>(): <a href='intrinsic-Array.html'>Array</a></tr>   <tr class='apiDef'><td class='apiType'>public </td><td><a href='#nodeKind'><b>nodeKind</b></a>(): <a href='intrinsic-String.html'>String</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Get the kind of node this XML object is.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public </td><td><a href='#normalize'><b>normalize</b></a>(): <a href='intrinsic-XML.html'>XML</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Merge adjacent text nodes into one text node and eliminate empty text nodes.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public </td><td><a href='#parent'><b>parent</b></a>(): <a href='intrinsic-XML.html'>XML</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Get the parent of this XML object.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public </td><td><a href='#prependChild'><b>prependChild</b></a>(child: <a href='intrinsic-Object.html'>Object</a>): <a href='intrinsic-XML.html'>XML</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Insert a child object into an XML object immediately before all existing properties.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public </td><td><a href='#processingInstructions'><b>processingInstructions</b></a>(name: <a href='intrinsic-String.html'>String</a>): <a href='intrinsic-XMLList.html'>XMLList</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Get all the children of this XML node that are processing instructions having the given name.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public </td><td><a href='#replace'><b>replace</b></a>(property: <a href='intrinsic-Object.html'>Object</a>, value: <a href='intrinsic-Object.html'>Object</a>): <a href='intrinsic-Void.html'>Void</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Change the value of a property.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public </td><td><a href='#save'><b>save</b></a>(filename: <a href='intrinsic-String.html'>String</a>): <a href='intrinsic-Void.html'>Void</a></tr><tr class='apiBrief'><td>&nbsp;</td><td></td></tr>
+   <tr class='apiDef'><td class='apiType'>public </td><td><a href='#setChildren'><b>setChildren</b></a>(properties: <a href='intrinsic-Object.html'>Object</a>): <a href='intrinsic-XML.html'>XML</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Replace all the current properties of this XML object with a new set.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public </td><td><a href='#setLocalName'><b>setLocalName</b></a>(name: <a href='intrinsic-String.html'>String</a>): <a href='intrinsic-Void.html'>Void</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Set the local name portion of the complete name of this XML object.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public </td><td><a href='#setName'><b>setName</b></a>(name: <a href='intrinsic-String.html'>String</a>): <a href='intrinsic-Void.html'>Void</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Set the qualified name of this XML object.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public </td><td><a href='#setSettings'><b>setSettings</b></a>(settings: <a href='intrinsic-Object.html'>Object</a>): <a href='intrinsic-Void.html'>Void</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Configure the settings for this XML object.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public </td><td><a href='#settings'><b>settings</b></a>(): <a href='intrinsic-Object.html'>Object</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Get the settings for this XML object.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public </td><td><a href='#text'><b>text</b></a>(name: <a href='intrinsic-String.html'>String</a>): <a href='intrinsic-XMLList.html'>XMLList</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Get all the properties of this XML node that are text nodes having the given name.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public override </td><td><a href='#toString'><b>toString</b></a>(): <a href='intrinsic-String.html'>String</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Provides a string representation of the XML object.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public </td><td><a href='#toXMLString'><b>toXMLString</b></a>(): <a href='intrinsic-String.html'>String</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Provides an XML-encoded version of the XML object that includes the tags.</td></tr>
+   <tr class='apiDef'><td class='apiType'> </td><td><a href='#XML'><b>XML</b></a>(value: <a href='intrinsic-Object.html'>Object</a>)</tr><tr class='apiBrief'><td>&nbsp;</td><td>XML Constructor.</td></tr>
+</table>
+
+<p class='inheritedLink'><a href='intrinsic-Object.html#Methods'><i>Inherited Methods</i></a></p>
+
+<hr />
+<h2>Method Detail</h2>
+<a name='addNamespace'></a>
+<div class='api'>
+<div class='apiSig'> public addNamespace(ns: <a href='intrinsic-Namespace.html'>Namespace</a>): <a href='intrinsic-XML.html'>XML</a>
+</div>
+</div>
+<hr />
+<a name='appendChild'></a>
+<div class='api'>
+<div class='apiSig'> public appendChild(child: <a href='intrinsic-XML.html'>XML</a>): <a href='intrinsic-XML.html'>XML</a>
+</div>
+<div class='apiDetail'>
+<p>Append a child to this XML object.</p>
+<dl><dt>Parameters</dt>
+<dd><table class='parameters' summary ='parameters'>
+<tr><td class='param'>child: <a href='intrinsic-XML.html'>XML</a> </td><td>The child to add.</td></tr></table></dd>
+</dl><dl><dt>Returns</dt>
+<dd>This object with the added child.</dd></dl>
+</div>
+</div>
+<hr />
+<a name='attribute'></a>
+<div class='api'>
+<div class='apiSig'> public attribute(name: <a href='intrinsic-String.html'>String</a>): <a href='intrinsic-XMLList.html'>XMLList</a>
+</div>
+<div class='apiDetail'>
+<p>Get an XMLList containing all of the attributes of this object with the given name.</p>
+<dl><dt>Parameters</dt>
+<dd><table class='parameters' summary ='parameters'>
+<tr><td class='param'>name: <a href='intrinsic-String.html'>String</a> </td><td>The name to search on.</td></tr></table></dd>
+</dl><dl><dt>Returns</dt>
+<dd>An XMLList with all the attributes (zero or more).</dd></dl>
+</div>
+</div>
+<hr />
+<a name='attributes'></a>
+<div class='api'>
+<div class='apiSig'> public attributes(): <a href='intrinsic-XMLList.html'>XMLList</a>
+</div>
+<div class='apiDetail'>
+<p>Get an XMLList containing all of the attributes of this object.</p>
+<dl><dt>Returns</dt>
+<dd>An XMLList with all the attributes (zero or more).</dd></dl>
+</div>
+</div>
+<hr />
+<a name='child'></a>
+<div class='api'>
+<div class='apiSig'> public child(name: <a href='intrinsic-String.html'>String</a>): <a href='intrinsic-XMLList.html'>XMLList</a>
+</div>
+<div class='apiDetail'>
+<p>Get an XMLList containing the list of children (properties) in this XML object with the given name.</p>
+<dl><dt>Parameters</dt>
+<dd><table class='parameters' summary ='parameters'>
+<tr><td class='param'>name: <a href='intrinsic-String.html'>String</a> </td><td>The name to search on.</td></tr></table></dd>
+</dl><dl><dt>Returns</dt>
+<dd>An XMLList with all the children names (zero or more).</dd></dl>
+</div>
+</div>
+<hr />
+<a name='childIndex'></a>
+<div class='api'>
+<div class='apiSig'> public childIndex(): <a href='intrinsic-Number.html'>Number</a>
+</div>
+<div class='apiDetail'>
+<p>Get the position of this object within the context of its parent.</p>
+<dl><dt>Returns</dt>
+<dd>A number with the zero-based position.</dd></dl>
+</div>
+</div>
+<hr />
+<a name='children'></a>
+<div class='api'>
+<div class='apiSig'> public children(): <a href='intrinsic-XMLList.html'>XMLList</a>
+</div>
+<div class='apiDetail'>
+<p>Get an XMLList containing the children (properties) of this object in order.</p>
+<dl><dt>Returns</dt>
+<dd>An XMLList with all the properties.</dd></dl>
+</div>
+</div>
+<hr />
+<a name='comments'></a>
+<div class='api'>
+<div class='apiSig'> public comments(): <a href='intrinsic-XMLList.html'>XMLList</a>
+</div>
+<div class='apiDetail'>
+<p>Get an XMLList containing the properties of this object that are comments.</p>
+<dl><dt>Returns</dt>
+<dd>An XMLList with all the comment properties.</dd></dl>
+</div>
+</div>
+<hr />
+<a name='contains'></a>
+<div class='api'>
+<div class='apiSig'> public contains(obj: <a href='intrinsic-Object.html'>Object</a>): <a href='intrinsic-Boolean.html'>Boolean</a>
+</div>
+<div class='apiDetail'>
+<p>Compare an XML object to another one or an XMLList with only one XML object in it.</p>
+<dl><dt>Description</dt><dd>If the comparison operator is true, then one object is said to contain the other.</dd></dl>
+<dl><dt>Returns</dt>
+<dd>True if this object contains the argument.</dd></dl>
+</div>
+</div>
+<hr />
+<a name='copy'></a>
+<div class='api'>
+<div class='apiSig'> public copy(): <a href='intrinsic-XML.html'>XML</a>
+</div>
+<div class='apiDetail'>
+<p>Deep copy an XML object.</p>
+<dl><dt>Description</dt><dd>The new object has its parent set to null.</dd></dl>
+<dl><dt>Returns</dt>
+<dd>Then new XML object.</dd></dl>
+</div>
+</div>
+<hr />
+<a name='defaultSettings'></a>
+<div class='api'>
+<div class='apiSig'> public defaultSettings(): <a href='intrinsic-Object.html'>Object</a>
+</div>
+<div class='apiDetail'>
+<p>Get the defaults settings for an XML object.</p>
+<dl><dt>Description</dt><dd>The settings include boolean values for: ignoring comments,  ignoring processing instruction, ignoring white space and pretty printing and indenting. See ECMA-357 for details.</dd></dl>
+<dl><dt>Returns</dt>
+<dd>Get the settings for this XML object.</dd></dl>
+</div>
+</div>
+<hr />
+<a name='descendants'></a>
+<div class='api'>
+<div class='apiSig'> public descendants(name: <a href='intrinsic-String.html'>String</a>): <a href='intrinsic-Object.html'>Object</a>
+</div>
+<div class='apiDetail'>
+<p>Get all the descendants (that have the same name) of this XML object.</p>
+<dl><dt>Description</dt><dd>The optional argument defaults  to getting all descendants.</dd></dl>
+<dl><dt>Parameters</dt>
+<dd><table class='parameters' summary ='parameters'>
+<tr><td class='param'>name: <a href='intrinsic-String.html'>String</a> </td><td>The (optional) name to search on.</td></tr></table></dd>
+</dl><dl><dt>Returns</dt>
+<dd>The list of descendants.</dd></dl>
+</div>
+</div>
+<hr />
+<a name='elements'></a>
+<div class='api'>
+<div class='apiSig'> public elements(name: <a href='intrinsic-String.html'>String</a>): <a href='intrinsic-XMLList.html'>XMLList</a>
+</div>
+<div class='apiDetail'>
+<p>Get all the children of this XML node that are elements having the given name.</p>
+<dl><dt>Description</dt><dd>The optional argument defaults to getting all elements.</dd></dl>
+<dl><dt>Parameters</dt>
+<dd><table class='parameters' summary ='parameters'>
+<tr><td class='param'>name: <a href='intrinsic-String.html'>String</a> </td><td>The (optional) name to search on.</td></tr></table></dd>
+</dl><dl><dt>Returns</dt>
+<dd>The list of elements.</dd></dl>
+</div>
+</div>
+<hr />
+<a name='get'></a>
+<div class='api'>
+<div class='apiSig'>override  iterator get(deep: <a href='intrinsic-Boolean.html'>Boolean</a>): <a href='iterator-Iterator.html'>Iterator</a>
+</div>
+<div class='apiDetail'>
+<p>Get an iterator for this node to be used by "for (v in node)".</p>
+<dl><dt>Parameters</dt>
+<dd><table class='parameters' summary ='parameters'>
+<tr><td class='param'>deep: <a href='intrinsic-Boolean.html'>Boolean</a> </td><td>Follow the prototype chain. Only implemented in ECMA compliance mode.. [default: false]</td></tr></table></dd>
+</dl><dl><dt>Returns</dt>
+<dd>An iterator object.</dd></dl>
+<dl><dt>Specified</dt>
+<dd>Ecma-3.</dd></dl>
+</div>
+</div>
+<hr />
+<a name='getValues'></a>
+<div class='api'>
+<div class='apiSig'>override  iterator getValues(deep: <a href='intrinsic-Boolean.html'>Boolean</a>): <a href='iterator-Iterator.html'>Iterator</a>
+</div>
+<div class='apiDetail'>
+<p>Get an iterator for this node to be used by "for each (v in node)".</p>
+<dl><dt>Parameters</dt>
+<dd><table class='parameters' summary ='parameters'>
+<tr><td class='param'>deep: <a href='intrinsic-Boolean.html'>Boolean</a> </td><td>Follow the prototype chain. Only implemented in ECMA compliance mode.. [default: false]</td></tr></table></dd>
+</dl><dl><dt>Returns</dt>
+<dd>An iterator object.</dd></dl>
+<dl><dt>Specified</dt>
+<dd>Ecma-3.</dd></dl>
+</div>
+</div>
+<hr />
+<a name='hasComplexContent'></a>
+<div class='api'>
+<div class='apiSig'> public hasComplexContent(): <a href='intrinsic-Boolean.html'>Boolean</a>
+</div>
+<div class='apiDetail'>
+<p>Determine whether this XML object has complex content.</p>
+<dl><dt>Description</dt><dd>If the object has child elements it is  considered complex.</dd></dl>
+<dl><dt>Returns</dt>
+<dd>True if this object has complex content.</dd></dl>
+</div>
+</div>
+<hr />
+<a name='hasSimpleContent'></a>
+<div class='api'>
+<div class='apiSig'> public hasSimpleContent(): <a href='intrinsic-Boolean.html'>Boolean</a>
+</div>
+<div class='apiDetail'>
+<p>Determine whether this XML object has simple content.</p>
+<dl><dt>Description</dt><dd>If the object is a text node, an attribute node or an XML element that has no children it is considered simple.</dd></dl>
+<dl><dt>Returns</dt>
+<dd>True if this object has simple content.</dd></dl>
+</div>
+</div>
+<hr />
+<a name='inScopeNamespaces'></a>
+<div class='api'>
+<div class='apiSig'> public inScopeNamespaces(): <a href='intrinsic-Array.html'>Array</a>
+</div>
+</div>
+<hr />
+<a name='insertChildAfter'></a>
+<div class='api'>
+<div class='apiSig'> public insertChildAfter(marker: <a href='intrinsic-Object.html'>Object</a>, child: <a href='intrinsic-Object.html'>Object</a>): <a href='intrinsic-XML.html'>XML</a>
+</div>
+<div class='apiDetail'>
+<p>Insert a child object into an XML object immediately after a specified marker object.</p>
+<dl><dt>Description</dt><dd>If the marker object  is null then the new object is inserted at the end. If the marker object is not found then the insertion  is not made. TODO - if marker is null. Insert at beginning or end?.</dd></dl>
+<dl><dt>Parameters</dt>
+<dd><table class='parameters' summary ='parameters'>
+<tr><td class='param'>marker: <a href='intrinsic-Object.html'>Object</a> </td><td>Insert the new element before this one.</td></tr><tr><td class='param'>child: <a href='intrinsic-Object.html'>Object</a> </td><td>Child element to be inserted.</td></tr></table></dd>
+</dl><dl><dt>Returns</dt>
+<dd>This XML object - modified or not.</dd></dl>
+</div>
+</div>
+<hr />
+<a name='insertChildBefore'></a>
+<div class='api'>
+<div class='apiSig'> public insertChildBefore(marker: <a href='intrinsic-Object.html'>Object</a>, child: <a href='intrinsic-Object.html'>Object</a>): <a href='intrinsic-XML.html'>XML</a>
+</div>
+<div class='apiDetail'>
+<p>Insert a child object into an XML object immediately before a specified marker object.</p>
+<dl><dt>Description</dt><dd>If the marker  object is null then the new object is inserted at the end. If the marker object is not found then the insertion is not made. TODO - if marker is null. Insert at beginning or end?.</dd></dl>
+<dl><dt>Parameters</dt>
+<dd><table class='parameters' summary ='parameters'>
+<tr><td class='param'>marker: <a href='intrinsic-Object.html'>Object</a> </td><td>Insert the new element before this one.</td></tr><tr><td class='param'>child: <a href='intrinsic-Object.html'>Object</a> </td><td>Child element to be inserted.</td></tr></table></dd>
+</dl><dl><dt>Returns</dt>
+<dd>This XML object - modified or not.</dd></dl>
+</div>
+</div>
+<hr />
+<a name='length'></a>
+<div class='api'>
+<div class='apiSig'>override  public length(): <a href='intrinsic-Number.html'>Number</a>
+</div>
+<div class='apiDetail'>
+<p>Return the length of an XML object; the length is defined as 1.</p>
+<dl><dt>Returns</dt>
+<dd>1.</dd></dl>
+</div>
+</div>
+<hr />
+<a name='load'></a>
+<div class='api'>
+<div class='apiSig'> public load(filename: <a href='intrinsic-String.html'>String</a>): <a href='intrinsic-Void.html'>Void</a>
+</div>
+<div class='apiDetail'>
+<p></p>
+</div>
+</div>
+<hr />
+<a name='localName'></a>
+<div class='api'>
+<div class='apiSig'> public localName(): <a href='intrinsic-String.html'>String</a>
+</div>
+<div class='apiDetail'>
+<p>Get the local name portion of the complete name of this XML object.</p>
+<dl><dt>Returns</dt>
+<dd>The local name.</dd></dl>
+</div>
+</div>
+<hr />
+<a name='name'></a>
+<div class='api'>
+<div class='apiSig'> public name(): <a href='intrinsic-String.html'>String</a>
+</div>
+<div class='apiDetail'>
+<p>Get the qualified name of this XML object.</p>
+<dl><dt>Returns</dt>
+<dd>The qualified name.</dd></dl>
+</div>
+</div>
+<hr />
+<a name='namespace'></a>
+<div class='api'>
+<div class='apiSig'> public namespace(prefix: <a href='intrinsic-String.html'>String</a>): <a href='intrinsic-Object.html'>Object</a>
+</div>
+</div>
+<hr />
+<a name='namespaceDeclarations'></a>
+<div class='api'>
+<div class='apiSig'> public namespaceDeclarations(): <a href='intrinsic-Array.html'>Array</a>
+</div>
+</div>
+<hr />
+<a name='nodeKind'></a>
+<div class='api'>
+<div class='apiSig'> public nodeKind(): <a href='intrinsic-String.html'>String</a>
+</div>
+<div class='apiDetail'>
+<p>Get the kind of node this XML object is.</p>
+<dl><dt>Returns</dt>
+<dd>The node kind.</dd></dl>
+</div>
+</div>
+<hr />
+<a name='normalize'></a>
+<div class='api'>
+<div class='apiSig'> public normalize(): <a href='intrinsic-XML.html'>XML</a>
+</div>
+<div class='apiDetail'>
+<p>Merge adjacent text nodes into one text node and eliminate empty text nodes.</p>
+<dl><dt>Returns</dt>
+<dd>This XML object.</dd></dl>
+</div>
+</div>
+<hr />
+<a name='parent'></a>
+<div class='api'>
+<div class='apiSig'> public parent(): <a href='intrinsic-XML.html'>XML</a>
+</div>
+<div class='apiDetail'>
+<p>Get the parent of this XML object.</p>
+<dl><dt>Returns</dt>
+<dd>The parent.</dd></dl>
+</div>
+</div>
+<hr />
+<a name='prependChild'></a>
+<div class='api'>
+<div class='apiSig'> public prependChild(child: <a href='intrinsic-Object.html'>Object</a>): <a href='intrinsic-XML.html'>XML</a>
+</div>
+<div class='apiDetail'>
+<p>Insert a child object into an XML object immediately before all existing properties.</p>
+<dl><dt>Parameters</dt>
+<dd><table class='parameters' summary ='parameters'>
+<tr><td class='param'>child: <a href='intrinsic-Object.html'>Object</a> </td><td>Child element to be inserted.</td></tr></table></dd>
+</dl><dl><dt>Returns</dt>
+<dd>This XML object - modified or not.</dd></dl>
+</div>
+</div>
+<hr />
+<a name='processingInstructions'></a>
+<div class='api'>
+<div class='apiSig'> public processingInstructions(name: <a href='intrinsic-String.html'>String</a>): <a href='intrinsic-XMLList.html'>XMLList</a>
+</div>
+<div class='apiDetail'>
+<p>Get all the children of this XML node that are processing instructions having the given name.</p>
+<dl><dt>Description</dt><dd>The optional argument defaults to getting all processing instruction nodes.</dd></dl>
+<dl><dt>Parameters</dt>
+<dd><table class='parameters' summary ='parameters'>
+<tr><td class='param'>name: <a href='intrinsic-String.html'>String</a> </td><td>The (optional) name to search on.</td></tr></table></dd>
+</dl><dl><dt>Returns</dt>
+<dd>The list of processing instruction nodes.</dd></dl>
+</div>
+</div>
+<hr />
+<a name='replace'></a>
+<div class='api'>
+<div class='apiSig'> public replace(property: <a href='intrinsic-Object.html'>Object</a>, value: <a href='intrinsic-Object.html'>Object</a>): <a href='intrinsic-Void.html'>Void</a>
+</div>
+<div class='apiDetail'>
+<p>Change the value of a property.</p>
+<dl><dt>Description</dt><dd>If the property is not found, nothing happens.</dd></dl>
+<dl><dt>Parameters</dt>
+<dd><table class='parameters' summary ='parameters'>
+<tr><td class='param'>property: <a href='intrinsic-Object.html'>Object</a> </td><td>The property to change.</td></tr><tr><td class='param'>value: <a href='intrinsic-Object.html'>Object</a> </td><td>The new value.</td></tr></table></dd>
+</dl><dl><dt>Returns</dt>
+<dd>True if the property will be enumerated.</dd></dl>
+</div>
+</div>
+<hr />
+<a name='save'></a>
+<div class='api'>
+<div class='apiSig'> public save(filename: <a href='intrinsic-String.html'>String</a>): <a href='intrinsic-Void.html'>Void</a>
+</div>
+<div class='apiDetail'>
+<p></p>
+</div>
+</div>
+<hr />
+<a name='setChildren'></a>
+<div class='api'>
+<div class='apiSig'> public setChildren(properties: <a href='intrinsic-Object.html'>Object</a>): <a href='intrinsic-XML.html'>XML</a>
+</div>
+<div class='apiDetail'>
+<p>Replace all the current properties of this XML object with a new set.</p>
+<dl><dt>Description</dt><dd>The argument can be  another XML object or an XMLList.</dd></dl>
+<dl><dt>Parameters</dt>
+<dd><table class='parameters' summary ='parameters'>
+<tr><td class='param'>properties: <a href='intrinsic-Object.html'>Object</a> </td><td>The new property or properties.</td></tr></table></dd>
+</dl><dl><dt>Returns</dt>
+<dd>This XML object.</dd></dl>
+</div>
+</div>
+<hr />
+<a name='setLocalName'></a>
+<div class='api'>
+<div class='apiSig'> public setLocalName(name: <a href='intrinsic-String.html'>String</a>): <a href='intrinsic-Void.html'>Void</a>
+</div>
+<div class='apiDetail'>
+<p>Set the local name portion of the complete name of this XML object.</p>
+<dl><dt>Parameters</dt>
+<dd><table class='parameters' summary ='parameters'>
+</td></tr></table></dd>
+</dl></div>
+</div>
+<hr />
+<a name='setName'></a>
+<div class='api'>
+<div class='apiSig'> public setName(name: <a href='intrinsic-String.html'>String</a>): <a href='intrinsic-Void.html'>Void</a>
+</div>
+<div class='apiDetail'>
+<p>Set the qualified name of this XML object.</p>
+<dl><dt>Parameters</dt>
+<dd><table class='parameters' summary ='parameters'>
+</td></tr></table></dd>
+</dl></div>
+</div>
+<hr />
+<a name='setSettings'></a>
+<div class='api'>
+<div class='apiSig'> public setSettings(settings: <a href='intrinsic-Object.html'>Object</a>): <a href='intrinsic-Void.html'>Void</a>
+</div>
+<div class='apiDetail'>
+<p>Configure the settings for this XML object.</p>
+<dl><dt>Parameters</dt>
+<dd><table class='parameters' summary ='parameters'>
+<tr><td class='param'>settings: <a href='intrinsic-Object.html'>Object</a> </td><td>A "settings" object previously returned from a call to the "settings" method.</td></tr></table></dd>
+</dl></div>
+</div>
+<hr />
+<a name='settings'></a>
+<div class='api'>
+<div class='apiSig'> public settings(): <a href='intrinsic-Object.html'>Object</a>
+</div>
+<div class='apiDetail'>
+<p>Get the settings for this XML object.</p>
+<dl><dt>Description</dt><dd>The settings include boolean values for: ignoring comments,  ignoring processing instruction, ignoring white space and pretty printing and indenting. See ECMA-357 for details.</dd></dl>
+<dl><dt>Returns</dt>
+<dd>Get the settings for this XML object.</dd></dl>
+</div>
+</div>
+<hr />
+<a name='text'></a>
+<div class='api'>
+<div class='apiSig'> public text(name: <a href='intrinsic-String.html'>String</a>): <a href='intrinsic-XMLList.html'>XMLList</a>
+</div>
+<div class='apiDetail'>
+<p>Get all the properties of this XML node that are text nodes having the given name.</p>
+<dl><dt>Description</dt><dd>The optional  argument defaults to getting all text nodes.</dd></dl>
+<dl><dt>Parameters</dt>
+<dd><table class='parameters' summary ='parameters'>
+<tr><td class='param'>name: <a href='intrinsic-String.html'>String</a> </td><td>The (optional) name to search on.</td></tr></table></dd>
+</dl><dl><dt>Returns</dt>
+<dd>The list of text nodes.</dd></dl>
+</div>
+</div>
+<hr />
+<a name='toString'></a>
+<div class='api'>
+<div class='apiSig'>override  public toString(): <a href='intrinsic-String.html'>String</a>
+</div>
+<div class='apiDetail'>
+<p>Provides a string representation of the XML object.</p>
+<dl><dt>Returns</dt>
+<dd>A string with the encoding.</dd></dl>
+</div>
+</div>
+<hr />
+<a name='toXMLString'></a>
+<div class='api'>
+<div class='apiSig'> public toXMLString(): <a href='intrinsic-String.html'>String</a>
+</div>
+<div class='apiDetail'>
+<p>Provides an XML-encoded version of the XML object that includes the tags.</p>
+<dl><dt>Returns</dt>
+<dd>A string with the encoding.</dd></dl>
+</div>
+</div>
+<hr />
+<a name='XML'></a>
+<div class='api'>
+<div class='apiSig'> XML(value: <a href='intrinsic-Object.html'>Object</a>)
+</div>
+<div class='apiDetail'>
+<p>XML Constructor.</p>
+<dl><dt>Description</dt><dd>Create an empty XML object.</dd></dl>
+<dl><dt>Parameters</dt>
+<dd><table class='parameters' summary ='parameters'>
+<tr><td class='param'>value: <a href='intrinsic-Object.html'>Object</a> </td><td>An optional XML or XMLList object to clone.</td></tr></table></dd>
+</dl><dl><dt>Returns</dt>
+<dd>An XML node object.</dd></dl>
+</div>
+</div>
+<hr />
+<div class="terms">
+   <p class="terms">
+       <a href="http://www.embedthis.com/">       Embedthis Software LLC, 2003-2009. All rights reserved. Embedthis is a trademark of Embedthis Software LLC.</a>
+   </p>
+</div></div>
+</div>
+</body>
+</html>

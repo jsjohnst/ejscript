@@ -1,0 +1,10 @@
+#
+#   PKG
+#
+defineComponent() {
+    local file
+    eval file=\$BLD_${KIND}_PKG
+
+    [ "$file" = "" ] && return 0
+    configureComponent --name pkg --path "`probe --path "$1" --base "$file"`"
+}

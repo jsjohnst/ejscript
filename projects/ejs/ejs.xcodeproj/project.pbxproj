@@ -1,0 +1,1818 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C9105B4F0EC0FBB500054066 /* libssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C9105B4E0EC0FBB500054066 /* libssl.dylib */; };
+		C9105B510EC0FBCA00054066 /* libcrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C9105B500EC0FBCA00054066 /* libcrypto.dylib */; };
+		C9105BB20EC2487B00054066 /* libssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C9105B4E0EC0FBB500054066 /* libssl.dylib */; };
+		C9105BB30EC2488200054066 /* libcrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C9105B500EC0FBCA00054066 /* libcrypto.dylib */; };
+		C9176C8C0F83E06800F94072 /* ejs.c in Sources */ = {isa = PBXBuildFile; fileRef = C96575850E6F14D600DF73F8 /* ejs.c */; };
+		C9176C8D0F83E06F00F94072 /* ecAst.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C622E0E6B8E8C006E4948 /* ecAst.c */; };
+		C9176C8E0F83E06F00F94072 /* ecCodeGen.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C622F0E6B8E8C006E4948 /* ecCodeGen.c */; };
+		C9176C8F0F83E06F00F94072 /* ecLex.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C62300E6B8E8C006E4948 /* ecLex.c */; };
+		C9176C900F83E06F00F94072 /* ecModuleWrite.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C62310E6B8E8C006E4948 /* ecModuleWrite.c */; };
+		C9176C910F83E06F00F94072 /* ecParser.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C62320E6B8E8C006E4948 /* ecParser.c */; };
+		C9176C920F83E06F00F94072 /* ecState.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C62330E6B8E8C006E4948 /* ecState.c */; };
+		C9176C950F83E08400F94072 /* ejsArray.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64D50E6B8E8E006E4948 /* ejsArray.c */; };
+		C9176C960F83E08400F94072 /* ejsBlock.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64D60E6B8E8E006E4948 /* ejsBlock.c */; };
+		C9176C970F83E08400F94072 /* ejsBoolean.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64D70E6B8E8E006E4948 /* ejsBoolean.c */; };
+		C9176C980F83E08400F94072 /* ejsByteArray.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64D80E6B8E8E006E4948 /* ejsByteArray.c */; };
+		C9176C990F83E08400F94072 /* ejsDate.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64D90E6B8E8E006E4948 /* ejsDate.c */; };
+		C9176C9A0F83E08400F94072 /* ejsError.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64DA0E6B8E8E006E4948 /* ejsError.c */; };
+		C9176C9B0F83E08400F94072 /* ejsFunction.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64DB0E6B8E8E006E4948 /* ejsFunction.c */; };
+		C9176C9C0F83E08400F94072 /* ejsGlobal.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64DC0E6B8E8E006E4948 /* ejsGlobal.c */; };
+		C9176C9D0F83E08400F94072 /* ejsIterator.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64DD0E6B8E8E006E4948 /* ejsIterator.c */; };
+		C9176C9E0F83E08400F94072 /* ejsNamespace.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64DF0E6B8E8E006E4948 /* ejsNamespace.c */; };
+		C9176C9F0F83E08400F94072 /* ejsNull.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64E00E6B8E8E006E4948 /* ejsNull.c */; };
+		C9176CA00F83E08400F94072 /* ejsNumber.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64E10E6B8E8E006E4948 /* ejsNumber.c */; };
+		C9176CA10F83E08400F94072 /* ejsObject.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64E20E6B8E8E006E4948 /* ejsObject.c */; };
+		C9176CA20F83E08400F94072 /* ejsReflect.c in Sources */ = {isa = PBXBuildFile; fileRef = C930CC3A0EA56D96004D0419 /* ejsReflect.c */; };
+		C9176CA30F83E08400F94072 /* ejsRegExp.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64E30E6B8E8E006E4948 /* ejsRegExp.c */; };
+		C9176CA40F83E08400F94072 /* ejsString.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64E40E6B8E8E006E4948 /* ejsString.c */; };
+		C9176CA50F83E08400F94072 /* ejsType.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64E50E6B8E8E006E4948 /* ejsType.c */; };
+		C9176CA60F83E08400F94072 /* ejsVoid.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64E60E6B8E8E006E4948 /* ejsVoid.c */; };
+		C9176CA70F83E09500F94072 /* ejsTimer.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65220E6B8E8F006E4948 /* ejsTimer.c */; };
+		C9176CA80F83E09B00F94072 /* ejsFile.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65260E6B8E8F006E4948 /* ejsFile.c */; };
+		C9176CA90F83E09B00F94072 /* ejsHttp.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65270E6B8E8F006E4948 /* ejsHttp.c */; };
+		C9176CAA0F83E0A500F94072 /* ejsConfig.c in Sources */ = {isa = PBXBuildFile; fileRef = C9F63CAA0F7949B100E9B2B1 /* ejsConfig.c */; };
+		C9176CAB0F83E0A500F94072 /* ejsApp.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C654E0E6B8E8F006E4948 /* ejsApp.c */; };
+		C9176CAC0F83E0A500F94072 /* ejsDebug.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C654F0E6B8E8F006E4948 /* ejsDebug.c */; };
+		C9176CAD0F83E0A500F94072 /* ejsGC.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65500E6B8E8F006E4948 /* ejsGC.c */; };
+		C9176CAE0F83E0A500F94072 /* ejsLogger.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65510E6B8E8F006E4948 /* ejsLogger.c */; };
+		C9176CAF0F83E0A500F94072 /* ejsMemory.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65520E6B8E8F006E4948 /* ejsMemory.c */; };
+		C9176CB00F83E0A500F94072 /* ejsSystem.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65530E6B8E8F006E4948 /* ejsSystem.c */; };
+		C9176CB10F83E0AC00F94072 /* ejsXML.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65580E6B8E8F006E4948 /* ejsXML.c */; };
+		C9176CB20F83E0AC00F94072 /* ejsXMLList.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65590E6B8E8F006E4948 /* ejsXMLList.c */; };
+		C9176CB30F83E0AC00F94072 /* ejsXMLLoader.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C655A0E6B8E8F006E4948 /* ejsXMLLoader.c */; };
+		C9176CC30F83E1BB00F94072 /* ejsScope.c in Sources */ = {isa = PBXBuildFile; fileRef = C95C39500EA3B6320016A988 /* ejsScope.c */; };
+		C9176CC40F83E1BB00F94072 /* ejsList.c in Sources */ = {isa = PBXBuildFile; fileRef = C938FB230E724DFA003D99B1 /* ejsList.c */; };
+		C9176CC50F83E1BB00F94072 /* ejsException.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C655F0E6B8E8F006E4948 /* ejsException.c */; };
+		C9176CC60F83E1BB00F94072 /* ejsGarbage.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65600E6B8E8F006E4948 /* ejsGarbage.c */; };
+		C9176CC70F83E1BB00F94072 /* ejsInterp.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65610E6B8E8F006E4948 /* ejsInterp.c */; };
+		C9176CC80F83E1BB00F94072 /* ejsLoader.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65620E6B8E8F006E4948 /* ejsLoader.c */; };
+		C9176CC90F83E1BB00F94072 /* ejsModule.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65630E6B8E8F006E4948 /* ejsModule.c */; };
+		C9176CCA0F83E1BB00F94072 /* ejsService.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65640E6B8E8F006E4948 /* ejsService.c */; };
+		C9176CCB0F83E1BB00F94072 /* ejsTrace.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65650E6B8E8F006E4948 /* ejsTrace.c */; };
+		C9176CCC0F83E1BB00F94072 /* ejsVar.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65660E6B8E8F006E4948 /* ejsVar.c */; };
+		C92F2C540F8540A900945229 /* ejsWebFramework.c in Sources */ = {isa = PBXBuildFile; fileRef = C92F2C530F8540A900945229 /* ejsWebFramework.c */; };
+		C92F2C550F8540A900945229 /* ejsWebFramework.c in Sources */ = {isa = PBXBuildFile; fileRef = C92F2C530F8540A900945229 /* ejsWebFramework.c */; };
+		C92F2C560F8540A900945229 /* ejsWebFramework.c in Sources */ = {isa = PBXBuildFile; fileRef = C92F2C530F8540A900945229 /* ejsWebFramework.c */; };
+		C92F2C570F8540A900945229 /* ejsWebFramework.c in Sources */ = {isa = PBXBuildFile; fileRef = C92F2C530F8540A900945229 /* ejsWebFramework.c */; };
+		C92F2C580F8540A900945229 /* ejsWebFramework.c in Sources */ = {isa = PBXBuildFile; fileRef = C92F2C530F8540A900945229 /* ejsWebFramework.c */; };
+		C930CC3B0EA56D96004D0419 /* ejsReflect.c in Sources */ = {isa = PBXBuildFile; fileRef = C930CC3A0EA56D96004D0419 /* ejsReflect.c */; };
+		C930CC3C0EA56D96004D0419 /* ejsReflect.c in Sources */ = {isa = PBXBuildFile; fileRef = C930CC3A0EA56D96004D0419 /* ejsReflect.c */; };
+		C930CC3D0EA56D96004D0419 /* ejsReflect.c in Sources */ = {isa = PBXBuildFile; fileRef = C930CC3A0EA56D96004D0419 /* ejsReflect.c */; };
+		C930CC3E0EA56D96004D0419 /* ejsReflect.c in Sources */ = {isa = PBXBuildFile; fileRef = C930CC3A0EA56D96004D0419 /* ejsReflect.c */; };
+		C938FB240E724DFA003D99B1 /* ejsList.c in Sources */ = {isa = PBXBuildFile; fileRef = C938FB230E724DFA003D99B1 /* ejsList.c */; };
+		C938FB250E724DFA003D99B1 /* ejsList.c in Sources */ = {isa = PBXBuildFile; fileRef = C938FB230E724DFA003D99B1 /* ejsList.c */; };
+		C938FB260E724DFA003D99B1 /* ejsList.c in Sources */ = {isa = PBXBuildFile; fileRef = C938FB230E724DFA003D99B1 /* ejsList.c */; };
+		C9452E040F282A2F00190331 /* ejsDb.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C623B0E6B8E8C006E4948 /* ejsDb.c */; };
+		C9452E050F282A3300190331 /* mprLib.c in Sources */ = {isa = PBXBuildFile; fileRef = C9E2D1650F09CF400064AE1A /* mprLib.c */; };
+		C9452E060F282A3300190331 /* mprPcre.c in Sources */ = {isa = PBXBuildFile; fileRef = C9E2D1660F09CF400064AE1A /* mprPcre.c */; };
+		C94F65290EE4C3F800B7E89A /* ejsWebController.c in Sources */ = {isa = PBXBuildFile; fileRef = C94F65240EE4C3F800B7E89A /* ejsWebController.c */; };
+		C94F652A0EE4C3F800B7E89A /* ejsWebHost.c in Sources */ = {isa = PBXBuildFile; fileRef = C94F65250EE4C3F800B7E89A /* ejsWebHost.c */; };
+		C94F652B0EE4C3F800B7E89A /* ejsWebRequest.c in Sources */ = {isa = PBXBuildFile; fileRef = C94F65260EE4C3F800B7E89A /* ejsWebRequest.c */; };
+		C94F652C0EE4C3F800B7E89A /* ejsWebResponse.c in Sources */ = {isa = PBXBuildFile; fileRef = C94F65270EE4C3F800B7E89A /* ejsWebResponse.c */; };
+		C94F652D0EE4C3F800B7E89A /* ejsWebSession.c in Sources */ = {isa = PBXBuildFile; fileRef = C94F65280EE4C3F800B7E89A /* ejsWebSession.c */; };
+		C94F65330EE4C3F800B7E89A /* ejsWebController.c in Sources */ = {isa = PBXBuildFile; fileRef = C94F65240EE4C3F800B7E89A /* ejsWebController.c */; };
+		C94F65340EE4C3F800B7E89A /* ejsWebHost.c in Sources */ = {isa = PBXBuildFile; fileRef = C94F65250EE4C3F800B7E89A /* ejsWebHost.c */; };
+		C94F65350EE4C3F800B7E89A /* ejsWebRequest.c in Sources */ = {isa = PBXBuildFile; fileRef = C94F65260EE4C3F800B7E89A /* ejsWebRequest.c */; };
+		C94F65360EE4C3F800B7E89A /* ejsWebResponse.c in Sources */ = {isa = PBXBuildFile; fileRef = C94F65270EE4C3F800B7E89A /* ejsWebResponse.c */; };
+		C94F65370EE4C3F800B7E89A /* ejsWebSession.c in Sources */ = {isa = PBXBuildFile; fileRef = C94F65280EE4C3F800B7E89A /* ejsWebSession.c */; };
+		C94F65380EE4C3F800B7E89A /* ejsWebController.c in Sources */ = {isa = PBXBuildFile; fileRef = C94F65240EE4C3F800B7E89A /* ejsWebController.c */; };
+		C94F65390EE4C3F800B7E89A /* ejsWebHost.c in Sources */ = {isa = PBXBuildFile; fileRef = C94F65250EE4C3F800B7E89A /* ejsWebHost.c */; };
+		C94F653A0EE4C3F800B7E89A /* ejsWebRequest.c in Sources */ = {isa = PBXBuildFile; fileRef = C94F65260EE4C3F800B7E89A /* ejsWebRequest.c */; };
+		C94F653B0EE4C3F800B7E89A /* ejsWebResponse.c in Sources */ = {isa = PBXBuildFile; fileRef = C94F65270EE4C3F800B7E89A /* ejsWebResponse.c */; };
+		C94F653C0EE4C3F800B7E89A /* ejsWebSession.c in Sources */ = {isa = PBXBuildFile; fileRef = C94F65280EE4C3F800B7E89A /* ejsWebSession.c */; };
+		C95AAD7A0F8407C90092B86A /* libmpr.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C95AAD780F8407C90092B86A /* libmpr.dylib */; };
+		C95AAD7B0F8407C90092B86A /* libpcre.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C95AAD790F8407C90092B86A /* libpcre.dylib */; };
+		C95AAD7C0F8407C90092B86A /* libmpr.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C95AAD780F8407C90092B86A /* libmpr.dylib */; };
+		C95AAD7D0F8407C90092B86A /* libpcre.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C95AAD790F8407C90092B86A /* libpcre.dylib */; };
+		C95C39510EA3B6320016A988 /* ejsScope.c in Sources */ = {isa = PBXBuildFile; fileRef = C95C39500EA3B6320016A988 /* ejsScope.c */; };
+		C95C39520EA3B6320016A988 /* ejsScope.c in Sources */ = {isa = PBXBuildFile; fileRef = C95C39500EA3B6320016A988 /* ejsScope.c */; };
+		C95C39530EA3B6320016A988 /* ejsScope.c in Sources */ = {isa = PBXBuildFile; fileRef = C95C39500EA3B6320016A988 /* ejsScope.c */; };
+		C95C39540EA3B6320016A988 /* ejsScope.c in Sources */ = {isa = PBXBuildFile; fileRef = C95C39500EA3B6320016A988 /* ejsScope.c */; };
+		C96575840E6F14C800DF73F8 /* ejsvm.c in Sources */ = {isa = PBXBuildFile; fileRef = C965755A0E6F13B100DF73F8 /* ejsvm.c */; };
+		C965758F0E6F151100DF73F8 /* ejsApp.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C654E0E6B8E8F006E4948 /* ejsApp.c */; };
+		C96575900E6F151100DF73F8 /* ejsArray.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64D50E6B8E8E006E4948 /* ejsArray.c */; };
+		C96575910E6F151100DF73F8 /* ejsBlock.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64D60E6B8E8E006E4948 /* ejsBlock.c */; };
+		C96575920E6F151100DF73F8 /* ejsBoolean.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64D70E6B8E8E006E4948 /* ejsBoolean.c */; };
+		C96575930E6F151100DF73F8 /* ejsByteArray.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64D80E6B8E8E006E4948 /* ejsByteArray.c */; };
+		C96575950E6F151100DF73F8 /* ejsDate.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64D90E6B8E8E006E4948 /* ejsDate.c */; };
+		C96575970E6F151100DF73F8 /* ejsDebug.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C654F0E6B8E8F006E4948 /* ejsDebug.c */; };
+		C96575980E6F151100DF73F8 /* ejsError.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64DA0E6B8E8E006E4948 /* ejsError.c */; };
+		C965759A0E6F151100DF73F8 /* ejsException.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C655F0E6B8E8F006E4948 /* ejsException.c */; };
+		C965759B0E6F151100DF73F8 /* ejsFile.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65260E6B8E8F006E4948 /* ejsFile.c */; };
+		C965759C0E6F151100DF73F8 /* ejsFunction.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64DB0E6B8E8E006E4948 /* ejsFunction.c */; };
+		C965759D0E6F151100DF73F8 /* ejsGarbage.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65600E6B8E8F006E4948 /* ejsGarbage.c */; };
+		C965759E0E6F151100DF73F8 /* ejsGC.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65500E6B8E8F006E4948 /* ejsGC.c */; };
+		C965759F0E6F151100DF73F8 /* ejsGlobal.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64DC0E6B8E8E006E4948 /* ejsGlobal.c */; };
+		C96575A00E6F151100DF73F8 /* ejsHttp.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65270E6B8E8F006E4948 /* ejsHttp.c */; };
+		C96575A10E6F151100DF73F8 /* ejsInterp.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65610E6B8E8F006E4948 /* ejsInterp.c */; };
+		C96575A20E6F151100DF73F8 /* ejsIterator.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64DD0E6B8E8E006E4948 /* ejsIterator.c */; };
+		C96575A30E6F151100DF73F8 /* ejsLoader.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65620E6B8E8F006E4948 /* ejsLoader.c */; };
+		C96575A40E6F151100DF73F8 /* ejsLogger.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65510E6B8E8F006E4948 /* ejsLogger.c */; };
+		C96575A50E6F151100DF73F8 /* ejsMemory.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65520E6B8E8F006E4948 /* ejsMemory.c */; };
+		C96575A60E6F151100DF73F8 /* ejsModule.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65630E6B8E8F006E4948 /* ejsModule.c */; };
+		C96575A80E6F151100DF73F8 /* ejsNamespace.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64DF0E6B8E8E006E4948 /* ejsNamespace.c */; };
+		C96575A90E6F151100DF73F8 /* ejsNull.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64E00E6B8E8E006E4948 /* ejsNull.c */; };
+		C96575AA0E6F151100DF73F8 /* ejsNumber.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64E10E6B8E8E006E4948 /* ejsNumber.c */; };
+		C96575AB0E6F151100DF73F8 /* ejsObject.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64E20E6B8E8E006E4948 /* ejsObject.c */; };
+		C96575AC0E6F151100DF73F8 /* ejsRegExp.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64E30E6B8E8E006E4948 /* ejsRegExp.c */; };
+		C96575AD0E6F151100DF73F8 /* ejsService.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65640E6B8E8F006E4948 /* ejsService.c */; };
+		C96575AE0E6F151100DF73F8 /* ejsString.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64E40E6B8E8E006E4948 /* ejsString.c */; };
+		C96575AF0E6F151100DF73F8 /* ejsSystem.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65530E6B8E8F006E4948 /* ejsSystem.c */; };
+		C96575B00E6F151100DF73F8 /* ejsTimer.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65220E6B8E8F006E4948 /* ejsTimer.c */; };
+		C96575B10E6F151100DF73F8 /* ejsTrace.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65650E6B8E8F006E4948 /* ejsTrace.c */; };
+		C96575B20E6F151100DF73F8 /* ejsType.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64E50E6B8E8E006E4948 /* ejsType.c */; };
+		C96575B30E6F151100DF73F8 /* ejsVar.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65660E6B8E8F006E4948 /* ejsVar.c */; };
+		C96575B50E6F151100DF73F8 /* ejsVoid.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64E60E6B8E8E006E4948 /* ejsVoid.c */; };
+		C96575B60E6F151100DF73F8 /* ejsXML.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65580E6B8E8F006E4948 /* ejsXML.c */; };
+		C96575B70E6F151100DF73F8 /* ejsXMLList.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65590E6B8E8F006E4948 /* ejsXMLList.c */; };
+		C96575B80E6F151100DF73F8 /* ejsXMLLoader.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C655A0E6B8E8F006E4948 /* ejsXMLLoader.c */; };
+		C96575EE0E6F151100DF73F8 /* sqlite3.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C62440E6B8E8C006E4948 /* sqlite3.c */; };
+		C96575EF0E6F151100DF73F8 /* sqliteMem.c in Sources */ = {isa = PBXBuildFile; fileRef = C9ED5C8F0E6D9272002B4C43 /* sqliteMem.c */; };
+		C96575F50E6F156400DF73F8 /* ejs.c in Sources */ = {isa = PBXBuildFile; fileRef = C96575850E6F14D600DF73F8 /* ejs.c */; };
+		C965764D0E6F296200DF73F8 /* ecAst.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C622E0E6B8E8C006E4948 /* ecAst.c */; };
+		C965764E0E6F296200DF73F8 /* ecCodeGen.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C622F0E6B8E8C006E4948 /* ecCodeGen.c */; };
+		C965764F0E6F296200DF73F8 /* ecLex.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C62300E6B8E8C006E4948 /* ecLex.c */; };
+		C96576500E6F296200DF73F8 /* ecModuleWrite.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C62310E6B8E8C006E4948 /* ecModuleWrite.c */; };
+		C96576510E6F296200DF73F8 /* ecParser.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C62320E6B8E8C006E4948 /* ecParser.c */; };
+		C96576520E6F296200DF73F8 /* ecState.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C62330E6B8E8C006E4948 /* ecState.c */; };
+		C96576800E6F296200DF73F8 /* ejsArray.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64D50E6B8E8E006E4948 /* ejsArray.c */; };
+		C96576810E6F296200DF73F8 /* ejsBlock.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64D60E6B8E8E006E4948 /* ejsBlock.c */; };
+		C96576820E6F296200DF73F8 /* ejsBoolean.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64D70E6B8E8E006E4948 /* ejsBoolean.c */; };
+		C96576830E6F296200DF73F8 /* ejsByteArray.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64D80E6B8E8E006E4948 /* ejsByteArray.c */; };
+		C96576840E6F296200DF73F8 /* ejsDate.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64D90E6B8E8E006E4948 /* ejsDate.c */; };
+		C96576850E6F296200DF73F8 /* ejsError.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64DA0E6B8E8E006E4948 /* ejsError.c */; };
+		C96576860E6F296200DF73F8 /* ejsFunction.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64DB0E6B8E8E006E4948 /* ejsFunction.c */; };
+		C96576870E6F296200DF73F8 /* ejsGlobal.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64DC0E6B8E8E006E4948 /* ejsGlobal.c */; };
+		C96576880E6F296200DF73F8 /* ejsIterator.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64DD0E6B8E8E006E4948 /* ejsIterator.c */; };
+		C965768A0E6F296200DF73F8 /* ejsNamespace.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64DF0E6B8E8E006E4948 /* ejsNamespace.c */; };
+		C965768B0E6F296200DF73F8 /* ejsNull.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64E00E6B8E8E006E4948 /* ejsNull.c */; };
+		C965768C0E6F296200DF73F8 /* ejsNumber.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64E10E6B8E8E006E4948 /* ejsNumber.c */; };
+		C965768D0E6F296200DF73F8 /* ejsObject.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64E20E6B8E8E006E4948 /* ejsObject.c */; };
+		C965768E0E6F296200DF73F8 /* ejsRegExp.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64E30E6B8E8E006E4948 /* ejsRegExp.c */; };
+		C965768F0E6F296200DF73F8 /* ejsString.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64E40E6B8E8E006E4948 /* ejsString.c */; };
+		C96576900E6F296200DF73F8 /* ejsType.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64E50E6B8E8E006E4948 /* ejsType.c */; };
+		C96576910E6F296200DF73F8 /* ejsVoid.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64E60E6B8E8E006E4948 /* ejsVoid.c */; };
+		C965769E0E6F296200DF73F8 /* ejsTimer.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65220E6B8E8F006E4948 /* ejsTimer.c */; };
+		C965769F0E6F296200DF73F8 /* ejsFile.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65260E6B8E8F006E4948 /* ejsFile.c */; };
+		C96576A00E6F296200DF73F8 /* ejsHttp.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65270E6B8E8F006E4948 /* ejsHttp.c */; };
+		C96576A10E6F296200DF73F8 /* ejsApp.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C654E0E6B8E8F006E4948 /* ejsApp.c */; };
+		C96576A20E6F296200DF73F8 /* ejsDebug.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C654F0E6B8E8F006E4948 /* ejsDebug.c */; };
+		C96576A30E6F296200DF73F8 /* ejsGC.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65500E6B8E8F006E4948 /* ejsGC.c */; };
+		C96576A40E6F296200DF73F8 /* ejsLogger.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65510E6B8E8F006E4948 /* ejsLogger.c */; };
+		C96576A50E6F296200DF73F8 /* ejsMemory.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65520E6B8E8F006E4948 /* ejsMemory.c */; };
+		C96576A60E6F296200DF73F8 /* ejsSystem.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65530E6B8E8F006E4948 /* ejsSystem.c */; };
+		C96576A70E6F296200DF73F8 /* ejsXML.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65580E6B8E8F006E4948 /* ejsXML.c */; };
+		C96576A80E6F296200DF73F8 /* ejsXMLList.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65590E6B8E8F006E4948 /* ejsXMLList.c */; };
+		C96576A90E6F296200DF73F8 /* ejsXMLLoader.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C655A0E6B8E8F006E4948 /* ejsXMLLoader.c */; };
+		C96576AA0E6F296200DF73F8 /* ejsException.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C655F0E6B8E8F006E4948 /* ejsException.c */; };
+		C96576AB0E6F296200DF73F8 /* ejsGarbage.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65600E6B8E8F006E4948 /* ejsGarbage.c */; };
+		C96576AC0E6F296200DF73F8 /* ejsInterp.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65610E6B8E8F006E4948 /* ejsInterp.c */; };
+		C96576AD0E6F296200DF73F8 /* ejsLoader.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65620E6B8E8F006E4948 /* ejsLoader.c */; };
+		C96576AE0E6F296200DF73F8 /* ejsModule.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65630E6B8E8F006E4948 /* ejsModule.c */; };
+		C96576AF0E6F296200DF73F8 /* ejsService.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65640E6B8E8F006E4948 /* ejsService.c */; };
+		C96576B00E6F296200DF73F8 /* ejsTrace.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65650E6B8E8F006E4948 /* ejsTrace.c */; };
+		C96576B10E6F296200DF73F8 /* ejsVar.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65660E6B8E8F006E4948 /* ejsVar.c */; };
+		C97669AB0E76D5D20072E7E5 /* doc.c in Sources */ = {isa = PBXBuildFile; fileRef = C976699F0E76D5D10072E7E5 /* doc.c */; };
+		C97669AC0E76D5D20072E7E5 /* docFiles.c in Sources */ = {isa = PBXBuildFile; fileRef = C97669A10E76D5D10072E7E5 /* docFiles.c */; };
+		C97669AD0E76D5D20072E7E5 /* ejsmod.c in Sources */ = {isa = PBXBuildFile; fileRef = C97669A20E76D5D10072E7E5 /* ejsmod.c */; };
+		C97669AE0E76D5D20072E7E5 /* listing.c in Sources */ = {isa = PBXBuildFile; fileRef = C97669A70E76D5D20072E7E5 /* listing.c */; };
+		C97669B00E76D5D20072E7E5 /* slotGen.c in Sources */ = {isa = PBXBuildFile; fileRef = C97669AA0E76D5D20072E7E5 /* slotGen.c */; };
+		C97669D80E76D6D30072E7E5 /* ecAst.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C622E0E6B8E8C006E4948 /* ecAst.c */; };
+		C97669D90E76D6D30072E7E5 /* ecCodeGen.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C622F0E6B8E8C006E4948 /* ecCodeGen.c */; };
+		C97669DA0E76D6D30072E7E5 /* ecLex.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C62300E6B8E8C006E4948 /* ecLex.c */; };
+		C97669DB0E76D6D30072E7E5 /* ecModuleWrite.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C62310E6B8E8C006E4948 /* ecModuleWrite.c */; };
+		C97669DC0E76D6D30072E7E5 /* ecParser.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C62320E6B8E8C006E4948 /* ecParser.c */; };
+		C97669DD0E76D6D30072E7E5 /* ecState.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C62330E6B8E8C006E4948 /* ecState.c */; };
+		C97669DF0E76D6D30072E7E5 /* sqliteMem.c in Sources */ = {isa = PBXBuildFile; fileRef = C9ED5C8F0E6D9272002B4C43 /* sqliteMem.c */; };
+		C97669E00E76D6D30072E7E5 /* sqlite3.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C62440E6B8E8C006E4948 /* sqlite3.c */; };
+		C97669ED0E76D6D30072E7E5 /* ejsArray.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64D50E6B8E8E006E4948 /* ejsArray.c */; };
+		C97669EE0E76D6D30072E7E5 /* ejsBlock.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64D60E6B8E8E006E4948 /* ejsBlock.c */; };
+		C97669EF0E76D6D30072E7E5 /* ejsBoolean.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64D70E6B8E8E006E4948 /* ejsBoolean.c */; };
+		C97669F00E76D6D30072E7E5 /* ejsByteArray.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64D80E6B8E8E006E4948 /* ejsByteArray.c */; };
+		C97669F10E76D6D30072E7E5 /* ejsDate.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64D90E6B8E8E006E4948 /* ejsDate.c */; };
+		C97669F20E76D6D30072E7E5 /* ejsError.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64DA0E6B8E8E006E4948 /* ejsError.c */; };
+		C97669F30E76D6D30072E7E5 /* ejsFunction.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64DB0E6B8E8E006E4948 /* ejsFunction.c */; };
+		C97669F40E76D6D30072E7E5 /* ejsGlobal.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64DC0E6B8E8E006E4948 /* ejsGlobal.c */; };
+		C97669F50E76D6D30072E7E5 /* ejsIterator.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64DD0E6B8E8E006E4948 /* ejsIterator.c */; };
+		C97669F70E76D6D30072E7E5 /* ejsNamespace.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64DF0E6B8E8E006E4948 /* ejsNamespace.c */; };
+		C97669F80E76D6D30072E7E5 /* ejsNull.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64E00E6B8E8E006E4948 /* ejsNull.c */; };
+		C97669F90E76D6D30072E7E5 /* ejsNumber.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64E10E6B8E8E006E4948 /* ejsNumber.c */; };
+		C97669FA0E76D6D30072E7E5 /* ejsObject.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64E20E6B8E8E006E4948 /* ejsObject.c */; };
+		C97669FB0E76D6D30072E7E5 /* ejsRegExp.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64E30E6B8E8E006E4948 /* ejsRegExp.c */; };
+		C97669FC0E76D6D30072E7E5 /* ejsString.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64E40E6B8E8E006E4948 /* ejsString.c */; };
+		C97669FD0E76D6D30072E7E5 /* ejsType.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64E50E6B8E8E006E4948 /* ejsType.c */; };
+		C97669FE0E76D6D30072E7E5 /* ejsVoid.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64E60E6B8E8E006E4948 /* ejsVoid.c */; };
+		C9766A0B0E76D6D30072E7E5 /* ejsTimer.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65220E6B8E8F006E4948 /* ejsTimer.c */; };
+		C9766A0C0E76D6D30072E7E5 /* ejsFile.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65260E6B8E8F006E4948 /* ejsFile.c */; };
+		C9766A0D0E76D6D30072E7E5 /* ejsHttp.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65270E6B8E8F006E4948 /* ejsHttp.c */; };
+		C9766A0E0E76D6D30072E7E5 /* ejsApp.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C654E0E6B8E8F006E4948 /* ejsApp.c */; };
+		C9766A0F0E76D6D30072E7E5 /* ejsDebug.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C654F0E6B8E8F006E4948 /* ejsDebug.c */; };
+		C9766A100E76D6D30072E7E5 /* ejsGC.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65500E6B8E8F006E4948 /* ejsGC.c */; };
+		C9766A110E76D6D30072E7E5 /* ejsLogger.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65510E6B8E8F006E4948 /* ejsLogger.c */; };
+		C9766A120E76D6D30072E7E5 /* ejsMemory.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65520E6B8E8F006E4948 /* ejsMemory.c */; };
+		C9766A130E76D6D30072E7E5 /* ejsSystem.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65530E6B8E8F006E4948 /* ejsSystem.c */; };
+		C9766A140E76D6D30072E7E5 /* ejsXML.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65580E6B8E8F006E4948 /* ejsXML.c */; };
+		C9766A150E76D6D30072E7E5 /* ejsXMLList.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65590E6B8E8F006E4948 /* ejsXMLList.c */; };
+		C9766A160E76D6D30072E7E5 /* ejsXMLLoader.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C655A0E6B8E8F006E4948 /* ejsXMLLoader.c */; };
+		C9766A170E76D6D30072E7E5 /* ejsList.c in Sources */ = {isa = PBXBuildFile; fileRef = C938FB230E724DFA003D99B1 /* ejsList.c */; };
+		C9766A180E76D6D30072E7E5 /* ejsException.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C655F0E6B8E8F006E4948 /* ejsException.c */; };
+		C9766A190E76D6D30072E7E5 /* ejsGarbage.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65600E6B8E8F006E4948 /* ejsGarbage.c */; };
+		C9766A1A0E76D6D30072E7E5 /* ejsInterp.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65610E6B8E8F006E4948 /* ejsInterp.c */; };
+		C9766A1B0E76D6D30072E7E5 /* ejsLoader.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65620E6B8E8F006E4948 /* ejsLoader.c */; };
+		C9766A1C0E76D6D30072E7E5 /* ejsModule.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65630E6B8E8F006E4948 /* ejsModule.c */; };
+		C9766A1D0E76D6D30072E7E5 /* ejsService.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65640E6B8E8F006E4948 /* ejsService.c */; };
+		C9766A1E0E76D6D30072E7E5 /* ejsTrace.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65650E6B8E8F006E4948 /* ejsTrace.c */; };
+		C9766A1F0E76D6D30072E7E5 /* ejsVar.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65660E6B8E8F006E4948 /* ejsVar.c */; };
+		C99C78B40E6B8E9E006E4948 /* ecAst.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C622E0E6B8E8C006E4948 /* ecAst.c */; };
+		C99C78B50E6B8E9E006E4948 /* ecCodeGen.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C622F0E6B8E8C006E4948 /* ecCodeGen.c */; };
+		C99C78B60E6B8E9E006E4948 /* ecLex.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C62300E6B8E8C006E4948 /* ecLex.c */; };
+		C99C78B70E6B8E9E006E4948 /* ecModuleWrite.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C62310E6B8E8C006E4948 /* ecModuleWrite.c */; };
+		C99C78B80E6B8E9E006E4948 /* ecParser.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C62320E6B8E8C006E4948 /* ecParser.c */; };
+		C99C78B90E6B8E9E006E4948 /* ecState.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C62330E6B8E8C006E4948 /* ecState.c */; };
+		C99C78BF0E6B8E9E006E4948 /* sqlite3.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C62440E6B8E8C006E4948 /* sqlite3.c */; };
+		C99C798D0E6B8E9F006E4948 /* ejsArray.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64D50E6B8E8E006E4948 /* ejsArray.c */; };
+		C99C798E0E6B8E9F006E4948 /* ejsBlock.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64D60E6B8E8E006E4948 /* ejsBlock.c */; };
+		C99C798F0E6B8E9F006E4948 /* ejsBoolean.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64D70E6B8E8E006E4948 /* ejsBoolean.c */; };
+		C99C79900E6B8E9F006E4948 /* ejsByteArray.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64D80E6B8E8E006E4948 /* ejsByteArray.c */; };
+		C99C79910E6B8E9F006E4948 /* ejsDate.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64D90E6B8E8E006E4948 /* ejsDate.c */; };
+		C99C79920E6B8E9F006E4948 /* ejsError.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64DA0E6B8E8E006E4948 /* ejsError.c */; };
+		C99C79930E6B8E9F006E4948 /* ejsFunction.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64DB0E6B8E8E006E4948 /* ejsFunction.c */; };
+		C99C79940E6B8E9F006E4948 /* ejsGlobal.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64DC0E6B8E8E006E4948 /* ejsGlobal.c */; };
+		C99C79950E6B8E9F006E4948 /* ejsIterator.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64DD0E6B8E8E006E4948 /* ejsIterator.c */; };
+		C99C79970E6B8E9F006E4948 /* ejsNamespace.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64DF0E6B8E8E006E4948 /* ejsNamespace.c */; };
+		C99C79980E6B8E9F006E4948 /* ejsNull.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64E00E6B8E8E006E4948 /* ejsNull.c */; };
+		C99C79990E6B8E9F006E4948 /* ejsNumber.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64E10E6B8E8E006E4948 /* ejsNumber.c */; };
+		C99C799A0E6B8E9F006E4948 /* ejsObject.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64E20E6B8E8E006E4948 /* ejsObject.c */; };
+		C99C799B0E6B8E9F006E4948 /* ejsRegExp.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64E30E6B8E8E006E4948 /* ejsRegExp.c */; };
+		C99C799C0E6B8E9F006E4948 /* ejsString.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64E40E6B8E8E006E4948 /* ejsString.c */; };
+		C99C799D0E6B8E9F006E4948 /* ejsType.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64E50E6B8E8E006E4948 /* ejsType.c */; };
+		C99C799E0E6B8E9F006E4948 /* ejsVoid.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C64E60E6B8E8E006E4948 /* ejsVoid.c */; };
+		C99C79C10E6B8E9F006E4948 /* ejsTimer.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65220E6B8E8F006E4948 /* ejsTimer.c */; };
+		C99C79C30E6B8E9F006E4948 /* ejsFile.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65260E6B8E8F006E4948 /* ejsFile.c */; };
+		C99C79C40E6B8E9F006E4948 /* ejsHttp.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65270E6B8E8F006E4948 /* ejsHttp.c */; };
+		C99C79DB0E6B8E9F006E4948 /* ejsApp.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C654E0E6B8E8F006E4948 /* ejsApp.c */; };
+		C99C79DC0E6B8E9F006E4948 /* ejsDebug.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C654F0E6B8E8F006E4948 /* ejsDebug.c */; };
+		C99C79DD0E6B8E9F006E4948 /* ejsGC.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65500E6B8E8F006E4948 /* ejsGC.c */; };
+		C99C79DE0E6B8E9F006E4948 /* ejsLogger.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65510E6B8E8F006E4948 /* ejsLogger.c */; };
+		C99C79DF0E6B8E9F006E4948 /* ejsMemory.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65520E6B8E8F006E4948 /* ejsMemory.c */; };
+		C99C79E00E6B8E9F006E4948 /* ejsSystem.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65530E6B8E8F006E4948 /* ejsSystem.c */; };
+		C99C79E20E6B8E9F006E4948 /* ejsXML.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65580E6B8E8F006E4948 /* ejsXML.c */; };
+		C99C79E30E6B8E9F006E4948 /* ejsXMLList.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65590E6B8E8F006E4948 /* ejsXMLList.c */; };
+		C99C79E40E6B8E9F006E4948 /* ejsXMLLoader.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C655A0E6B8E8F006E4948 /* ejsXMLLoader.c */; };
+		C99C79E60E6B8E9F006E4948 /* ejsException.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C655F0E6B8E8F006E4948 /* ejsException.c */; };
+		C99C79E70E6B8E9F006E4948 /* ejsGarbage.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65600E6B8E8F006E4948 /* ejsGarbage.c */; };
+		C99C79E80E6B8E9F006E4948 /* ejsInterp.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65610E6B8E8F006E4948 /* ejsInterp.c */; };
+		C99C79E90E6B8E9F006E4948 /* ejsLoader.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65620E6B8E8F006E4948 /* ejsLoader.c */; };
+		C99C79EA0E6B8E9F006E4948 /* ejsModule.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65630E6B8E8F006E4948 /* ejsModule.c */; };
+		C99C79EB0E6B8E9F006E4948 /* ejsService.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65640E6B8E8F006E4948 /* ejsService.c */; };
+		C99C79EC0E6B8E9F006E4948 /* ejsTrace.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65650E6B8E8F006E4948 /* ejsTrace.c */; };
+		C99C79ED0E6B8E9F006E4948 /* ejsVar.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C65660E6B8E8F006E4948 /* ejsVar.c */; };
+		C9A722240F265D4E0022D6E1 /* mprLib.c in Sources */ = {isa = PBXBuildFile; fileRef = C9E2D1650F09CF400064AE1A /* mprLib.c */; };
+		C9A722250F265D4E0022D6E1 /* mprPcre.c in Sources */ = {isa = PBXBuildFile; fileRef = C9E2D1660F09CF400064AE1A /* mprPcre.c */; };
+		C9A722280F265D4F0022D6E1 /* mprLib.c in Sources */ = {isa = PBXBuildFile; fileRef = C9E2D1650F09CF400064AE1A /* mprLib.c */; };
+		C9A722290F265D4F0022D6E1 /* mprPcre.c in Sources */ = {isa = PBXBuildFile; fileRef = C9E2D1660F09CF400064AE1A /* mprPcre.c */; };
+		C9A7222A0F265D540022D6E1 /* ejsDb.c in Sources */ = {isa = PBXBuildFile; fileRef = C99C623B0E6B8E8C006E4948 /* ejsDb.c */; };
+		C9B484DC0EC7C3AF00201ED4 /* libssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C9105B4E0EC0FBB500054066 /* libssl.dylib */; };
+		C9B484DD0EC7C3D000201ED4 /* libcrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C9105B500EC0FBCA00054066 /* libcrypto.dylib */; };
+		C9CFB0140ED86FD3009163A7 /* ejsWebInterface.c in Sources */ = {isa = PBXBuildFile; fileRef = C9CFB0130ED86FD3009163A7 /* ejsWebInterface.c */; };
+		C9CFB0160ED86FD3009163A7 /* ejsWebInterface.c in Sources */ = {isa = PBXBuildFile; fileRef = C9CFB0130ED86FD3009163A7 /* ejsWebInterface.c */; };
+		C9CFB0170ED86FD3009163A7 /* ejsWebInterface.c in Sources */ = {isa = PBXBuildFile; fileRef = C9CFB0130ED86FD3009163A7 /* ejsWebInterface.c */; };
+		C9ED5C900E6D9272002B4C43 /* sqliteMem.c in Sources */ = {isa = PBXBuildFile; fileRef = C9ED5C8F0E6D9272002B4C43 /* sqliteMem.c */; };
+		C9F63CA90F79499E00E9B2B1 /* ejsc.c in Sources */ = {isa = PBXBuildFile; fileRef = C9F63CA80F79499E00E9B2B1 /* ejsc.c */; };
+		C9F63CAB0F7949B100E9B2B1 /* ejsConfig.c in Sources */ = {isa = PBXBuildFile; fileRef = C9F63CAA0F7949B100E9B2B1 /* ejsConfig.c */; };
+		C9F63CAC0F7949B100E9B2B1 /* ejsConfig.c in Sources */ = {isa = PBXBuildFile; fileRef = C9F63CAA0F7949B100E9B2B1 /* ejsConfig.c */; };
+		C9F63CAD0F7949B100E9B2B1 /* ejsConfig.c in Sources */ = {isa = PBXBuildFile; fileRef = C9F63CAA0F7949B100E9B2B1 /* ejsConfig.c */; };
+		C9F63CAE0F7949B100E9B2B1 /* ejsConfig.c in Sources */ = {isa = PBXBuildFile; fileRef = C9F63CAA0F7949B100E9B2B1 /* ejsConfig.c */; };
+		C9FF30530ECA3FE7008EA47B /* libcrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C9105B500EC0FBCA00054066 /* libcrypto.dylib */; };
+		C9FF30540ECA3FE9008EA47B /* libssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C9105B4E0EC0FBB500054066 /* libssl.dylib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		8DD76FAF0486AB0100D96B5E /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 8;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		8DD76FB20486AB0100D96B5E /* ejs */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ejs; sourceTree = BUILT_PRODUCTS_DIR; };
+		C9105B4E0EC0FBB500054066 /* libssl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.dylib; path = usr/lib/libssl.dylib; sourceTree = SDKROOT; };
+		C9105B500EC0FBCA00054066 /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = usr/lib/libcrypto.dylib; sourceTree = SDKROOT; };
+		C9176C850F83E03B00F94072 /* ejs-shared */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "ejs-shared"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C92F2C530F8540A900945229 /* ejsWebFramework.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ejsWebFramework.c; sourceTree = "<group>"; };
+		C930CC3A0EA56D96004D0419 /* ejsReflect.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ejsReflect.c; sourceTree = "<group>"; };
+		C938FB230E724DFA003D99B1 /* ejsList.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ejsList.c; sourceTree = "<group>"; };
+		C9427B120E6F10EF00B6F5AE /* ejsvm */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ejsvm; sourceTree = BUILT_PRODUCTS_DIR; };
+		C94F65240EE4C3F800B7E89A /* ejsWebController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ejsWebController.c; sourceTree = "<group>"; };
+		C94F65250EE4C3F800B7E89A /* ejsWebHost.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ejsWebHost.c; sourceTree = "<group>"; };
+		C94F65260EE4C3F800B7E89A /* ejsWebRequest.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ejsWebRequest.c; sourceTree = "<group>"; };
+		C94F65270EE4C3F800B7E89A /* ejsWebResponse.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ejsWebResponse.c; sourceTree = "<group>"; };
+		C94F65280EE4C3F800B7E89A /* ejsWebSession.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ejsWebSession.c; sourceTree = "<group>"; };
+		C95AAD780F8407C90092B86A /* libmpr.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libmpr.dylib; path = ../../lib/libmpr.dylib; sourceTree = SOURCE_ROOT; };
+		C95AAD790F8407C90092B86A /* libpcre.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpcre.dylib; path = ../../lib/libpcre.dylib; sourceTree = SOURCE_ROOT; };
+		C95C39500EA3B6320016A988 /* ejsScope.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ejsScope.c; sourceTree = "<group>"; };
+		C965755A0E6F13B100DF73F8 /* ejsvm.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ejsvm.c; sourceTree = "<group>"; };
+		C96575850E6F14D600DF73F8 /* ejs.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ejs.c; sourceTree = "<group>"; };
+		C96576430E6F28FE00DF73F8 /* ec */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ec; sourceTree = BUILT_PRODUCTS_DIR; };
+		C97669880E76D57B0072E7E5 /* ejsmod */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ejsmod; sourceTree = BUILT_PRODUCTS_DIR; };
+		C976699F0E76D5D10072E7E5 /* doc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = doc.c; sourceTree = "<group>"; };
+		C97669A10E76D5D10072E7E5 /* docFiles.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = docFiles.c; sourceTree = "<group>"; };
+		C97669A20E76D5D10072E7E5 /* ejsmod.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ejsmod.c; sourceTree = "<group>"; };
+		C97669A70E76D5D20072E7E5 /* listing.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = listing.c; sourceTree = "<group>"; };
+		C97669AA0E76D5D20072E7E5 /* slotGen.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = slotGen.c; sourceTree = "<group>"; };
+		C99C622E0E6B8E8C006E4948 /* ecAst.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ecAst.c; sourceTree = "<group>"; };
+		C99C622F0E6B8E8C006E4948 /* ecCodeGen.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ecCodeGen.c; sourceTree = "<group>"; };
+		C99C62300E6B8E8C006E4948 /* ecLex.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ecLex.c; sourceTree = "<group>"; };
+		C99C62310E6B8E8C006E4948 /* ecModuleWrite.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ecModuleWrite.c; sourceTree = "<group>"; };
+		C99C62320E6B8E8C006E4948 /* ecParser.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ecParser.c; sourceTree = "<group>"; };
+		C99C62330E6B8E8C006E4948 /* ecState.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ecState.c; sourceTree = "<group>"; };
+		C99C623B0E6B8E8C006E4948 /* ejsDb.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ejsDb.c; sourceTree = "<group>"; };
+		C99C62440E6B8E8C006E4948 /* sqlite3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sqlite3.c; sourceTree = "<group>"; };
+		C99C640F0E6B8E8E006E4948 /* ec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ec.h; sourceTree = "<group>"; };
+		C99C64100E6B8E8E006E4948 /* ecAst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ecAst.h; sourceTree = "<group>"; };
+		C99C64110E6B8E8E006E4948 /* ecCompiler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ecCompiler.h; sourceTree = "<group>"; };
+		C99C64120E6B8E8E006E4948 /* ecModuleWrite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ecModuleWrite.h; sourceTree = "<group>"; };
+		C99C64130E6B8E8E006E4948 /* ecState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ecState.h; sourceTree = "<group>"; };
+		C99C64140E6B8E8E006E4948 /* ecTune.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ecTune.h; sourceTree = "<group>"; };
+		C99C64150E6B8E8E006E4948 /* ejs.db.slots.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ejs.db.slots.h; sourceTree = "<group>"; };
+		C99C64160E6B8E8E006E4948 /* ejs.esp.slots.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ejs.esp.slots.h; sourceTree = "<group>"; };
+		C99C64170E6B8E8E006E4948 /* ejs.events.slots.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ejs.events.slots.h; sourceTree = "<group>"; };
+		C99C64180E6B8E8E006E4948 /* ejs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ejs.h; sourceTree = "<group>"; };
+		C99C64190E6B8E8E006E4948 /* ejs.io.slots.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ejs.io.slots.h; sourceTree = "<group>"; };
+		C99C641A0E6B8E8E006E4948 /* ejs.slots.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ejs.slots.h; sourceTree = "<group>"; };
+		C99C641B0E6B8E8E006E4948 /* ejs.sys.slots.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ejs.sys.slots.h; sourceTree = "<group>"; };
+		C99C641C0E6B8E8E006E4948 /* ejsBasic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ejsBasic.h; sourceTree = "<group>"; };
+		C99C641D0E6B8E8E006E4948 /* ejsByteCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ejsByteCode.h; sourceTree = "<group>"; };
+		C99C641E0E6B8E8E006E4948 /* ejsCommonCmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ejsCommonCmd.h; sourceTree = "<group>"; };
+		C99C641F0E6B8E8E006E4948 /* ejsCoreTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ejsCoreTypes.h; sourceTree = "<group>"; };
+		C99C64200E6B8E8E006E4948 /* ejsEvents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ejsEvents.h; sourceTree = "<group>"; };
+		C99C64210E6B8E8E006E4948 /* ejsExceptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ejsExceptions.h; sourceTree = "<group>"; };
+		C99C64220E6B8E8E006E4948 /* ejsFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ejsFunction.h; sourceTree = "<group>"; };
+		C99C64230E6B8E8E006E4948 /* ejsGC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ejsGC.h; sourceTree = "<group>"; };
+		C99C64240E6B8E8E006E4948 /* ejsGoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ejsGoto.h; sourceTree = "<group>"; };
+		C99C64250E6B8E8E006E4948 /* ejsIo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ejsIo.h; sourceTree = "<group>"; };
+		C99C64260E6B8E8E006E4948 /* ejsMod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ejsMod.h; sourceTree = "<group>"; };
+		C99C64270E6B8E8E006E4948 /* ejsModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ejsModule.h; sourceTree = "<group>"; };
+		C99C64280E6B8E8E006E4948 /* ejsObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ejsObject.h; sourceTree = "<group>"; };
+		C99C64290E6B8E8E006E4948 /* ejsService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ejsService.h; sourceTree = "<group>"; };
+		C99C642A0E6B8E8E006E4948 /* ejsString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ejsString.h; sourceTree = "<group>"; };
+		C99C642B0E6B8E8E006E4948 /* ejsSys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ejsSys.h; sourceTree = "<group>"; };
+		C99C642D0E6B8E8E006E4948 /* ejsTune.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ejsTune.h; sourceTree = "<group>"; };
+		C99C642E0E6B8E8E006E4948 /* ejsType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ejsType.h; sourceTree = "<group>"; };
+		C99C642F0E6B8E8E006E4948 /* ejsVar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ejsVar.h; sourceTree = "<group>"; };
+		C99C64300E6B8E8E006E4948 /* ejsXml.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ejsXml.h; sourceTree = "<group>"; };
+		C99C64310E6B8E8E006E4948 /* esp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = esp.h; sourceTree = "<group>"; };
+		C99C64320E6B8E8E006E4948 /* mpr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mpr.h; sourceTree = "<group>"; };
+		C99C64330E6B8E8E006E4948 /* mprOs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mprOs.h; sourceTree = "<group>"; };
+		C99C64340E6B8E8E006E4948 /* mprSsl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mprSsl.h; sourceTree = "<group>"; };
+		C99C64350E6B8E8E006E4948 /* mprTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mprTest.h; sourceTree = "<group>"; };
+		C99C64360E6B8E8E006E4948 /* mprTune.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mprTune.h; sourceTree = "<group>"; };
+		C99C64370E6B8E8E006E4948 /* mprUnix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mprUnix.h; sourceTree = "<group>"; };
+		C99C64D50E6B8E8E006E4948 /* ejsArray.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ejsArray.c; sourceTree = "<group>"; };
+		C99C64D60E6B8E8E006E4948 /* ejsBlock.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ejsBlock.c; sourceTree = "<group>"; };
+		C99C64D70E6B8E8E006E4948 /* ejsBoolean.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ejsBoolean.c; sourceTree = "<group>"; };
+		C99C64D80E6B8E8E006E4948 /* ejsByteArray.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ejsByteArray.c; sourceTree = "<group>"; };
+		C99C64D90E6B8E8E006E4948 /* ejsDate.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ejsDate.c; sourceTree = "<group>"; };
+		C99C64DA0E6B8E8E006E4948 /* ejsError.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ejsError.c; sourceTree = "<group>"; };
+		C99C64DB0E6B8E8E006E4948 /* ejsFunction.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ejsFunction.c; sourceTree = "<group>"; };
+		C99C64DC0E6B8E8E006E4948 /* ejsGlobal.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ejsGlobal.c; sourceTree = "<group>"; };
+		C99C64DD0E6B8E8E006E4948 /* ejsIterator.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ejsIterator.c; sourceTree = "<group>"; };
+		C99C64DF0E6B8E8E006E4948 /* ejsNamespace.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ejsNamespace.c; sourceTree = "<group>"; };
+		C99C64E00E6B8E8E006E4948 /* ejsNull.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ejsNull.c; sourceTree = "<group>"; };
+		C99C64E10E6B8E8E006E4948 /* ejsNumber.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ejsNumber.c; sourceTree = "<group>"; };
+		C99C64E20E6B8E8E006E4948 /* ejsObject.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ejsObject.c; sourceTree = "<group>"; };
+		C99C64E30E6B8E8E006E4948 /* ejsRegExp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ejsRegExp.c; sourceTree = "<group>"; };
+		C99C64E40E6B8E8E006E4948 /* ejsString.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ejsString.c; sourceTree = "<group>"; };
+		C99C64E50E6B8E8E006E4948 /* ejsType.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ejsType.c; sourceTree = "<group>"; };
+		C99C64E60E6B8E8E006E4948 /* ejsVoid.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ejsVoid.c; sourceTree = "<group>"; };
+		C99C65220E6B8E8F006E4948 /* ejsTimer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ejsTimer.c; sourceTree = "<group>"; };
+		C99C65260E6B8E8F006E4948 /* ejsFile.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ejsFile.c; sourceTree = "<group>"; };
+		C99C65270E6B8E8F006E4948 /* ejsHttp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ejsHttp.c; sourceTree = "<group>"; };
+		C99C654E0E6B8E8F006E4948 /* ejsApp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ejsApp.c; sourceTree = "<group>"; };
+		C99C654F0E6B8E8F006E4948 /* ejsDebug.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ejsDebug.c; sourceTree = "<group>"; };
+		C99C65500E6B8E8F006E4948 /* ejsGC.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ejsGC.c; sourceTree = "<group>"; };
+		C99C65510E6B8E8F006E4948 /* ejsLogger.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ejsLogger.c; sourceTree = "<group>"; };
+		C99C65520E6B8E8F006E4948 /* ejsMemory.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ejsMemory.c; sourceTree = "<group>"; };
+		C99C65530E6B8E8F006E4948 /* ejsSystem.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ejsSystem.c; sourceTree = "<group>"; };
+		C99C65580E6B8E8F006E4948 /* ejsXML.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ejsXML.c; sourceTree = "<group>"; };
+		C99C65590E6B8E8F006E4948 /* ejsXMLList.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ejsXMLList.c; sourceTree = "<group>"; };
+		C99C655A0E6B8E8F006E4948 /* ejsXMLLoader.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ejsXMLLoader.c; sourceTree = "<group>"; };
+		C99C655F0E6B8E8F006E4948 /* ejsException.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ejsException.c; sourceTree = "<group>"; };
+		C99C65600E6B8E8F006E4948 /* ejsGarbage.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ejsGarbage.c; sourceTree = "<group>"; };
+		C99C65610E6B8E8F006E4948 /* ejsInterp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ejsInterp.c; sourceTree = "<group>"; };
+		C99C65620E6B8E8F006E4948 /* ejsLoader.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ejsLoader.c; sourceTree = "<group>"; };
+		C99C65630E6B8E8F006E4948 /* ejsModule.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ejsModule.c; sourceTree = "<group>"; };
+		C99C65640E6B8E8F006E4948 /* ejsService.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ejsService.c; sourceTree = "<group>"; };
+		C99C65650E6B8E8F006E4948 /* ejsTrace.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ejsTrace.c; sourceTree = "<group>"; };
+		C99C65660E6B8E8F006E4948 /* ejsVar.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ejsVar.c; sourceTree = "<group>"; };
+		C9CFB0130ED86FD3009163A7 /* ejsWebInterface.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ejsWebInterface.c; sourceTree = "<group>"; };
+		C9E2D1650F09CF400064AE1A /* mprLib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mprLib.c; sourceTree = "<group>"; };
+		C9E2D1660F09CF400064AE1A /* mprPcre.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mprPcre.c; sourceTree = "<group>"; };
+		C9ED5C8F0E6D9272002B4C43 /* sqliteMem.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sqliteMem.c; sourceTree = "<group>"; };
+		C9F63CA80F79499E00E9B2B1 /* ejsc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ejsc.c; sourceTree = "<group>"; };
+		C9F63CAA0F7949B100E9B2B1 /* ejsConfig.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ejsConfig.c; sourceTree = "<group>"; };
+		C9F63CB60F794A2700E9B2B1 /* buildConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = buildConfig.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8DD76FAD0486AB0100D96B5E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C9105B4F0EC0FBB500054066 /* libssl.dylib in Frameworks */,
+				C9105B510EC0FBCA00054066 /* libcrypto.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C9176C830F83E03B00F94072 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C95AAD7A0F8407C90092B86A /* libmpr.dylib in Frameworks */,
+				C95AAD7B0F8407C90092B86A /* libpcre.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C9427B100E6F10EF00B6F5AE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C9FF30540ECA3FE9008EA47B /* libssl.dylib in Frameworks */,
+				C9FF30530ECA3FE7008EA47B /* libcrypto.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C96576410E6F28FE00DF73F8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C9105BB20EC2487B00054066 /* libssl.dylib in Frameworks */,
+				C9105BB30EC2488200054066 /* libcrypto.dylib in Frameworks */,
+				C95AAD7C0F8407C90092B86A /* libmpr.dylib in Frameworks */,
+				C95AAD7D0F8407C90092B86A /* libpcre.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C97669860E76D57B0072E7E5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C9B484DD0EC7C3D000201ED4 /* libcrypto.dylib in Frameworks */,
+				C9B484DC0EC7C3AF00201ED4 /* libssl.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		08FB7794FE84155DC02AAC07 /* ejs */ = {
+			isa = PBXGroup;
+			children = (
+				C95AAD780F8407C90092B86A /* libmpr.dylib */,
+				C95AAD790F8407C90092B86A /* libpcre.dylib */,
+				08FB7795FE84155DC02AAC07 /* Source */,
+				1AB674ADFE9D54B511CA2CBB /* Products */,
+				C9105B4E0EC0FBB500054066 /* libssl.dylib */,
+				C9105B500EC0FBCA00054066 /* libcrypto.dylib */,
+			);
+			name = ejs;
+			sourceTree = "<group>";
+		};
+		08FB7795FE84155DC02AAC07 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				C99C4B2B0E6B8E7D006E4948 /* ejs */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		1AB674ADFE9D54B511CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8DD76FB20486AB0100D96B5E /* ejs */,
+				C9427B120E6F10EF00B6F5AE /* ejsvm */,
+				C96576430E6F28FE00DF73F8 /* ec */,
+				C97669880E76D57B0072E7E5 /* ejsmod */,
+				C9176C850F83E03B00F94072 /* ejs-shared */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C976699C0E76D5D10072E7E5 /* ejsmod */ = {
+			isa = PBXGroup;
+			children = (
+				C976699F0E76D5D10072E7E5 /* doc.c */,
+				C97669A10E76D5D10072E7E5 /* docFiles.c */,
+				C97669A20E76D5D10072E7E5 /* ejsmod.c */,
+				C97669A70E76D5D20072E7E5 /* listing.c */,
+				C97669AA0E76D5D20072E7E5 /* slotGen.c */,
+			);
+			path = ejsmod;
+			sourceTree = "<group>";
+		};
+		C98358230ECCCF390090AE2F /* web */ = {
+			isa = PBXGroup;
+			children = (
+				C92F2C530F8540A900945229 /* ejsWebFramework.c */,
+				C94F65240EE4C3F800B7E89A /* ejsWebController.c */,
+				C94F65250EE4C3F800B7E89A /* ejsWebHost.c */,
+				C94F65260EE4C3F800B7E89A /* ejsWebRequest.c */,
+				C94F65270EE4C3F800B7E89A /* ejsWebResponse.c */,
+				C94F65280EE4C3F800B7E89A /* ejsWebSession.c */,
+				C9CFB0130ED86FD3009163A7 /* ejsWebInterface.c */,
+			);
+			name = web;
+			path = src/web;
+			sourceTree = "<group>";
+		};
+		C99C4B2B0E6B8E7D006E4948 /* ejs */ = {
+			isa = PBXGroup;
+			children = (
+				C9F63CB60F794A2700E9B2B1 /* buildConfig.h */,
+				C98358230ECCCF390090AE2F /* web */,
+				C99C62230E6B8E8C006E4948 /* src */,
+			);
+			name = ejs;
+			path = ../..;
+			sourceTree = SOURCE_ROOT;
+		};
+		C99C62230E6B8E8C006E4948 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				C976699C0E76D5D10072E7E5 /* ejsmod */,
+				C99C62240E6B8E8C006E4948 /* cmd */,
+				C99C622C0E6B8E8C006E4948 /* compiler */,
+				C99C62390E6B8E8C006E4948 /* db */,
+				C99C640E0E6B8E8E006E4948 /* include */,
+				C99C64980E6B8E8E006E4948 /* mpr */,
+				C99C64CF0E6B8E8E006E4948 /* types */,
+				C99C655D0E6B8E8F006E4948 /* vm */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		C99C62240E6B8E8C006E4948 /* cmd */ = {
+			isa = PBXGroup;
+			children = (
+				C9F63CA80F79499E00E9B2B1 /* ejsc.c */,
+				C96575850E6F14D600DF73F8 /* ejs.c */,
+				C965755A0E6F13B100DF73F8 /* ejsvm.c */,
+			);
+			path = cmd;
+			sourceTree = "<group>";
+		};
+		C99C622C0E6B8E8C006E4948 /* compiler */ = {
+			isa = PBXGroup;
+			children = (
+				C99C622E0E6B8E8C006E4948 /* ecAst.c */,
+				C99C622F0E6B8E8C006E4948 /* ecCodeGen.c */,
+				C99C62300E6B8E8C006E4948 /* ecLex.c */,
+				C99C62310E6B8E8C006E4948 /* ecModuleWrite.c */,
+				C99C62320E6B8E8C006E4948 /* ecParser.c */,
+				C99C62330E6B8E8C006E4948 /* ecState.c */,
+			);
+			path = compiler;
+			sourceTree = "<group>";
+		};
+		C99C62390E6B8E8C006E4948 /* db */ = {
+			isa = PBXGroup;
+			children = (
+				C99C623B0E6B8E8C006E4948 /* ejsDb.c */,
+				C99C623F0E6B8E8C006E4948 /* sqlite */,
+			);
+			path = db;
+			sourceTree = "<group>";
+		};
+		C99C623F0E6B8E8C006E4948 /* sqlite */ = {
+			isa = PBXGroup;
+			children = (
+				C9ED5C8F0E6D9272002B4C43 /* sqliteMem.c */,
+				C99C62440E6B8E8C006E4948 /* sqlite3.c */,
+			);
+			path = sqlite;
+			sourceTree = "<group>";
+		};
+		C99C640E0E6B8E8E006E4948 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				C99C640F0E6B8E8E006E4948 /* ec.h */,
+				C99C64100E6B8E8E006E4948 /* ecAst.h */,
+				C99C64110E6B8E8E006E4948 /* ecCompiler.h */,
+				C99C64120E6B8E8E006E4948 /* ecModuleWrite.h */,
+				C99C64130E6B8E8E006E4948 /* ecState.h */,
+				C99C64140E6B8E8E006E4948 /* ecTune.h */,
+				C99C64150E6B8E8E006E4948 /* ejs.db.slots.h */,
+				C99C64160E6B8E8E006E4948 /* ejs.esp.slots.h */,
+				C99C64170E6B8E8E006E4948 /* ejs.events.slots.h */,
+				C99C64180E6B8E8E006E4948 /* ejs.h */,
+				C99C64190E6B8E8E006E4948 /* ejs.io.slots.h */,
+				C99C641A0E6B8E8E006E4948 /* ejs.slots.h */,
+				C99C641B0E6B8E8E006E4948 /* ejs.sys.slots.h */,
+				C99C641C0E6B8E8E006E4948 /* ejsBasic.h */,
+				C99C641D0E6B8E8E006E4948 /* ejsByteCode.h */,
+				C99C641E0E6B8E8E006E4948 /* ejsCommonCmd.h */,
+				C99C641F0E6B8E8E006E4948 /* ejsCoreTypes.h */,
+				C99C64200E6B8E8E006E4948 /* ejsEvents.h */,
+				C99C64210E6B8E8E006E4948 /* ejsExceptions.h */,
+				C99C64220E6B8E8E006E4948 /* ejsFunction.h */,
+				C99C64230E6B8E8E006E4948 /* ejsGC.h */,
+				C99C64240E6B8E8E006E4948 /* ejsGoto.h */,
+				C99C64250E6B8E8E006E4948 /* ejsIo.h */,
+				C99C64260E6B8E8E006E4948 /* ejsMod.h */,
+				C99C64270E6B8E8E006E4948 /* ejsModule.h */,
+				C99C64280E6B8E8E006E4948 /* ejsObject.h */,
+				C99C64290E6B8E8E006E4948 /* ejsService.h */,
+				C99C642A0E6B8E8E006E4948 /* ejsString.h */,
+				C99C642B0E6B8E8E006E4948 /* ejsSys.h */,
+				C99C642D0E6B8E8E006E4948 /* ejsTune.h */,
+				C99C642E0E6B8E8E006E4948 /* ejsType.h */,
+				C99C642F0E6B8E8E006E4948 /* ejsVar.h */,
+				C99C64300E6B8E8E006E4948 /* ejsXml.h */,
+				C99C64310E6B8E8E006E4948 /* esp.h */,
+				C99C64320E6B8E8E006E4948 /* mpr.h */,
+				C99C64330E6B8E8E006E4948 /* mprOs.h */,
+				C99C64340E6B8E8E006E4948 /* mprSsl.h */,
+				C99C64350E6B8E8E006E4948 /* mprTest.h */,
+				C99C64360E6B8E8E006E4948 /* mprTune.h */,
+				C99C64370E6B8E8E006E4948 /* mprUnix.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		C99C64980E6B8E8E006E4948 /* mpr */ = {
+			isa = PBXGroup;
+			children = (
+				C9E2D1650F09CF400064AE1A /* mprLib.c */,
+				C9E2D1660F09CF400064AE1A /* mprPcre.c */,
+			);
+			path = mpr;
+			sourceTree = "<group>";
+		};
+		C99C64CF0E6B8E8E006E4948 /* types */ = {
+			isa = PBXGroup;
+			children = (
+				C99C64D00E6B8E8E006E4948 /* core */,
+				C99C65200E6B8E8F006E4948 /* events */,
+				C99C65250E6B8E8F006E4948 /* io */,
+				C99C654C0E6B8E8F006E4948 /* security */,
+				C99C654D0E6B8E8F006E4948 /* sys */,
+				C99C65560E6B8E8F006E4948 /* util */,
+				C99C65570E6B8E8F006E4948 /* xml */,
+			);
+			path = types;
+			sourceTree = "<group>";
+		};
+		C99C64D00E6B8E8E006E4948 /* core */ = {
+			isa = PBXGroup;
+			children = (
+				C99C64D50E6B8E8E006E4948 /* ejsArray.c */,
+				C99C64D60E6B8E8E006E4948 /* ejsBlock.c */,
+				C99C64D70E6B8E8E006E4948 /* ejsBoolean.c */,
+				C99C64D80E6B8E8E006E4948 /* ejsByteArray.c */,
+				C99C64D90E6B8E8E006E4948 /* ejsDate.c */,
+				C99C64DA0E6B8E8E006E4948 /* ejsError.c */,
+				C99C64DB0E6B8E8E006E4948 /* ejsFunction.c */,
+				C99C64DC0E6B8E8E006E4948 /* ejsGlobal.c */,
+				C99C64DD0E6B8E8E006E4948 /* ejsIterator.c */,
+				C99C64DF0E6B8E8E006E4948 /* ejsNamespace.c */,
+				C99C64E00E6B8E8E006E4948 /* ejsNull.c */,
+				C99C64E10E6B8E8E006E4948 /* ejsNumber.c */,
+				C99C64E20E6B8E8E006E4948 /* ejsObject.c */,
+				C930CC3A0EA56D96004D0419 /* ejsReflect.c */,
+				C99C64E30E6B8E8E006E4948 /* ejsRegExp.c */,
+				C99C64E40E6B8E8E006E4948 /* ejsString.c */,
+				C99C64E50E6B8E8E006E4948 /* ejsType.c */,
+				C99C64E60E6B8E8E006E4948 /* ejsVoid.c */,
+			);
+			path = core;
+			sourceTree = "<group>";
+		};
+		C99C65200E6B8E8F006E4948 /* events */ = {
+			isa = PBXGroup;
+			children = (
+				C99C65220E6B8E8F006E4948 /* ejsTimer.c */,
+			);
+			path = events;
+			sourceTree = "<group>";
+		};
+		C99C65250E6B8E8F006E4948 /* io */ = {
+			isa = PBXGroup;
+			children = (
+				C99C65260E6B8E8F006E4948 /* ejsFile.c */,
+				C99C65270E6B8E8F006E4948 /* ejsHttp.c */,
+			);
+			path = io;
+			sourceTree = "<group>";
+		};
+		C99C654C0E6B8E8F006E4948 /* security */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = security;
+			sourceTree = "<group>";
+		};
+		C99C654D0E6B8E8F006E4948 /* sys */ = {
+			isa = PBXGroup;
+			children = (
+				C9F63CAA0F7949B100E9B2B1 /* ejsConfig.c */,
+				C99C654E0E6B8E8F006E4948 /* ejsApp.c */,
+				C99C654F0E6B8E8F006E4948 /* ejsDebug.c */,
+				C99C65500E6B8E8F006E4948 /* ejsGC.c */,
+				C99C65510E6B8E8F006E4948 /* ejsLogger.c */,
+				C99C65520E6B8E8F006E4948 /* ejsMemory.c */,
+				C99C65530E6B8E8F006E4948 /* ejsSystem.c */,
+			);
+			path = sys;
+			sourceTree = "<group>";
+		};
+		C99C65560E6B8E8F006E4948 /* util */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = util;
+			sourceTree = "<group>";
+		};
+		C99C65570E6B8E8F006E4948 /* xml */ = {
+			isa = PBXGroup;
+			children = (
+				C99C65580E6B8E8F006E4948 /* ejsXML.c */,
+				C99C65590E6B8E8F006E4948 /* ejsXMLList.c */,
+				C99C655A0E6B8E8F006E4948 /* ejsXMLLoader.c */,
+			);
+			path = xml;
+			sourceTree = "<group>";
+		};
+		C99C655D0E6B8E8F006E4948 /* vm */ = {
+			isa = PBXGroup;
+			children = (
+				C95C39500EA3B6320016A988 /* ejsScope.c */,
+				C938FB230E724DFA003D99B1 /* ejsList.c */,
+				C99C655F0E6B8E8F006E4948 /* ejsException.c */,
+				C99C65600E6B8E8F006E4948 /* ejsGarbage.c */,
+				C99C65610E6B8E8F006E4948 /* ejsInterp.c */,
+				C99C65620E6B8E8F006E4948 /* ejsLoader.c */,
+				C99C65630E6B8E8F006E4948 /* ejsModule.c */,
+				C99C65640E6B8E8F006E4948 /* ejsService.c */,
+				C99C65650E6B8E8F006E4948 /* ejsTrace.c */,
+				C99C65660E6B8E8F006E4948 /* ejsVar.c */,
+			);
+			path = vm;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8DD76FA90486AB0100D96B5E /* ejs */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1DEB928508733DD80010E9CD /* Build configuration list for PBXNativeTarget "ejs" */;
+			buildPhases = (
+				8DD76FAB0486AB0100D96B5E /* Sources */,
+				8DD76FAD0486AB0100D96B5E /* Frameworks */,
+				8DD76FAF0486AB0100D96B5E /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ejs;
+			productInstallPath = "$(HOME)/bin";
+			productName = ejs;
+			productReference = 8DD76FB20486AB0100D96B5E /* ejs */;
+			productType = "com.apple.product-type.tool";
+		};
+		C9176C840F83E03B00F94072 /* ejs-shared */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C9176CBE0F83E13B00F94072 /* Build configuration list for PBXNativeTarget "ejs-shared" */;
+			buildPhases = (
+				C9176C820F83E03B00F94072 /* Sources */,
+				C9176C830F83E03B00F94072 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "ejs-shared";
+			productName = "ejs-shared";
+			productReference = C9176C850F83E03B00F94072 /* ejs-shared */;
+			productType = "com.apple.product-type.tool";
+		};
+		C9427B110E6F10EF00B6F5AE /* ejsvm */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C9427B1C0E6F112D00B6F5AE /* Build configuration list for PBXNativeTarget "ejsvm" */;
+			buildPhases = (
+				C9427B0F0E6F10EF00B6F5AE /* Sources */,
+				C9427B100E6F10EF00B6F5AE /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ejsvm;
+			productName = ejsvm;
+			productReference = C9427B120E6F10EF00B6F5AE /* ejsvm */;
+			productType = "com.apple.product-type.tool";
+		};
+		C96576420E6F28FE00DF73F8 /* ec */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C96576480E6F291C00DF73F8 /* Build configuration list for PBXNativeTarget "ec" */;
+			buildPhases = (
+				C96576400E6F28FE00DF73F8 /* Sources */,
+				C96576410E6F28FE00DF73F8 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ec;
+			productName = ec;
+			productReference = C96576430E6F28FE00DF73F8 /* ec */;
+			productType = "com.apple.product-type.tool";
+		};
+		C97669870E76D57B0072E7E5 /* ejsmod */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C976699A0E76D5830072E7E5 /* Build configuration list for PBXNativeTarget "ejsmod" */;
+			buildPhases = (
+				C97669850E76D57B0072E7E5 /* Sources */,
+				C97669860E76D57B0072E7E5 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ejsmod;
+			productName = ejsmod;
+			productReference = C97669880E76D57B0072E7E5 /* ejsmod */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		08FB7793FE84155DC02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 1DEB928908733DD80010E9CD /* Build configuration list for PBXProject "ejs" */;
+			compatibilityVersion = "Xcode 3.1";
+			hasScannedForEncodings = 1;
+			mainGroup = 08FB7794FE84155DC02AAC07 /* ejs */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8DD76FA90486AB0100D96B5E /* ejs */,
+				C9427B110E6F10EF00B6F5AE /* ejsvm */,
+				C96576420E6F28FE00DF73F8 /* ec */,
+				C97669870E76D57B0072E7E5 /* ejsmod */,
+				C9176C840F83E03B00F94072 /* ejs-shared */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8DD76FAB0486AB0100D96B5E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C99C78B40E6B8E9E006E4948 /* ecAst.c in Sources */,
+				C99C78B50E6B8E9E006E4948 /* ecCodeGen.c in Sources */,
+				C99C78B60E6B8E9E006E4948 /* ecLex.c in Sources */,
+				C99C78B70E6B8E9E006E4948 /* ecModuleWrite.c in Sources */,
+				C99C78B80E6B8E9E006E4948 /* ecParser.c in Sources */,
+				C99C78B90E6B8E9E006E4948 /* ecState.c in Sources */,
+				C99C78BF0E6B8E9E006E4948 /* sqlite3.c in Sources */,
+				C99C798D0E6B8E9F006E4948 /* ejsArray.c in Sources */,
+				C99C798E0E6B8E9F006E4948 /* ejsBlock.c in Sources */,
+				C99C798F0E6B8E9F006E4948 /* ejsBoolean.c in Sources */,
+				C99C79900E6B8E9F006E4948 /* ejsByteArray.c in Sources */,
+				C99C79910E6B8E9F006E4948 /* ejsDate.c in Sources */,
+				C99C79920E6B8E9F006E4948 /* ejsError.c in Sources */,
+				C99C79930E6B8E9F006E4948 /* ejsFunction.c in Sources */,
+				C99C79940E6B8E9F006E4948 /* ejsGlobal.c in Sources */,
+				C99C79950E6B8E9F006E4948 /* ejsIterator.c in Sources */,
+				C99C79970E6B8E9F006E4948 /* ejsNamespace.c in Sources */,
+				C99C79980E6B8E9F006E4948 /* ejsNull.c in Sources */,
+				C99C79990E6B8E9F006E4948 /* ejsNumber.c in Sources */,
+				C99C799A0E6B8E9F006E4948 /* ejsObject.c in Sources */,
+				C99C799B0E6B8E9F006E4948 /* ejsRegExp.c in Sources */,
+				C99C799C0E6B8E9F006E4948 /* ejsString.c in Sources */,
+				C99C799D0E6B8E9F006E4948 /* ejsType.c in Sources */,
+				C99C799E0E6B8E9F006E4948 /* ejsVoid.c in Sources */,
+				C99C79C10E6B8E9F006E4948 /* ejsTimer.c in Sources */,
+				C99C79C30E6B8E9F006E4948 /* ejsFile.c in Sources */,
+				C99C79C40E6B8E9F006E4948 /* ejsHttp.c in Sources */,
+				C99C79DB0E6B8E9F006E4948 /* ejsApp.c in Sources */,
+				C99C79DC0E6B8E9F006E4948 /* ejsDebug.c in Sources */,
+				C99C79DD0E6B8E9F006E4948 /* ejsGC.c in Sources */,
+				C99C79DE0E6B8E9F006E4948 /* ejsLogger.c in Sources */,
+				C99C79DF0E6B8E9F006E4948 /* ejsMemory.c in Sources */,
+				C99C79E00E6B8E9F006E4948 /* ejsSystem.c in Sources */,
+				C99C79E20E6B8E9F006E4948 /* ejsXML.c in Sources */,
+				C99C79E30E6B8E9F006E4948 /* ejsXMLList.c in Sources */,
+				C99C79E40E6B8E9F006E4948 /* ejsXMLLoader.c in Sources */,
+				C99C79E60E6B8E9F006E4948 /* ejsException.c in Sources */,
+				C99C79E70E6B8E9F006E4948 /* ejsGarbage.c in Sources */,
+				C99C79E80E6B8E9F006E4948 /* ejsInterp.c in Sources */,
+				C99C79E90E6B8E9F006E4948 /* ejsLoader.c in Sources */,
+				C99C79EA0E6B8E9F006E4948 /* ejsModule.c in Sources */,
+				C99C79EB0E6B8E9F006E4948 /* ejsService.c in Sources */,
+				C99C79EC0E6B8E9F006E4948 /* ejsTrace.c in Sources */,
+				C99C79ED0E6B8E9F006E4948 /* ejsVar.c in Sources */,
+				C9ED5C900E6D9272002B4C43 /* sqliteMem.c in Sources */,
+				C96575F50E6F156400DF73F8 /* ejs.c in Sources */,
+				C938FB260E724DFA003D99B1 /* ejsList.c in Sources */,
+				C95C39540EA3B6320016A988 /* ejsScope.c in Sources */,
+				C930CC3E0EA56D96004D0419 /* ejsReflect.c in Sources */,
+				C9CFB0170ED86FD3009163A7 /* ejsWebInterface.c in Sources */,
+				C94F65380EE4C3F800B7E89A /* ejsWebController.c in Sources */,
+				C94F65390EE4C3F800B7E89A /* ejsWebHost.c in Sources */,
+				C94F653A0EE4C3F800B7E89A /* ejsWebRequest.c in Sources */,
+				C94F653B0EE4C3F800B7E89A /* ejsWebResponse.c in Sources */,
+				C94F653C0EE4C3F800B7E89A /* ejsWebSession.c in Sources */,
+				C9452E040F282A2F00190331 /* ejsDb.c in Sources */,
+				C9452E050F282A3300190331 /* mprLib.c in Sources */,
+				C9452E060F282A3300190331 /* mprPcre.c in Sources */,
+				C9F63CAC0F7949B100E9B2B1 /* ejsConfig.c in Sources */,
+				C92F2C560F8540A900945229 /* ejsWebFramework.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C9176C820F83E03B00F94072 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C9176C8C0F83E06800F94072 /* ejs.c in Sources */,
+				C9176C8D0F83E06F00F94072 /* ecAst.c in Sources */,
+				C9176C8E0F83E06F00F94072 /* ecCodeGen.c in Sources */,
+				C9176C8F0F83E06F00F94072 /* ecLex.c in Sources */,
+				C9176C900F83E06F00F94072 /* ecModuleWrite.c in Sources */,
+				C9176C910F83E06F00F94072 /* ecParser.c in Sources */,
+				C9176C920F83E06F00F94072 /* ecState.c in Sources */,
+				C9176C950F83E08400F94072 /* ejsArray.c in Sources */,
+				C9176C960F83E08400F94072 /* ejsBlock.c in Sources */,
+				C9176C970F83E08400F94072 /* ejsBoolean.c in Sources */,
+				C9176C980F83E08400F94072 /* ejsByteArray.c in Sources */,
+				C9176C990F83E08400F94072 /* ejsDate.c in Sources */,
+				C9176C9A0F83E08400F94072 /* ejsError.c in Sources */,
+				C9176C9B0F83E08400F94072 /* ejsFunction.c in Sources */,
+				C9176C9C0F83E08400F94072 /* ejsGlobal.c in Sources */,
+				C9176C9D0F83E08400F94072 /* ejsIterator.c in Sources */,
+				C9176C9E0F83E08400F94072 /* ejsNamespace.c in Sources */,
+				C9176C9F0F83E08400F94072 /* ejsNull.c in Sources */,
+				C9176CA00F83E08400F94072 /* ejsNumber.c in Sources */,
+				C9176CA10F83E08400F94072 /* ejsObject.c in Sources */,
+				C9176CA20F83E08400F94072 /* ejsReflect.c in Sources */,
+				C9176CA30F83E08400F94072 /* ejsRegExp.c in Sources */,
+				C9176CA40F83E08400F94072 /* ejsString.c in Sources */,
+				C9176CA50F83E08400F94072 /* ejsType.c in Sources */,
+				C9176CA60F83E08400F94072 /* ejsVoid.c in Sources */,
+				C9176CA70F83E09500F94072 /* ejsTimer.c in Sources */,
+				C9176CA80F83E09B00F94072 /* ejsFile.c in Sources */,
+				C9176CA90F83E09B00F94072 /* ejsHttp.c in Sources */,
+				C9176CAA0F83E0A500F94072 /* ejsConfig.c in Sources */,
+				C9176CAB0F83E0A500F94072 /* ejsApp.c in Sources */,
+				C9176CAC0F83E0A500F94072 /* ejsDebug.c in Sources */,
+				C9176CAD0F83E0A500F94072 /* ejsGC.c in Sources */,
+				C9176CAE0F83E0A500F94072 /* ejsLogger.c in Sources */,
+				C9176CAF0F83E0A500F94072 /* ejsMemory.c in Sources */,
+				C9176CB00F83E0A500F94072 /* ejsSystem.c in Sources */,
+				C9176CB10F83E0AC00F94072 /* ejsXML.c in Sources */,
+				C9176CB20F83E0AC00F94072 /* ejsXMLList.c in Sources */,
+				C9176CB30F83E0AC00F94072 /* ejsXMLLoader.c in Sources */,
+				C9176CC30F83E1BB00F94072 /* ejsScope.c in Sources */,
+				C9176CC40F83E1BB00F94072 /* ejsList.c in Sources */,
+				C9176CC50F83E1BB00F94072 /* ejsException.c in Sources */,
+				C9176CC60F83E1BB00F94072 /* ejsGarbage.c in Sources */,
+				C9176CC70F83E1BB00F94072 /* ejsInterp.c in Sources */,
+				C9176CC80F83E1BB00F94072 /* ejsLoader.c in Sources */,
+				C9176CC90F83E1BB00F94072 /* ejsModule.c in Sources */,
+				C9176CCA0F83E1BB00F94072 /* ejsService.c in Sources */,
+				C9176CCB0F83E1BB00F94072 /* ejsTrace.c in Sources */,
+				C9176CCC0F83E1BB00F94072 /* ejsVar.c in Sources */,
+				C92F2C540F8540A900945229 /* ejsWebFramework.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C9427B0F0E6F10EF00B6F5AE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C96575840E6F14C800DF73F8 /* ejsvm.c in Sources */,
+				C965758F0E6F151100DF73F8 /* ejsApp.c in Sources */,
+				C96575900E6F151100DF73F8 /* ejsArray.c in Sources */,
+				C96575910E6F151100DF73F8 /* ejsBlock.c in Sources */,
+				C96575920E6F151100DF73F8 /* ejsBoolean.c in Sources */,
+				C96575930E6F151100DF73F8 /* ejsByteArray.c in Sources */,
+				C96575950E6F151100DF73F8 /* ejsDate.c in Sources */,
+				C96575970E6F151100DF73F8 /* ejsDebug.c in Sources */,
+				C96575980E6F151100DF73F8 /* ejsError.c in Sources */,
+				C965759A0E6F151100DF73F8 /* ejsException.c in Sources */,
+				C965759B0E6F151100DF73F8 /* ejsFile.c in Sources */,
+				C965759C0E6F151100DF73F8 /* ejsFunction.c in Sources */,
+				C965759D0E6F151100DF73F8 /* ejsGarbage.c in Sources */,
+				C965759E0E6F151100DF73F8 /* ejsGC.c in Sources */,
+				C965759F0E6F151100DF73F8 /* ejsGlobal.c in Sources */,
+				C96575A00E6F151100DF73F8 /* ejsHttp.c in Sources */,
+				C96575A10E6F151100DF73F8 /* ejsInterp.c in Sources */,
+				C96575A20E6F151100DF73F8 /* ejsIterator.c in Sources */,
+				C96575A30E6F151100DF73F8 /* ejsLoader.c in Sources */,
+				C96575A40E6F151100DF73F8 /* ejsLogger.c in Sources */,
+				C96575A50E6F151100DF73F8 /* ejsMemory.c in Sources */,
+				C96575A60E6F151100DF73F8 /* ejsModule.c in Sources */,
+				C96575A80E6F151100DF73F8 /* ejsNamespace.c in Sources */,
+				C96575A90E6F151100DF73F8 /* ejsNull.c in Sources */,
+				C96575AA0E6F151100DF73F8 /* ejsNumber.c in Sources */,
+				C96575AB0E6F151100DF73F8 /* ejsObject.c in Sources */,
+				C96575AC0E6F151100DF73F8 /* ejsRegExp.c in Sources */,
+				C96575AD0E6F151100DF73F8 /* ejsService.c in Sources */,
+				C96575AE0E6F151100DF73F8 /* ejsString.c in Sources */,
+				C96575AF0E6F151100DF73F8 /* ejsSystem.c in Sources */,
+				C96575B00E6F151100DF73F8 /* ejsTimer.c in Sources */,
+				C96575B10E6F151100DF73F8 /* ejsTrace.c in Sources */,
+				C96575B20E6F151100DF73F8 /* ejsType.c in Sources */,
+				C96575B30E6F151100DF73F8 /* ejsVar.c in Sources */,
+				C96575B50E6F151100DF73F8 /* ejsVoid.c in Sources */,
+				C96575B60E6F151100DF73F8 /* ejsXML.c in Sources */,
+				C96575B70E6F151100DF73F8 /* ejsXMLList.c in Sources */,
+				C96575B80E6F151100DF73F8 /* ejsXMLLoader.c in Sources */,
+				C96575EE0E6F151100DF73F8 /* sqlite3.c in Sources */,
+				C96575EF0E6F151100DF73F8 /* sqliteMem.c in Sources */,
+				C938FB250E724DFA003D99B1 /* ejsList.c in Sources */,
+				C95C39530EA3B6320016A988 /* ejsScope.c in Sources */,
+				C930CC3D0EA56D96004D0419 /* ejsReflect.c in Sources */,
+				C9CFB0160ED86FD3009163A7 /* ejsWebInterface.c in Sources */,
+				C94F65330EE4C3F800B7E89A /* ejsWebController.c in Sources */,
+				C94F65340EE4C3F800B7E89A /* ejsWebHost.c in Sources */,
+				C94F65350EE4C3F800B7E89A /* ejsWebRequest.c in Sources */,
+				C94F65360EE4C3F800B7E89A /* ejsWebResponse.c in Sources */,
+				C94F65370EE4C3F800B7E89A /* ejsWebSession.c in Sources */,
+				C9A722240F265D4E0022D6E1 /* mprLib.c in Sources */,
+				C9A722250F265D4E0022D6E1 /* mprPcre.c in Sources */,
+				C9A7222A0F265D540022D6E1 /* ejsDb.c in Sources */,
+				C9F63CAD0F7949B100E9B2B1 /* ejsConfig.c in Sources */,
+				C92F2C570F8540A900945229 /* ejsWebFramework.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C96576400E6F28FE00DF73F8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C965764D0E6F296200DF73F8 /* ecAst.c in Sources */,
+				C965764E0E6F296200DF73F8 /* ecCodeGen.c in Sources */,
+				C965764F0E6F296200DF73F8 /* ecLex.c in Sources */,
+				C96576500E6F296200DF73F8 /* ecModuleWrite.c in Sources */,
+				C96576510E6F296200DF73F8 /* ecParser.c in Sources */,
+				C96576520E6F296200DF73F8 /* ecState.c in Sources */,
+				C96576800E6F296200DF73F8 /* ejsArray.c in Sources */,
+				C96576810E6F296200DF73F8 /* ejsBlock.c in Sources */,
+				C96576820E6F296200DF73F8 /* ejsBoolean.c in Sources */,
+				C96576830E6F296200DF73F8 /* ejsByteArray.c in Sources */,
+				C96576840E6F296200DF73F8 /* ejsDate.c in Sources */,
+				C96576850E6F296200DF73F8 /* ejsError.c in Sources */,
+				C96576860E6F296200DF73F8 /* ejsFunction.c in Sources */,
+				C96576870E6F296200DF73F8 /* ejsGlobal.c in Sources */,
+				C96576880E6F296200DF73F8 /* ejsIterator.c in Sources */,
+				C965768A0E6F296200DF73F8 /* ejsNamespace.c in Sources */,
+				C965768B0E6F296200DF73F8 /* ejsNull.c in Sources */,
+				C965768C0E6F296200DF73F8 /* ejsNumber.c in Sources */,
+				C965768D0E6F296200DF73F8 /* ejsObject.c in Sources */,
+				C965768E0E6F296200DF73F8 /* ejsRegExp.c in Sources */,
+				C965768F0E6F296200DF73F8 /* ejsString.c in Sources */,
+				C96576900E6F296200DF73F8 /* ejsType.c in Sources */,
+				C96576910E6F296200DF73F8 /* ejsVoid.c in Sources */,
+				C965769E0E6F296200DF73F8 /* ejsTimer.c in Sources */,
+				C965769F0E6F296200DF73F8 /* ejsFile.c in Sources */,
+				C96576A00E6F296200DF73F8 /* ejsHttp.c in Sources */,
+				C96576A10E6F296200DF73F8 /* ejsApp.c in Sources */,
+				C96576A20E6F296200DF73F8 /* ejsDebug.c in Sources */,
+				C96576A30E6F296200DF73F8 /* ejsGC.c in Sources */,
+				C96576A40E6F296200DF73F8 /* ejsLogger.c in Sources */,
+				C96576A50E6F296200DF73F8 /* ejsMemory.c in Sources */,
+				C96576A60E6F296200DF73F8 /* ejsSystem.c in Sources */,
+				C96576A70E6F296200DF73F8 /* ejsXML.c in Sources */,
+				C96576A80E6F296200DF73F8 /* ejsXMLList.c in Sources */,
+				C96576A90E6F296200DF73F8 /* ejsXMLLoader.c in Sources */,
+				C96576AA0E6F296200DF73F8 /* ejsException.c in Sources */,
+				C96576AB0E6F296200DF73F8 /* ejsGarbage.c in Sources */,
+				C96576AC0E6F296200DF73F8 /* ejsInterp.c in Sources */,
+				C96576AD0E6F296200DF73F8 /* ejsLoader.c in Sources */,
+				C96576AE0E6F296200DF73F8 /* ejsModule.c in Sources */,
+				C96576AF0E6F296200DF73F8 /* ejsService.c in Sources */,
+				C96576B00E6F296200DF73F8 /* ejsTrace.c in Sources */,
+				C96576B10E6F296200DF73F8 /* ejsVar.c in Sources */,
+				C938FB240E724DFA003D99B1 /* ejsList.c in Sources */,
+				C95C39520EA3B6320016A988 /* ejsScope.c in Sources */,
+				C930CC3C0EA56D96004D0419 /* ejsReflect.c in Sources */,
+				C9F63CA90F79499E00E9B2B1 /* ejsc.c in Sources */,
+				C9F63CAB0F7949B100E9B2B1 /* ejsConfig.c in Sources */,
+				C92F2C550F8540A900945229 /* ejsWebFramework.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C97669850E76D57B0072E7E5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C97669AB0E76D5D20072E7E5 /* doc.c in Sources */,
+				C97669AC0E76D5D20072E7E5 /* docFiles.c in Sources */,
+				C97669AD0E76D5D20072E7E5 /* ejsmod.c in Sources */,
+				C97669AE0E76D5D20072E7E5 /* listing.c in Sources */,
+				C97669B00E76D5D20072E7E5 /* slotGen.c in Sources */,
+				C97669D80E76D6D30072E7E5 /* ecAst.c in Sources */,
+				C97669D90E76D6D30072E7E5 /* ecCodeGen.c in Sources */,
+				C97669DA0E76D6D30072E7E5 /* ecLex.c in Sources */,
+				C97669DB0E76D6D30072E7E5 /* ecModuleWrite.c in Sources */,
+				C97669DC0E76D6D30072E7E5 /* ecParser.c in Sources */,
+				C97669DD0E76D6D30072E7E5 /* ecState.c in Sources */,
+				C97669DF0E76D6D30072E7E5 /* sqliteMem.c in Sources */,
+				C97669E00E76D6D30072E7E5 /* sqlite3.c in Sources */,
+				C97669ED0E76D6D30072E7E5 /* ejsArray.c in Sources */,
+				C97669EE0E76D6D30072E7E5 /* ejsBlock.c in Sources */,
+				C97669EF0E76D6D30072E7E5 /* ejsBoolean.c in Sources */,
+				C97669F00E76D6D30072E7E5 /* ejsByteArray.c in Sources */,
+				C97669F10E76D6D30072E7E5 /* ejsDate.c in Sources */,
+				C97669F20E76D6D30072E7E5 /* ejsError.c in Sources */,
+				C97669F30E76D6D30072E7E5 /* ejsFunction.c in Sources */,
+				C97669F40E76D6D30072E7E5 /* ejsGlobal.c in Sources */,
+				C97669F50E76D6D30072E7E5 /* ejsIterator.c in Sources */,
+				C97669F70E76D6D30072E7E5 /* ejsNamespace.c in Sources */,
+				C97669F80E76D6D30072E7E5 /* ejsNull.c in Sources */,
+				C97669F90E76D6D30072E7E5 /* ejsNumber.c in Sources */,
+				C97669FA0E76D6D30072E7E5 /* ejsObject.c in Sources */,
+				C97669FB0E76D6D30072E7E5 /* ejsRegExp.c in Sources */,
+				C97669FC0E76D6D30072E7E5 /* ejsString.c in Sources */,
+				C97669FD0E76D6D30072E7E5 /* ejsType.c in Sources */,
+				C97669FE0E76D6D30072E7E5 /* ejsVoid.c in Sources */,
+				C9766A0B0E76D6D30072E7E5 /* ejsTimer.c in Sources */,
+				C9766A0C0E76D6D30072E7E5 /* ejsFile.c in Sources */,
+				C9766A0D0E76D6D30072E7E5 /* ejsHttp.c in Sources */,
+				C9766A0E0E76D6D30072E7E5 /* ejsApp.c in Sources */,
+				C9766A0F0E76D6D30072E7E5 /* ejsDebug.c in Sources */,
+				C9766A100E76D6D30072E7E5 /* ejsGC.c in Sources */,
+				C9766A110E76D6D30072E7E5 /* ejsLogger.c in Sources */,
+				C9766A120E76D6D30072E7E5 /* ejsMemory.c in Sources */,
+				C9766A130E76D6D30072E7E5 /* ejsSystem.c in Sources */,
+				C9766A140E76D6D30072E7E5 /* ejsXML.c in Sources */,
+				C9766A150E76D6D30072E7E5 /* ejsXMLList.c in Sources */,
+				C9766A160E76D6D30072E7E5 /* ejsXMLLoader.c in Sources */,
+				C9766A170E76D6D30072E7E5 /* ejsList.c in Sources */,
+				C9766A180E76D6D30072E7E5 /* ejsException.c in Sources */,
+				C9766A190E76D6D30072E7E5 /* ejsGarbage.c in Sources */,
+				C9766A1A0E76D6D30072E7E5 /* ejsInterp.c in Sources */,
+				C9766A1B0E76D6D30072E7E5 /* ejsLoader.c in Sources */,
+				C9766A1C0E76D6D30072E7E5 /* ejsModule.c in Sources */,
+				C9766A1D0E76D6D30072E7E5 /* ejsService.c in Sources */,
+				C9766A1E0E76D6D30072E7E5 /* ejsTrace.c in Sources */,
+				C9766A1F0E76D6D30072E7E5 /* ejsVar.c in Sources */,
+				C95C39510EA3B6320016A988 /* ejsScope.c in Sources */,
+				C930CC3B0EA56D96004D0419 /* ejsReflect.c in Sources */,
+				C9CFB0140ED86FD3009163A7 /* ejsWebInterface.c in Sources */,
+				C94F65290EE4C3F800B7E89A /* ejsWebController.c in Sources */,
+				C94F652A0EE4C3F800B7E89A /* ejsWebHost.c in Sources */,
+				C94F652B0EE4C3F800B7E89A /* ejsWebRequest.c in Sources */,
+				C94F652C0EE4C3F800B7E89A /* ejsWebResponse.c in Sources */,
+				C94F652D0EE4C3F800B7E89A /* ejsWebSession.c in Sources */,
+				C9A722280F265D4F0022D6E1 /* mprLib.c in Sources */,
+				C9A722290F265D4F0022D6E1 /* mprPcre.c in Sources */,
+				C9F63CAE0F7949B100E9B2B1 /* ejsConfig.c in Sources */,
+				C92F2C580F8540A900945229 /* ejsWebFramework.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1DEB928608733DD80010E9CD /* x-ejs */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG_IDE;
+				INSTALL_PATH = /usr/local/bin;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../lib\"",
+					"\"$(SRCROOT)/../../package/tmp/ejs-dev/usr/lib/ejs\"",
+				);
+				PRODUCT_NAME = ejs;
+			};
+			name = "x-ejs";
+		};
+		1DEB928A08733DD80010E9CD /* x-ejs */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					_DEBUG,
+					I386,
+					DEBUG_IDE,
+					MACOSX,
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					/Users/mob/hg/ejs,
+					/Users/mob/hg/ejs/src/include,
+				);
+				ONLY_ACTIVE_ARCH = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx10.5;
+			};
+			name = "x-ejs";
+		};
+		C9176C7D0F83E00500F94072 /* x-ejs-shared */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					_DEBUG,
+					I386,
+					DEBUG_IDE,
+					MACOSX,
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					/Users/mob/hg/ejs,
+					/Users/mob/hg/ejs/src/include,
+				);
+				ONLY_ACTIVE_ARCH = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx10.5;
+			};
+			name = "x-ejs-shared";
+		};
+		C9176C7E0F83E00500F94072 /* x-ejs-shared */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG_IDE;
+				INSTALL_PATH = /usr/local/bin;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../lib\"",
+					"\"$(SRCROOT)/../../package/tmp/ejs-dev/usr/lib/ejs\"",
+				);
+				PRODUCT_NAME = ejs;
+			};
+			name = "x-ejs-shared";
+		};
+		C9176C7F0F83E00500F94072 /* x-ejs-shared */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				INSTALL_PATH = /usr/local/bin;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../lib\"",
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = ejsvm;
+			};
+			name = "x-ejs-shared";
+		};
+		C9176C800F83E00500F94072 /* x-ejs-shared */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				INSTALL_PATH = /usr/local/bin;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../lib\"",
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = ec;
+			};
+			name = "x-ejs-shared";
+		};
+		C9176C810F83E00500F94072 /* x-ejs-shared */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				INSTALL_PATH = /usr/local/bin;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../lib\"",
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = ejsmod;
+			};
+			name = "x-ejs-shared";
+		};
+		C9176C870F83E03D00F94072 /* x-ejs */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				INSTALL_PATH = /usr/local/bin;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../lib\"",
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = "ejs-shared";
+			};
+			name = "x-ejs";
+		};
+		C9176C880F83E03D00F94072 /* x-ejs-shared */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				INSTALL_PATH = /usr/local/bin;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../lib\"",
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = "ejs-shared";
+			};
+			name = "x-ejs-shared";
+		};
+		C9176C890F83E03D00F94072 /* x-ejsmod */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				INSTALL_PATH = /usr/local/bin;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../lib\"",
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = "ejs-shared";
+			};
+			name = "x-ejsmod";
+		};
+		C9176C8A0F83E03D00F94072 /* x-ec */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				INSTALL_PATH = /usr/local/bin;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../lib\"",
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = "ejs-shared";
+			};
+			name = "x-ec";
+		};
+		C9176C8B0F83E03D00F94072 /* x-ejsvm */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				INSTALL_PATH = /usr/local/bin;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../lib\"",
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = "ejs-shared";
+			};
+			name = "x-ejsvm";
+		};
+		C9427AF00E6F0EDE00B6F5AE /* x-ejsvm */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					_DEBUG,
+					I386,
+					DEBUG_IDE,
+					MACOSX,
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					/Users/mob/hg/ejs,
+					/Users/mob/hg/ejs/src/include,
+				);
+				ONLY_ACTIVE_ARCH = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx10.5;
+			};
+			name = "x-ejsvm";
+		};
+		C9427AF10E6F0EDE00B6F5AE /* x-ejsvm */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INSTALL_PATH = /usr/local/bin;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../lib\"",
+					"\"$(SRCROOT)/../../package/tmp/ejs-dev/usr/lib/ejs\"",
+				);
+				PRODUCT_NAME = ejs;
+			};
+			name = "x-ejsvm";
+		};
+		C9427B140E6F10F000B6F5AE /* x-ejs */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				INSTALL_PATH = /usr/local/bin;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../lib\"",
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = ejsvm;
+			};
+			name = "x-ejs";
+		};
+		C9427B150E6F10F000B6F5AE /* x-ejsvm */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				INSTALL_PATH = /usr/local/bin;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../lib\"",
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = ejsvm;
+			};
+			name = "x-ejsvm";
+		};
+		C965763D0E6F28E600DF73F8 /* x-ec */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					_DEBUG,
+					I386,
+					DEBUG_IDE,
+					MACOSX,
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					../..,
+					../../src/include,
+				);
+				ONLY_ACTIVE_ARCH = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx10.5;
+			};
+			name = "x-ec";
+		};
+		C965763E0E6F28E600DF73F8 /* x-ec */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				HEADER_SEARCH_PATHS = (
+					../..,
+					../../src/include,
+				);
+				INSTALL_PATH = /usr/local/bin;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"../../lib\"",
+					"\"$(SRCROOT)/../../lib\"",
+				);
+				PRODUCT_NAME = ejs;
+			};
+			name = "x-ec";
+		};
+		C965763F0E6F28E600DF73F8 /* x-ec */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					_NDEBUG,
+					I386,
+					DEBUG_IDE,
+					MACOSX,
+				);
+				INSTALL_PATH = /usr/local/bin;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../lib\"",
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = ejsvm;
+			};
+			name = "x-ec";
+		};
+		C96576450E6F28FE00DF73F8 /* x-ejs */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				INSTALL_PATH = /usr/local/bin;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../lib\"",
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = ec;
+			};
+			name = "x-ejs";
+		};
+		C96576460E6F28FE00DF73F8 /* x-ec */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				INSTALL_PATH = /usr/local/bin;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../lib\"",
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = ec;
+			};
+			name = "x-ec";
+		};
+		C96576470E6F28FE00DF73F8 /* x-ejsvm */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				INSTALL_PATH = /usr/local/bin;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../lib\"",
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = ec;
+			};
+			name = "x-ejsvm";
+		};
+		C97669800E76D5500072E7E5 /* x-ejsmod */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					_DEBUG,
+					I386,
+					DEBUG_IDE,
+					MACOSX,
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					/Users/mob/hg/ejs,
+					/Users/mob/hg/ejs/src/include,
+				);
+				ONLY_ACTIVE_ARCH = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx10.5;
+			};
+			name = "x-ejsmod";
+		};
+		C97669810E76D5500072E7E5 /* x-ejsmod */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INSTALL_PATH = /usr/local/bin;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../lib\"",
+					"\"$(SRCROOT)/../../package/tmp/ejs-dev/usr/lib/ejs\"",
+				);
+				PRODUCT_NAME = ejs;
+			};
+			name = "x-ejsmod";
+		};
+		C97669820E76D5500072E7E5 /* x-ejsmod */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				INSTALL_PATH = /usr/local/bin;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../lib\"",
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = ejsvm;
+			};
+			name = "x-ejsmod";
+		};
+		C97669830E76D5500072E7E5 /* x-ejsmod */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				INSTALL_PATH = /usr/local/bin;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../lib\"",
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = ec;
+			};
+			name = "x-ejsmod";
+		};
+		C976698A0E76D57C0072E7E5 /* x-ejs */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				INSTALL_PATH = /usr/local/bin;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../lib\"",
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = ejsmod;
+			};
+			name = "x-ejs";
+		};
+		C976698B0E76D57C0072E7E5 /* x-ejsmod */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				INSTALL_PATH = /usr/local/bin;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../lib\"",
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = ejsmod;
+			};
+			name = "x-ejsmod";
+		};
+		C976698C0E76D57C0072E7E5 /* x-ec */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				INSTALL_PATH = /usr/local/bin;
+				LIBRARY_SEARCH_PATHS = /Users/mob/hg/ejs/lib;
+				PREBINDING = NO;
+				PRODUCT_NAME = ejsmod;
+			};
+			name = "x-ec";
+		};
+		C976698D0E76D57C0072E7E5 /* x-ejsvm */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				INSTALL_PATH = /usr/local/bin;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../lib\"",
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = ejsmod;
+			};
+			name = "x-ejsvm";
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1DEB928508733DD80010E9CD /* Build configuration list for PBXNativeTarget "ejs" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB928608733DD80010E9CD /* x-ejs */,
+				C9176C7E0F83E00500F94072 /* x-ejs-shared */,
+				C97669810E76D5500072E7E5 /* x-ejsmod */,
+				C965763E0E6F28E600DF73F8 /* x-ec */,
+				C9427AF10E6F0EDE00B6F5AE /* x-ejsvm */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = "x-ejsvm";
+		};
+		1DEB928908733DD80010E9CD /* Build configuration list for PBXProject "ejs" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB928A08733DD80010E9CD /* x-ejs */,
+				C9176C7D0F83E00500F94072 /* x-ejs-shared */,
+				C97669800E76D5500072E7E5 /* x-ejsmod */,
+				C965763D0E6F28E600DF73F8 /* x-ec */,
+				C9427AF00E6F0EDE00B6F5AE /* x-ejsvm */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = "x-ejsvm";
+		};
+		C9176CBE0F83E13B00F94072 /* Build configuration list for PBXNativeTarget "ejs-shared" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C9176C870F83E03D00F94072 /* x-ejs */,
+				C9176C880F83E03D00F94072 /* x-ejs-shared */,
+				C9176C890F83E03D00F94072 /* x-ejsmod */,
+				C9176C8A0F83E03D00F94072 /* x-ec */,
+				C9176C8B0F83E03D00F94072 /* x-ejsvm */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = "x-ejsvm";
+		};
+		C9427B1C0E6F112D00B6F5AE /* Build configuration list for PBXNativeTarget "ejsvm" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C9427B140E6F10F000B6F5AE /* x-ejs */,
+				C9176C7F0F83E00500F94072 /* x-ejs-shared */,
+				C97669820E76D5500072E7E5 /* x-ejsmod */,
+				C965763F0E6F28E600DF73F8 /* x-ec */,
+				C9427B150E6F10F000B6F5AE /* x-ejsvm */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = "x-ejsvm";
+		};
+		C96576480E6F291C00DF73F8 /* Build configuration list for PBXNativeTarget "ec" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C96576450E6F28FE00DF73F8 /* x-ejs */,
+				C9176C800F83E00500F94072 /* x-ejs-shared */,
+				C97669830E76D5500072E7E5 /* x-ejsmod */,
+				C96576460E6F28FE00DF73F8 /* x-ec */,
+				C96576470E6F28FE00DF73F8 /* x-ejsvm */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = "x-ejsvm";
+		};
+		C976699A0E76D5830072E7E5 /* Build configuration list for PBXNativeTarget "ejsmod" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C976698A0E76D57C0072E7E5 /* x-ejs */,
+				C9176C810F83E00500F94072 /* x-ejs-shared */,
+				C976698B0E76D57C0072E7E5 /* x-ejsmod */,
+				C976698C0E76D57C0072E7E5 /* x-ec */,
+				C976698D0E76D57C0072E7E5 /* x-ejsvm */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = "x-ejsvm";
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 08FB7793FE84155DC02AAC07 /* Project object */;
+}

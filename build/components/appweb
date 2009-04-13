@@ -1,0 +1,41 @@
+#
+#   Appweb
+#
+defineComponent() {
+	local iflags builtin path name search optional libs
+
+    path=$1
+    name="appweb"
+    search="src/$name"
+
+    if [ "$path" != "" ] ; then
+        path=`probe --dir --path "$path" --base "$name.c" --search "$search"`
+    fi
+    if [ "$path" != "" ] ; then
+        iflags="-I$path/include"
+    else 
+        builtin=--builtin
+        path="src/$name"
+    fi
+    libs="$name"
+
+    optional="ssl"
+    if [ "$BLD_PRODUCT_APPWEB" = 1 ] ; then
+        if [ "$BLD_FEATURE_EJS" = 1 ] ; then
+            optional="$optional ejs"
+            libs="$libs ejsgate"
+        fi
+        if [ "$BLD_FEATURE_PHP" = 1 ] ; then
+            optional="$optional php"
+        fi
+    fi 
+
+    configureComponent --name $name --libs "$libs" --path "$path" --iflags "$iflags" $builtin \
+        --dependencies "mpr" --optional-dependencies "$optional" 
+
+    if [ "$path" != "" ] ; then
+        BLD_FEATURE_CMD=1
+        BLD_FEATURE_CONFIG_PARSE=1
+        BLD_FEATURE_HTTP=1
+    fi
+}

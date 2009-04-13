@@ -1,0 +1,35 @@
+FILES.TXT for the Ejscript Web Framework
+--------------------------------------------------------------------------------
+
+The key directories and files are:
+
+Directory       Purpose
+-----------------------
+package         - Distribution package file scripts
+
+
+File            Purpose
+-----------------------
+ejsWeb.c        - Web framework initialization
+ejsWebControl.c - Web framework control interface between Ejscript and the web server
+espWebService.c - Web framework service support. Create and process new web requests
+files           - Files list. Used when building the WEB library.
+make.dep        - Makefile dependency file
+Makefile        - Makefile.
+classes         - Ejscript web framework support classes
+
+--------------------------------------------------------------------------------
+
+Other important files to read:
+
+README.TXT -- Description of the Embedded JavaScript Module.
+
+--------------------------------------------------------------------------------
+
+Copyright (c) 2003-2009 Embedthis Software, LLC. All Rights Reserved.
+Embedthis and AppWeb are trademarks of Embedthis Software, LLC. Other 
+brands and their products are trademarks of their respective holders.
+
+See LICENSE.TXT for software license details.
+
+--------------------------------------------------------------------------------

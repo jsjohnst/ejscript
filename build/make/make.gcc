@@ -1,0 +1,284 @@
+#
+#	make.gcc -- Shared makefile settings for those using the gcc compiler.
+#
+#	Included by various make.OSNAME files.
+#
+################################################################################
+#
+#	Copyright (c) Embedthis Software LLC, 2003-2009. All Rights Reserved.
+#	The latest version of this code is available at http://www.embedthis.com
+#
+#	This software is open source; you can redistribute it and/or modify it 
+#	under the terms of the GNU General Public License as published by the 
+#	Free Software Foundation; either version 2 of the License, or (at your 
+#	option) any later version.
+#
+#	This program is distributed WITHOUT ANY WARRANTY; without even the 
+#	implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+#	See the GNU General Public License for more details at:
+#	http://www.embedthis.com/downloads/gplLicense.html
+#	
+#	This General Public License does NOT permit incorporating this software 
+#	into proprietary programs. If you are unable to comply with the GPL, a 
+#	commercial license for this software and support services are available
+#	from Embedthis Software at http://www.embedthis.com
+#
+################################################################################
+
+SHELL			:= /bin/bash
+
+_IFLAGS         =
+_CFLAGS         =
+_DFLAGS         =
+_ESFLAGS        =
+_LDFLAGS        =
+_LDPATH         =
+_LIBS           = 
+
+ifeq ($(BLD_TYPE),DEBUG)
+	_ESFLAGS	+= --debug --optimize 9
+else
+	_ESFLAGS	+= --optimize 9
+endif
+
+#
+#	Set the mtune / mcpu switch
+#
+ifeq ($(BLD_CC_MTUNE),1)
+	TUNE		= mtune
+else
+	TUNE		= mcpu
+endif
+
+_IFLAGS		    = -I. -I$(BLD_TOP) -I$(BLD_TOP)/src/include
+
+#
+#	Optimization and debug settings
+#
+_CFLAGS 		    += -Wall
+ifeq ($(BLD_TYPE),RELEASE)
+    ifeq ($(BLD_TUNE),MPR_TUNE_SIZE)
+        ifeq ($(BLD_OS),VXWORKS)
+            _CFLAGS += -O
+        else
+            ifeq ($(BLD_OS),MACOSX)
+                _CFLAGS += -fast
+            else
+                _CFLAGS += -Os
+            endif
+        endif
+    else
+        ifeq ($(BLD_OS),MACOSX)
+            _CFLAGS += -fast
+        else
+            _CFLAGS += -O3
+        endif
+    endif
+else
+    _CFLAGS 	+= -g3
+    _LDFLAGS	+= -g3
+endif
+
+
+ifeq ($(BUILDING_CROSS),1)
+    _DFLAGS		+= -DBUILDING_CROSS=$(BUILDING_CROSS)
+endif
+ifeq ($(BLD_FEATURE_MULTITHREAD),1)
+	_DLFAGS     += -D_REENTRANT
+ifneq ($(BLD_OS),VXWORKS)
+	_LIBS   	+= -lpthread
+endif
+endif
+
+ifeq ($(BLD_FEATURE_STDCPP),0)
+    #
+    #	If not using the standard C++ library, turn off exceptions and runtime time information.
+    #
+	_CXXFLAGS	+= -fno-exceptions -fno-rtti
+
+	ifeq ($(BLD_CC_STACK_PROTECTOR),1)
+		_CFLAGS += -fno-stack-protector
+	endif
+endif
+
+ifneq 	($(BLD_OS),CYGWIN)
+ifneq 	($(BLD_OS),VXWORKS)
+	_CFLAGS	     += -fPIC 
+    _DFLAGS      += -DPIC
+endif
+endif
+
+#
+#	Modify CFLAGS depending on the CPU architecture
+#
+ifeq		($(BLD_OS),MACOSX)
+	#
+	#	If you want to create universal binaries:
+	#       _CFLAGS += -isysroot /Developer/SDKs/MacOSX10.4u.sdk -arch i386 -arch ppc
+	#       _LDFLAGS+= -arch i386 -arch ppc
+	#
+	
+	#
+	#	x86_64 for 64 bit binaries.
+	#
+	ifeq ($(BLD_CPU),universal)
+		_CFLAGS	    += -arch i386 -arch ppc
+		_LDFLAGS    += -arch i386 -arch ppc
+	else
+		_CFLAGS	    += -arch $(BLD_CPU)
+		_LDFLAGS    += -arch $(BLD_CPU)
+	endif
+
+else
+
+	ifeq ($(BLD_CPU_ARCH),MPR_CPU_68K)
+		ifeq ($(BLD_CPU_MODEL),)
+			_CFLAGS     +=
+		else
+			_CFLAGS     +=
+		endif
+	endif
+
+	ifeq ($(BLD_CPU_ARCH),MPR_CPU_ARM)
+		#
+		# CPU flags: ARM7TDMI, ARM7TDMI_T, ARMSA110, ARM710A, ARM810
+		#
+		ifeq ($(BLD_CPU_MODEL),)
+			_CFLAGS		+= -$(TUNE)=arm7tdmi -mno-sched-prolog
+		else
+			_CFLAGS		+= -$(TUNE)=arm$(BLD_CPU_MODEL) -mno-sched-prolog
+		endif
+	endif
+
+	ifeq		($(BLD_CPU_ARCH),MPR_CPU_IX86)
+		ifeq	($(BLD_CPU_MODEL),)
+			_CFLAGS		+= -$(TUNE)=i386
+		else
+			_CFLAGS		+= -$(TUNE)=$(BLD_CPU)
+		endif
+	endif
+
+	ifeq		($(BLD_CPU_ARCH),MPR_CPU_MIPS)
+		#
+		# CPU flags: R3000 R4000 R4650
+		#
+		ifeq	($(BLD_CPU_MODEL),)
+			_CFLAGS		+= -G 0
+		else
+			_CFLAGS		+= -G 0
+		endif
+	endif
+
+	ifeq ($(BLD_CPU_ARCH),MPR_CPU_PPC)
+		#
+		# CPU flags: PPC403, PPC603, PPC604, PPC860 
+		#            -mpowerpc -mlongcall -mstrict-align -msoft-float
+		#
+		ifeq ($(BLD_CPU_MODEL),)
+			_CFLAGS += -mpowerpc 
+            _DFLAGS += -DCPU=PPC -D_GNU_TOOL
+		else
+			_CFLAGS += -$(TUNE)=$(BLD_CPU_MODEL)
+            _DFLAGS += -DCPU=$(BLD_CPU_UPPER) -D_GNU_TOOL
+		endif
+	endif
+
+	ifeq ($(BLD_CPU_ARCH),MPR_CPU_SPARC)
+		ifeq  ($(BLD_CPU),sparclite)
+			_CFLAGS += -msparclite 
+            _DFLAGS += -DCPU=SPARC
+		else
+			ifeq ($(BLD_CPU_MODEL),)
+				_CFLAGS	+= -msparc$(BLD_CPU_MODEL)
+			else
+				_CFLAGS	+= -msparc
+			endif
+		endif
+	endif
+endif
+
+#
+#	If building with a static libc
+#
+ifeq ($(BLD_FEATURE_STATIC_LIBC),1)
+	_LDFLAGS	+= -static-libgcc
+endif
+
+_LDPATH			= $(BLD_ABS_LIB_DIR)
+ifeq ($(BLD_OS),LINUX)
+    _LDFLAGS	+= -Wl,-rpath-link=$(BLD_ABS_LIB_DIR)
+endif
+#
+#   This is done in bld
+#
+# ifeq ($(BLD_OS),MACOSX)
+#     _LDFLAGS	+= -Wl,-rpath @loader_path/../lib
+# endif
+
+#
+#	Support for dynamically loadable modules is present in shared and static builds
+#
+ifneq			($(BLD_OS),VXWORKS)
+    _LIBS	    += -ldl
+
+ifeq 			($(BLD_FEATURE_FLOATING_POINT),1)
+    _LIBS       += -lm
+endif
+ifeq 			($(BLD_FEATURE_AUTH_PAM),1)
+    _LIBS       += -lpam
+endif
+endif
+
+#
+#	Using the standard C++ library. Default for products using C++ is to use their own C++ library to save space.
+#
+ifeq ($(BLD_FEATURE_STDCPP),1)
+ifneq ($(BLD_OS),VXWORKS)
+	_LIBS   	+= -lstdc++ 
+endif
+endif
+
+CLEANIT			+= *.a *.o *.lo *.tmp *.bak *.out *.map *.sym *.class
+
+.PRECIOUS: 		$(_LIBS)
+
+#
+#	These exports defined in this file are used by the bld program
+#
+export 	_LDPATH _LDFLAGS _LIBS BLD_TOP
+
+#
+#	Transitition rules
+#
+.SUFFIXES: .cpp .rc .res .def .lib .so
+
+#
+#	Build rule for C source
+#
+$(BLD_OBJ_DIR)/%${BLD_OBJ}: %.c
+	$(BLD_CC) -c $(MAKE_DFLAGS) $(_DFLAGS) $(BLD_DFLAGS) $(MAKE_CFLAGS) $(_CFLAGS) $(BLD_CFLAGS) $(MAKE_IFLAGS) $(BLD_IFLAGS) $(_IFLAGS) $< -o $@
+
+
+#
+#	Build rule for C++ source
+#
+$(BLD_OBJ_DIR)/%${BLD_OBJ}: %.cpp
+	@echo
+	$(BLD_CXX) -c  $(MAKE_DFLAGS) $(_DFLAGS) $(BLD_DFLAGS) $(MAKE_CFLAGS) $(_CFLAGS) $(_CXXFLAGS) $(BLD_CFLAGS) $(BLD_CXXFLAGS) $(MAKE_IFLAGS) $(BLD_IFLAGS) $(_IFLAGS) $< -o $@ 
+
+#
+#	Build rules for Java source
+#
+${BLD_OBJ_DIR}/classes/${SRC_PATH}/%${BLD_CLASS}: ${BLD_OBJ_DIR}/src/${SRC_PATH}/%.java
+	@echo
+	"$(BLD_JAVAC)" $(JAVA_TARGET) $(JAVA_VERSION) -d $(BLD_OBJ_DIR)/classes $(JDEBUG) $(JFLAGS) $<
+
+$(BLD_OBJ_DIR)/src/$(SRC_PATH)/%.java: %.java
+	@echo
+	pp -j $(_JDEFINES) $(JDEFINES) -o $(BLD_OBJ_DIR)/src/$(SRC_PATH)/$< $< 
+
+%.a:
+	@true
+
+%.so:
+	@true

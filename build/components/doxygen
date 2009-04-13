@@ -1,0 +1,6 @@
+#
+#	doxygen - Doxygen documentation generation tool
+#  
+defineComponent() {
+    configureComponent --name doxygen --path `probe --path "$1" --base doxygen`
+}

@@ -1,0 +1,25 @@
+#!/bin/bash
+#
+#	release.defaults -- Default build configuration when creating a
+#		release distribution of Embedthis Ejscript.
+#
+#	Copyright (c) Embedthis Software LLC, 2003-2009. All Rights Reserved.
+#
+#	These defaults are used to create a release distribution for Ejscript.
+#	It is multi-threaded, dynamically linked with the ability to load
+#	modules. 
+#
+#	These initial defaults are read by configure when first creating the
+#	configuration files: buildConfig.make, buildConfig.sh, buildConfig.h.
+#
+#	See standard.defaults the default values and for comments on each variable.
+#
+###############################################################################
+
+. ${BLD_TOP}/build/standard.defaults
+
+BLD_DEFAULTS="release"
+BLD_TYPE="RELEASE" 
+BLD_DEBUG=0
+BLD_FEATURE_DOC="1"
+BLD_FEATURE_ASSERT=0

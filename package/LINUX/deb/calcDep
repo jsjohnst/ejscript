@@ -1,0 +1,13 @@
+cd ../.tmp
+
+objdump -p binDist/etc/ejs/lib/* binDist/usr/sbin/* | 
+	grep NEEDED | 
+	awk '{ print $2 }' | 
+	egrep -v 'libesp|libegi|libsslModule|libejs.so|matrixssl' | 
+	sort | 
+	uniq | 
+while read x
+do
+	#echo dpkg -S $x
+	dpkg -S $x
+done | awk '{ print $1 }' | sed 's/://' | sort | uniq

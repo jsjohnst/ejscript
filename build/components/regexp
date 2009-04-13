@@ -1,0 +1,22 @@
+#
+#   Regexp
+#
+defineComponent() {
+	local builtin iflags imports path name search 
+
+    path=$1
+    name="regexp"
+    search="src/regexp"
+
+    if [ "$path" != "" ] ; then
+        path=`probe --dir --path "$path" --base "pcre_exec.c" --search "$search"`
+    fi
+    if [ "$path" != "" ] ; then
+        imports="$path/lib/pcre"
+        iflags="-I$path/include"
+    else 
+        builtin=--builtin
+        path="src/regexp"
+    fi
+    configureComponent --name $name --libs "pcre" --path "$path" --iflags "$iflags" $builtin
+}

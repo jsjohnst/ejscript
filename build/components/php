@@ -1,0 +1,34 @@
+#
+#   PHP
+#
+defineComponent() {
+	local path name search ver imports libs iflags
+
+    [ $KIND = "BUILD" -a $BLD_CROSS = 1 ] && return 0
+
+    path=$1
+    name="php"
+    ver="5.2.8"
+    search="..:../.."
+
+    path=`probe --path "$path" --base "packages/php/php-$ver" --search "$search"`
+
+    if [ $BLD_HOST_OS = WIN ] ; then
+        if [ -x $path/Release_TS ] ; then
+            imports="$path/Release_TS/php5ts.dll"
+        else 
+            imports="$path/Release/php5.dll"
+        fi
+        libs="php5"
+    elif [ $BLD_HOST_OS = MACOSX ] ; then
+        imports="$path/libs/libphp5.dylib"
+        libs="php5"
+    else
+        imports="$path/libs/libphp5.so"
+        libs="php5"
+    fi
+
+    iflags="-I$path -I$path/main -I$path/Zend -I$path/TSRM"
+    configureComponent --name $name --path "$path" --dependencies "mpr" --imports "$imports" \
+        --withlibs "$libs" --libs "$libs" --iflags "$iflags" 
+}

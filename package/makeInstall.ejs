@@ -1,0 +1,85 @@
+#
+#	makeInstall.ejs - Called by makeInstall
+#
+#	Copyright (c) Embedthis Software LLC, 2003-2009. All Rights Reserved.
+#
+################################################################################
+
+#
+#	Configure a product
+#
+#	Usage:	configureProduct configure|initialize|install|remove|start|stop
+#
+configureProduct() {
+
+	local action sw quiet
+
+	[ "$DRY_RUN" = 1 ] && return
+
+	quiet=0
+	while [ "${1#--}" != "$1" ] ; do
+		sw="${1#--}"
+		case $sw in
+		quiet)
+			quiet=1
+			;;
+		esac
+		shift
+	done
+
+	action=$1
+
+	case $action in
+	cleanup)
+		[ $quiet = 0 ] && echo -e "\n  #\n  #  Cleanup for ${BLD_NAME}\n  #"
+		rm -f "/etc/${BLD_PRODUCT}Install.conf"
+		rm -f "/etc/${BLD_PRODUCT}/fileList.txt"
+		rm -f "${BLD_INC_PREFIX}/fileList.txt"
+		rm -f "/usr/share/${BLD_PRODUCT}/fileList.txt"
+		rm -fr "${BLD_PREFIX}/var/${BLD_PRODUCT}"
+		;;
+
+    complete)
+        [ $TASK != Package ] && echo -e "  #\n  #  ${TASK} Complete\n  #\n"
+#		if [ $TASK = Install -a "${DO_BINARY}" = "1" ] ; then
+#            echo -e "\nFor any errors, check the $BLD_NAME log file at $BLD_LOG_PREFIX/error.log"
+#        fi
+        ;;
+	configure)
+		# [ $quiet = 0 ] && echo -e "\n  #\n  #  Configuring ${BLD_NAME}\n  #"
+		;;
+
+	copy)
+		;;
+
+	initialize)
+		# echo -e "\n  #\n  #  Initializing ...\n  #"
+        #
+        #   Cleanup for 0.9.6 and before
+        #
+        rm -f /usr/bin/ejs.mod
+        rm -f /usr/bin/ejs.db.mod
+        rm -f /usr/bin/ejs.web.mod
+        rm -f /usr/bin/ejs.web.parser.mod
+
+        rm -f /usr/lib/ejs/ejs.mod
+        rm -f /usr/lib/ejs/ejs.db.mod
+        rm -f /usr/lib/ejs/ejs.web.mod
+        rm -f /usr/lib/ejs/ejs.web.parser.mod
+
+        rm -f /usr/bin/egen
+        rm -f /usr/bin/ec
+        rm -f /usr/bin/ecgi
+		;;
+	
+	install)
+		;;
+
+	remove)
+		;;
+
+	start|stop)
+		;;
+
+	esac
+}

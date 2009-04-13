@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- BeginDsi "dsi/head.html" -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Embedthis Ejscript 0.9.8 Documentation</title>
+    <meta name="keywords" content="Ejscript, JavaScript, ECMAScript, Server-Side JavaScript, Dynamic languages, 
+        Embedded, AJAX, language"/>
+	<meta name="description" content="Ejscript -- Embedded Server-Side JavaScript Language."/>
+	<meta name="robots" content="index,follow" />
+	<link href="../../doc.css" rel="stylesheet" type="text/css" />
+	<link href="../../print.css" rel="stylesheet" type="text/css" media="print"/>
+    <!--[if IE]>
+    <link href="../../iehacks.css" rel="stylesheet" type="text/css" />
+    <![endif]-->
+</head>
+
+<body>
+    <div class="top">
+        <a class="logo"  href="http://www.ejscript.org/">&nbsp;</a>
+        <div class="topRight">
+             <div class="search">
+                 <form method="get" action="http://www.google.com/search" title="Search www.embedthis.com">
+                     <p>
+                        <label title="Search">Search</label> 
+                        <input type="text" id="q" name="q" size="15" maxlength="255" />
+                        <input type="submit" id="submit" value="Go" /> 
+                        <input type="hidden" name="domains" value="embedthis.com" /> 
+                        <input type="hidden" name="sitesearch" value="embedthis.com" />
+                    </p>
+                 </form>
+              </div>
+            <!--TITLE-->Embedthis Ejscript 0.9.8
+        </div>
+        <div class="crumbs">
+            <a href="../../product/index.html">Home</a>
+<!-- EndDsi -->
+             &gt;<a href="index.html">Language Guide</a>&gt; <b>Language Overview</b>
+        </div>
+    </div>
+    <div class="content">
+        <div class="contentRight">
+            <h2>Quick Nav</h2>
+            <ul>
+                <li><a href="#components">Ejscript Components</a></li>
+                <li><a href="#goals">Design Goals</a></li>
+                <li><a href="#problem">Why Enhance JavaScript</a></li>
+                <li><a href="#enhancements">Ejscript Enhancements</a></li>
+            </ul>
+<!-- BeginDsi "dsi/ejsLanguageSeeAlso.html" -->
+		        <h2>See Also</h2>
+		        <ul>
+		          <li><a href="../../guide/ejs/overview.html">Overview</a></li>
+		          <li><a href="../../guide/ejs/language/features.html">Language Features</a></li>
+		          <li><a href="../../guide/ejs/language/modes.html">Language Modes</a></li>
+		          <li><a href="../../guide/ejs/language/syntax.html">Language Syntax</a></li>
+		          <li><a href="../../guide/ejs/language/statements.html">Statements</a></li>
+		          <li><a href="../../guide/ejs/language/expressions.html">Expressions</a></li>
+		          <li><a href="../../guide/ejs/language/objects.html">Objects and Arrays</a></li>
+		          <li><a href="../../guide/ejs/language/functions.html">Functions and Methods</a></li>
+		          <li><a href="../../guide/ejs/language/core.html">Core Language Types</a></li>
+		          <li><a href="../../guide/ejs/language/types.html">Types and Declarations</a></li>
+		          <li><a href="../../guide/ejs/language/classes.html">Classes</a></li>
+		          <li><a href="../../guide/ejs/language/modules.html">Modules</a></li>
+		          <li><a href="../../guide/ejs/language/library.html">System Library</a></li>
+		          <li><a href="../../guide/ejs/language/events.html">Events and Timers</a></li>
+		          <li><a href="../../guide/ejs/language/globals.html">Globals</a></li>
+
+		          <li><a href="../../guide/ejs/users/compiler.html">Using the Compiler</a></li>
+		          <li><a href="../../guide/ejs/users/shell.html">Command Shell</a></li>
+		          <li><a href="../../guide/ejs/users/ejsvm.html">Virtual Machine</a></li>
+		        </ul>
+<!-- EndDsi -->
+        </div>
+        <div class="contentLeft">
+            <h1>Embedthis Ejscript&trade; Language Overview</h1>
+            <p>Ejscript is an enhanced implementation of the <a href=
+            "http://en.wikipedia.org/wiki/JavaScript">JavaScript</a> language for use in embedded applications such as
+            web servers, embedded and mobile devices. It is especially suited for Server-Side JavaScript web
+            applications.</p>
+            <p>Ejscript is a dynamic, interpreted, object-oriented scripting language that supports classes, objects,
+            exceptions, statements, expressions and a powerful suite of data types.</p>
+            <h2>Standards Based</h2>
+            <p>Ejscript fully supports and complies with the standardized version of JavaScript known as ECMAScript
+            Edition 3 (<a href="http://www.ecma-international.org/publications/standards/Ecma-262.htm">ECMA-262-3</a>).
+            Ejscript also implements the ECMAScript E4X for XML (<a href=
+            "http://www.ecma-international.org/publications/standards/Ecma-357.htm">ECMA-357</a>) specification.</p>
+            <p>The Ejscript development community is also actively participating in the various JavaScript standards
+            efforts including:</p>
+            <ul>
+                <li><a href="http://www.ecmascript.org/">ECMAScript Harmony</a> &mdash; The next generation JavaScript
+                language standards effort.</li>
+                <li><a href="https://wiki.mozilla.org/ServerJS">ServerJS</a> &mdash; An effort to create standardized
+                Server-Side JavaScript libraries.</li>
+            </ul><a name="components" id="components"></a>
+            <h2>Ejscript Components</h2>
+            <p>Ejscript provides a complete Ejscript programming environment that includes:</p>
+            <ul>
+                <li>An embeddable and highly configurable JavaScript Virtual Machine engine</li>
+                <li>Stand-alone or integrated compiler</li>
+                <li>Compact high level byte code</li>
+                <li>Extensive documentation and samples</li>
+                <li>API documentation generation tool</li>
+                <li style="list-style: none">Symbolic assembler listing generator</li>
+                <li>Composite native class interface</li>
+                <li>JavaScript language extensions</li>
+                <li>Extensive system class library with classes for Events, Timers, File I/O, Streams, Sockets,
+                HTTP</li>
+                <li>Model / View / Controller based Web Framework</li>
+            </ul>
+            <h2><a name="goals" id="goals"></a>Ejscript Design Goals</h2>
+            <p>The goal of Ejscript is to create a standards-based JavaScript implementation that is ideally suited for
+            running outside the browser in embedded applications and devices such as for <a href=
+            "http://en.wikipedia.org/wiki/Server-side_JavaScript">Server-Side JavaScript</a> web frameworks.</p>
+            <p>Embedded applications typically require small and efficient memory utilization and modest CPU
+            requirements. However, most JavaScript implementations are designed for use inside a browser on the PC
+            desktop. They have large memory footprints, typically more than 4MB and often larger than 64MB &mdash; too
+            large for many embedded applications.</p>
+            <p>By contrast, Ejscript, requires from 200K of code and has minimal memory requirements to execute (from
+            400K). To do this, Ejscript sheds browser baggage and prioritizes design trade-offs toward memory
+            efficiency.</p><a name="problem" id="problem"></a>
+            <h2>Why Enhance JavaScript?</h2>
+            <p>JavaScript is now one of the most popular programming languages in the world. However, JavaScript was
+            written <a href="http://en.wikipedia.org/wiki/JavaScript#History_and_naming">many years ago</a> during the
+            height of the browser wars. It was written in a hurry and under corporate pressure. As a result, the
+            language has some glaring weaknesses that impact the security of programs and the programming experience of
+            users &mdash; especially when used outside the browser and as programs become larger.</p>
+            <p>Some of the more major issues are:</p>
+            <ul>
+                <li>JavaScript stores all top-level variables from all source files together in one global object.</li>
+                <li>JavaScript fails to provide a scalable module scheme to package and isolate program components and
+                ensure names don't conflict.</li>
+                <li>JavaScript does not provide real block scope</li>
+                <li>JavaScript allows multiple variable declarations of the same name so variable declarations can
+                silently collide.</li>
+                <li>Assignments to undeclared variables in JavaScript functions will often create unwanted global
+                variables.</li>
+            </ul><a name="enhancements" id="enhancements"></a>
+            <h2>Ejscript Language Enhancements</h2>
+            <p>Credit where credit is due. Ejscript has learned from the ongoing JavaScript <a href=
+            "http://wiki.ecmascript.org/doku.php">research and standardization</a> efforts and from Adobe's <a href=
+            "http://www.actionscript.org">ActionScript</a>. For the Ejscript web framework, <a href=
+            "http://www.rubyonrails.org">Ruby on Rails</a> has provided many good patterns.</p>
+            <p>Ejscript adds the following language enhancements:</p>
+            <ul>
+                <li>Block and file scope</li>
+                <li>Module and namespace directives</li>
+                <li>Let variable declarations</li>
+                <li>Variable visibility controls</li>
+                <li>Optional type annotations</li>
+                <li>Bound methods that capture the <b>this</b> object</li>
+                <li>Function rest arguments</li>
+                <li>Class, extends, super and interface directives</li>
+                <li>Extended language library: Http, File I/O, Sockets, Stream I/O, XML, Eventing</li>
+                <li>E4X XML support</li>
+                <li>Iterators and Generators</li>
+                <li>Automatic type conversion for function arguments</li>
+                <li>Extended try / catch syntax</li>
+                <li>Cast, is operators</li>
+                <li>Reflection</li>
+                <li>Use pragmas</li>
+                <li>Assertions</li>
+                <li>Conditional compilation</li>
+            </ul>
+            <p>You can choose to take advantage of the enhancements offered by Ejscript for a more secure, scalable and
+            pleasant programming experience or you can can use it in strict ECMAScript compliant mode and utilize only
+            standard features.</p>
+        </div>
+    </div>
+<!-- BeginDsi "dsi/bottom.html" -->
+	<div class="bottom">
+		<p class="footnote"> 
+            <a href="../../product/copyright.html" >&copy; Embedthis Software LLC, 2003-2009. 
+            All rights reserved. Embedthis, Ejscript and Appweb are trademarks of Embedthis Software LLC.</a>
+		</p>
+	</div>
+<!-- EndDsi -->
+</body>
+</html>

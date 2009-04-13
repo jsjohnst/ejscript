@@ -1,0 +1,83 @@
+#
+#   CC
+#
+defineComponent() {
+    local file
+
+    eval file=\$BLD_${KIND}_CC
+
+    path="`probe --path "$1" --base $file`"
+    configureComponent --name cc --path "$path" --emitter emitCompilerOptions
+
+    setCompilerOptions
+}
+
+
+setCompilerOptions()
+{
+    local file cc cpu file hasGcc hasStackProtector hasMtune
+
+    eval os=\$BLD_${KIND}_OS
+    eval cc=\$CFG_${KIND}_CC
+    eval cpu=\$BLD_${KIND}_CPU
+    eval hasStackProtector=\${KIND}_HAS_STACK_PROTECTOR
+    eval hasMtune=\${KIND}_HAS_MTUNE
+
+    eval $hasStackProtector=0
+    eval $hasMtune=0
+
+    if [ $os = CYGWIN -o $os = FREEBSD -o $os = LINUX -o $os = VXWORKS -o $os = MACOSX ] ; then
+        hasGcc=1
+    else 
+        hasGcc=0
+    fi
+
+    #
+    #   Check for old gcc compilers that can't handle -mtune
+    #
+    if [ $hasGcc = 1 ] ; then
+        file=/tmp/t$$.c
+        >${file}
+        if [ "$verbose" != 0 ] ; then
+            echo -e "  # Checking for compiler -mtune support\n"
+            echo "${cc}" -mtune=${cpu} -c $file 
+            echo
+        fi
+        "${cc}" -mtune=${cpu} -c $file >/dev/null 2>&1
+        if [ $? = 0 ] ; then
+            eval $hasMtune=1
+		else
+			eval $hasMtune=0
+        fi
+
+        if [ "$verbose" != 0 ] ; then
+            echo -e "  # Checking for compiler -fno-stack-protector support\n"
+            echo "${cc}" -fno-stack-protector -c $file 
+            echo
+        fi
+        "${cc}" -fno-stack-protector -c $file >/dev/null 2>&1
+        if [ $? = 0 ] ; then
+            eval $hasStackProtector=1
+		else
+            eval $hasStackProtector=0
+        fi
+        rm -f t$$.o ${file}
+    fi
+
+    #
+    #   Detect endianness for build system
+    #
+    if [ $KIND = BUILD -a $hasGcc = 1 ] ; then
+        echo -e '#include <stdio.h>\nint main() { char *p; int i = 1; p = (char*) &i; printf("%s\\n", *p == 1 ? "MPR_LITTLE_ENDIAN" : "MPR_BIG_ENDIAN"); return 0; }' >$file
+        "${cc}" -o /tmp/t$$ $file >/dev/null 2>&1
+        BLD_BUILD_ENDIAN=`/tmp/t$$`
+        rm -f /tmp/t$$ ${file}
+    fi
+}
+
+emitCompilerOptions()
+{
+    eval echo BLD_CC_MTUNE=\$${KIND}_HAS_MTUNE
+    eval echo BLD_CC_STACK_PROTECTOR=\$${KIND}_HAS_STACK_PROTECTOR
+}
+

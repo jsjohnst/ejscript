@@ -1,0 +1,8 @@
+#
+#   Ranlib
+#
+defineComponent() {
+    local file
+    eval file=\$BLD_${KIND}_RANLIB
+    configureComponent --name ranlib --path "`probe --path "$1" --base $file`"
+}

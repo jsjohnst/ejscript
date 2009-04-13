@@ -1,0 +1,25 @@
+#
+#   MatrixSSL
+#
+defineComponent() {
+	local path name search ver imports libs
+
+    [ $KIND = "BUILD" -a $BLD_CROSS = 1 ] && return 0
+
+    path=$1
+    name="matrixssl"
+    ver="1-8-6-open"
+    search="..:../.."
+
+    path=`probe --path "$path" --base "packages/matrixssl/matrixssl-$ver" --search "$search"`
+
+    if [ $BLD_HOST_OS = WIN ] ; then
+        imports="$path/src/Release/libmatrixssl.dll"
+        libs="libmatrixssl"
+    else
+        imports="$path/src/libmatrixsslstatic.a"
+        libs="matrixsslstatic.a"
+    fi
+
+    configureComponent --name $name --path "$path" --imports "$imports" --libs "$libs" --iflags "-I$path" 
+}

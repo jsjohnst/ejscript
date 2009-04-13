@@ -1,0 +1,54 @@
+#
+#	source.files - Files needed for the source installation
+#
+#	Copyright (c) Embedthis Software LLC, 2003-2009. All Rights Reserved.
+#
+DIR=${BLD_SRC_PREFIX}
+
+#
+#   Standard release files
+#
+makeDir "${DIR}/src" "${DIR}/build/bin" "${DIR}/obj" "${DIR}/bin" "${DIR}/lib" "${DIR}/lib/modules" "${DIR}/src/all"
+
+cpy -e                    Makefile "${DIR}"
+cpy -w -e                 "*.TXT" "${DIR}"
+cpy -m 0755               configure "${DIR}"
+cpy -d .                  obj/Makefile  lib/Makefile bin/Makefile "${DIR}"
+cpy -d build -c "Makefile|Makefile.top|configure.${BLD_PRODUCT}|*.defaults|config.*|*.make" "*"  "${DIR}/build"
+cpy -m 0755 -d build configure.${BLD_PRODUCT} "${DIR}/build"
+cpy -m 0755 -d build/bin  bld makedep priv fakePriv mkdmg "${DIR}/build/bin"
+cpy -m 0755 -d build/bin  "make*Package*" makeInstall "${DIR}/build/bin"
+cpy -m 0755 -d build/bin  all-in-one  "${DIR}/build/bin"
+cpy -d build/src          Makefile "*.c" "*.h" "${DIR}/build/src"
+cpy -d build/components   "*" "${DIR}/build/components"
+cpy -d package            Makefile "*.files" "${DIR}/package"
+cpy -m 0755 -d package    "*.sh" makeInstall.ejs "${DIR}/package"
+cpy -d package            LINUX MACOSX WIN "${DIR}/package"
+
+#
+#   Source for mpr, ejs, server, http
+#
+srcFilter="/\.log$"
+cpy -f "${srcFilter}" -d src Makefile appweb mpr cmd compiler db ejsmod mpr types vm include  "${DIR}/src"
+
+esFilter="/spec/|/es/util/"
+cpy -f "${esFilter}" -d src es "${DIR}/src"
+
+protoFilter="proto/|/legacy/"
+cpy -f "${protoFilter}" -d src web "${DIR}/src"
+
+cpy -d src/test Makefile compiler core db ejs.supp ejsTest.ksh events regress io parser sys xml "${DIR}/src/test"
+cpy src/all/Makefile.all src/all/Makefile  "${DIR}/src/all"
+
+docFilter="api/ejs/xml/|api/ejs/html/"
+cpy -f "${docFilter}" doc "${DIR}"
+
+samplesFilter="\.mod$|\.so$|\.dylib$|\.js$|\.o"
+cpy -f "${samplesFilter}" samples "${DIR}"
+
+projectsFilter="/Debug|/Release|\.user|\.suo|\.ncb|/ejs.build/"
+cpy -f "${projectsFilter}" projects "${DIR}"
+
+if [ "$BLD_WIN_LIKE" = 1 ] ; then
+    ( cd "${BLD_SRC_PREFIX}" ; ./configure --static --quiet)
+fi

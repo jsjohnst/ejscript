@@ -1,0 +1,8 @@
+#
+#   MT
+#
+defineComponent() {
+    local file
+    eval file=\$BLD_${KIND}_MT
+    configureComponent --name mt --path "`probe --path "$1" --base $file`"
+}

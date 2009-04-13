@@ -1,0 +1,9 @@
+#
+#   AR
+#
+defineComponent() {
+    local file
+
+    eval file=\$BLD_${KIND}_AR
+    configureComponent --name ar --path "`probe --path "$1" --base $file`"
+}

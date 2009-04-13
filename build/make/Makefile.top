@@ -1,0 +1,134 @@
+#
+#	Makefile.top -- Top level Makefile for the Embedthis Build System
+#					Included by $(BLD_TOP)/Makefile only.
+#
+#	Copyright (c) Embedthis Software LLC, 2003-2009. All Rights Reserved.
+#
+#
+#	Standard Make targets supported are:
+#	
+#		make 						# Does a "make compile"
+#		make clean					# Removes generated objects
+#		make compile				# Compiles the source
+#		make depend					# Generates the make dependencies
+#		make test 					# Runs unit tests
+#		make leakTest 				# Runs memory leak tests
+#		make loadTest 				# Runs load tests
+#		make benchmark 				# Runs benchmarks
+#		make package				# Creates an installable package
+#
+#	Additional targets for this makefile:
+#
+#		make newbuild				# Increment the build number and rebuild
+#
+#	Installation targets. Use "make DESTDIR=myDir" to do a custom local
+#		install:
+#
+#		make install				# Call install-binary
+#		make install-release		# Install release files (README.TXT etc)
+#		make install-binary			# Install binary files
+#		make install-dev			# Install development libraries and headers
+#		make install-doc			# Install documentation
+#		make install-samples		# Install samples
+#		make install-src			# Install source code
+#		make install-all			# Install everything except source code
+#		make install-package		# Install a complete installation package
+#
+#	To remove, use make uninstall-ITEM, where ITEM is a component above.
+#
+
+BLD_TOP		:= .
+BUILD_CHECK	:= buildCheck
+FIRST		:= first
+SHELL		:= /bin/bash
+
+#
+#	Conditionally read in the Make rules and templates. The buildConfig.make
+#	file will not exist if configure has not been run. In that case, we must
+#	warn the user to run configure first. 
+#
+ifeq ($(shell [ -f buildConfig.make ] && echo found),found)
+
+include		buildConfig.make
+
+MAKE		:= $(BLD_MAKE)
+PRE_DIRS	= $(BLD_DIRS)
+
+include		build/make/make.rules
+
+#
+#	If cross compiling, include the host O/S settings.
+#
+ifeq ($(BUILDING_CROSS),1)
+	include $(BLD_TOP)/build/make/make.$(BLD_HOST_OS)
+else
+	include $(BLD_TOP)/build/make/make.$(BLD_BUILD_OS)
+endif
+
+else
+	#
+	#	Configure has not yet been run
+	#
+all clean clobber compile depend package test projects: 
+	@if [ "$(UCLINUX_BUILD_USER)" = 1 ] ; then \
+		echo ; \
+	else \
+		echo -e "\nMust run configure first\n" ; \
+		exit 2 ; \
+	fi
+endif
+
+ifndef IN_BOOTSTRAP
+compileFirst: $(BLD_TOP)/build/src/.makedep
+endif
+
+#
+#	Check for the existing of the dynamic dependancy files (.makedep)
+#
+.PRECIOUS	: $(BLD_TOP)/build/src/.makedep
+
+$(BLD_TOP)/build/src/.makedep: buildConfig.make
+	@echo -e "\n  # Making dynamic makefile dependancies\n"
+	@$(MAKE) --no-print-directory depend
+	@if [ "$(BLD_CROSS)" = 1 -a "$(BUILDING_CROSS)" != "1" ] ; then \
+		echo "$(MAKE) BUILDING_CROSS=1 depend" ; \
+		$(MAKE) -S --no-print-directory _RECURSIVE_=1 BUILDING_CROSS=1 depend ; \
+	fi
+	$(MAKE) --no-print-directory clean
+
+#
+#	Build the build tools
+#
+$(BLD_TOOLS_DIR)/edep$(BLD_EXE): 
+	T=$(BLD_TOOLS_DIR)/src; $(DO_RECURSE)
+
+uploadPackage:
+	make -C releases uploadPackage
+
+install uninstall install-% uninstall-%:
+	$(MAKE) -C package --no-print-directory _RECURSIVE_=1 $@
+
+checkInstalled: 
+	$(MAKE) -C package --no-print-directory _RECURSIVE_=1 $@
+
+cleanExtra:
+	@for f in $(CLEANIT) ; \
+	do \
+		rm -f bin/$$f obj/$$f lib/$$f ; \
+	done
+
+clobberExtra:
+	rm -f buildConfig.* 
+
+buildConfig.sh buildConfig.h buildConfig.make:
+
+#
+#	Do a new top level build after incrementing the build number
+#
+newbuild: incVersion compile
+
+incVersion:
+	@num=`expr $(BLD_NUMBER) + 1` ; \
+	cp build/product.config /tmp/build$$$$.tmp ; \
+	sed s/BLD_NUMBER=\"$(BLD_NUMBER)\"/BLD_NUMBER=\"$${num}\"/ </tmp/build$$$$.tmp >build/product.config
+	./configure --defaults=dev --enable-test --disable-decimal --type=debug

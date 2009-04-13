@@ -1,0 +1,86 @@
+#!/bin/bash
+#
+#   config.base -- Base configuration inherited by all O/S then overridden.
+#
+#   Read by product.config during configure to help create the buildConfig files.
+#
+#   Copyright (c) Embedthis Software LLC, 2003-2009. All Rights Reserved.
+#
+###############################################################################
+#
+#   Installation directories
+#
+if [ $BLD_PRODUCT = appweb ] ; then
+    BLD_PREFIX=/etc/${BLD_PRODUCT}
+else
+    BLD_PREFIX=/usr/lib/${BLD_PRODUCT}
+fi
+BLD_BIN_PREFIX=/usr/local/bin
+BLD_SBIN_PREFIX=/usr/sbin
+BLD_DOC_PREFIX=/usr/share/doc/${BLD_PRODUCT}
+BLD_INC_PREFIX=/usr/include/${BLD_PRODUCT}
+BLD_LOG_PREFIX=/var/log/${BLD_PRODUCT}
+BLD_ROOT_PREFIX=/
+BLD_MAN_PREFIX=/usr/share/man
+BLD_SAM_PREFIX=/usr/share/${BLD_PRODUCT}/samples
+BLD_SRC_PREFIX=/usr/src/${BLD_PRODUCT}-${BLD_VERSION}
+BLD_WEB_PREFIX=/var/www/${BLD_PRODUCT}-default
+
+if [ "$BLD_HOST_CPU" = "x86_64" ] ; then
+    BLD_LIB_PREFIX=/usr/lib64/${BLD_PRODUCT}
+else
+    BLD_LIB_PREFIX=/usr/lib/${BLD_PRODUCT}
+fi
+BLD_MOD_PREFIX=${BLD_LIB_PREFIX}/modules
+
+#
+#   Tool names
+#
+eval BLD_${KIND}_ANT=ant
+eval BLD_${KIND}_AR=ar
+eval BLD_${KIND}_BREW=ar
+eval BLD_${KIND}_CC=cc
+eval BLD_${KIND}_CXX=g++
+eval BLD_${KIND}_CSC=csc
+eval BLD_${KIND}_DOXYGEN=doxygen
+eval BLD_${KIND}_JAR=jar
+eval BLD_${KIND}_JAVAC=javac
+eval BLD_${KIND}_LD=ld
+eval BLD_${KIND}_LDXX=ld
+eval BLD_${KIND}_MAKE=make
+eval BLD_${KIND}_MT=mt
+eval BLD_${KIND}_MUNCH=munch
+eval BLD_${KIND}_NM=nm
+eval BLD_${KIND}_RANLIB=ranlib
+eval BLD_${KIND}_PKG=
+eval BLD_${KIND}_STRIP=strip
+
+#
+#   Key file type extensions
+#
+#       BLD_${KIND}_ARCH       # Library holding non-shared objects.
+#       BLD_${KIND}_EXE        # Executable extension (.exe on Windows)
+#       BLD_${KIND}_OBJ        # Non-position independent object type. Non-shared.
+#       BLD_${KIND}_PIOBJ      # Position Independent object. Shared objects.
+#       BLD_${KIND}_CLASS      # Java objects
+#       BLD_${KIND}_SHLIB      # Shared library extension (.lib on windows)
+#       BLD_${KIND}_SHOBJ      # Shared object library extension (.dll on windows)
+#
+
+eval BLD_${KIND}_ARCH=.a
+eval BLD_${KIND}_EXE=
+eval BLD_${KIND}_OBJ=.o
+eval BLD_${KIND}_PIOBJ=.o
+eval BLD_${KIND}_CLASS=.class
+eval BLD_${KIND}_SHLIB=.so
+eval BLD_${KIND}_SHOBJ=.so
+
+#
+#   Building directories
+#
+BLD_BIN_DIR='${BLD_TOP}/bin'
+BLD_LIB_DIR='${BLD_TOP}/lib'
+BLD_MOD_DIR='${BLD_TOP}/lib/modules'
+BLD_INC_DIR='${BLD_TOP}/src/include'
+BLD_OBJ_DIR='${BLD_TOP}/obj'
+

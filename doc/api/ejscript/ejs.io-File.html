@@ -1,0 +1,847 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+   <title>Class File</title>
+
+   <link rel="stylesheet" type="text/css" href="doc.css" />
+</head>
+
+<body>
+<div class='body'>
+
+<div class="content">
+
+<a name='top'></a>
+<h1 class='className'>File</h1>
+<div class='classBlock'>
+<table class='classHead' summary='File'>
+   <tr><td><strong>Module</strong></td><td>ejs.io</td></tr>
+   <tr><td><strong>Namespace</strong></td><td>"ejs.io"</td></tr>
+   <tr><td><strong>Definition</strong></td><td> class File</td></tr>
+<tr><td><strong>Specified</strong></td><td>Ejs-11.</td></tr>
+   <tr><td><strong>Inheritance</strong></td><td>File <img src='images/inherit.gif' alt='inherit'/> <a href='intrinsic-Object.html'>Object</a>       </td></tr>
+</table>
+
+<p class='classBrief'>The File class provides a foundation of I/O services to interact with physical files.</p>
+
+<p class='classDescription'>Each File object represents a single file, a named path to data stored in non-volatile memory. A File object  provides methods for creating, opening, reading, writing and deleting a file, and for accessing and modifying  information about the file.</p>
+
+</div>
+
+
+<hr />
+<a name='Properties'></a>
+<h2 class='classSection'>Properties</h2>
+<table class='itemTable' summary='properties'>
+   <tr><th>Qualifiers</th><th>Property</th><th>Type</th><th width='95%'>Description</th></tr>
+   <tr><td nowrap align='center'>public const </td><td>Append</td><td><a href='intrinsic-Number.html'>Number</a></td><td>File access mode representing a file opened for append write access. </td></tr>
+   <tr><td nowrap align='center'>public const </td><td>Closed</td><td><a href='intrinsic-Number.html'>Number</a></td><td>File access mode representing a Closed file. </td></tr>
+   <tr><td nowrap align='center'>public const </td><td>Create</td><td><a href='intrinsic-Number.html'>Number</a></td><td>File access mode where the file will be re-created when opened. </td></tr>
+   <tr><td nowrap align='center'>public const </td><td>Open</td><td><a href='intrinsic-Number.html'>Number</a></td><td>File access mode representing an Opened file. </td></tr>
+   <tr><td nowrap align='center'>public const </td><td>Read</td><td><a href='intrinsic-Number.html'>Number</a></td><td>File access mode representing an opened file for read access. </td></tr>
+   <tr><td nowrap align='center'>public const </td><td>Truncate</td><td><a href='intrinsic-Number.html'>Number</a></td><td>File access mode where the file will be truncated when opened. </td></tr>
+   <tr><td nowrap align='center'>public const </td><td>Write</td><td><a href='intrinsic-Number.html'>Number</a></td><td>File access mode representing an opened file for write access. </td></tr>
+</table>
+
+<hr />
+<a name='Methods'></a>
+<h2 class='classSection'>File Methods</h2>
+<table class='apiIndex' summary='methods'>
+   <tr><th>Qualifiers</th><th width='95%'>Method</th></tr>
+   <tr class='apiDef'><td class='apiType'>public get </td><td><a href='#absolutePath'><b>absolutePath</b></a>(): <a href='intrinsic-String.html'>String</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Return an absolute path name for the file.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public get </td><td><a href='#basename'><b>basename</b></a>(): <a href='intrinsic-String.html'>String</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Get the base name of a file.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public </td><td><a href='#close'><b>close</b></a>(graceful: <a href='intrinsic-Boolean.html'>Boolean</a>): <a href='intrinsic-Void.html'>Void</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Close the input stream and free up all associated resources.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public </td><td><a href='#copy'><b>copy</b></a>(toPath: <a href='intrinsic-String.html'>String</a>): <a href='intrinsic-Void.html'>Void</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Copy a file.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public get </td><td><a href='#created'><b>created</b></a>(): <a href='intrinsic-Date.html'>Date</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Get when the file was created.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public static </td><td><a href='#createTempFile'><b>createTempFile</b></a>(directory: <a href='intrinsic-String.html'>String</a>): <a href='ejs.io-File.html'>File</a></tr>   <tr class='apiDef'><td class='apiType'>public get </td><td><a href='#dirname'><b>dirname</b></a>(): <a href='intrinsic-String.html'>String</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Get the directory name portion of a file.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public get </td><td><a href='#exists'><b>exists</b></a>(): <a href='intrinsic-Boolean.html'>Boolean</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Test to see if this file exists.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public get </td><td><a href='#extension'><b>extension</b></a>(): <a href='intrinsic-String.html'>String</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Get the file extension portion of the file name.</td></tr>
+   <tr class='apiDef'><td class='apiType'> </td><td><a href='#File'><b>File</b></a>(path: <a href='intrinsic-String.html'>String</a>)</tr><tr class='apiBrief'><td>&nbsp;</td><td>Create a new File object and set the file object's path.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public </td><td><a href='#flush'><b>flush</b></a>(): <a href='intrinsic-Void.html'>Void</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Flush the stream and the underlying file data.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public </td><td><a href='#freeSpace'><b>freeSpace</b></a>(path: <a href='intrinsic-String.html'>String</a>): <a href='intrinsic-Number.html'>Number</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Return the free space in the file system.</td></tr>
+   <tr class='apiDef'><td class='apiType'>iterator override </td><td><a href='#get'><b>get</b></a>(deep: <a href='intrinsic-Boolean.html'>Boolean</a>): <a href='iterator-Iterator.html'>Iterator</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Get an iterator for this file to be used by "for (v in files)".</td></tr>
+   <tr class='apiDef'><td class='apiType'>public static </td><td><a href='#getBytes'><b>getBytes</b></a>(path: <a href='intrinsic-String.html'>String</a>): <a href='intrinsic-ByteArray.html'>ByteArray</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Get the file contents as an array of lines.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public </td><td><a href='#getFiles'><b>getFiles</b></a>(enumDirs: <a href='intrinsic-Boolean.html'>Boolean</a>): <a href='intrinsic-Array.html'>Array</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Get a list of files in a directory.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public static </td><td><a href='#getLines'><b>getLines</b></a>(path: <a href='intrinsic-String.html'>String</a>, encoding: <a href='intrinsic-String.html'>String</a>): <a href='intrinsic-Array.html'>Array</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Get the file contents as an array of lines.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public static </td><td><a href='#getString'><b>getString</b></a>(path: <a href='intrinsic-String.html'>String</a>, encoding: <a href='intrinsic-String.html'>String</a>): <a href='intrinsic-String.html'>String</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Get the file contents as a string.</td></tr>
+   <tr class='apiDef'><td class='apiType'>iterator override </td><td><a href='#getValues'><b>getValues</b></a>(deep: <a href='intrinsic-Boolean.html'>Boolean</a>): <a href='iterator-Iterator.html'>Iterator</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Get an iterator for this file to be used by "for each (v in obj)".</td></tr>
+   <tr class='apiDef'><td class='apiType'>public static </td><td><a href='#getXML'><b>getXML</b></a>(path: <a href='intrinsic-String.html'>String</a>): <a href='intrinsic-XML.html'>XML</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Get the file contents as an XML object.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public get </td><td><a href='#hasDriveSpec'><b>hasDriveSpec</b></a>(): <a href='intrinsic-Boolean.html'>Boolean</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Determine if the file path has a drive spec (C:) in it's name.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public get </td><td><a href='#isDir'><b>isDir</b></a>(): <a href='intrinsic-Boolean.html'>Boolean</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Determine if the file name is a directory.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public get </td><td><a href='#isOpen'><b>isOpen</b></a>(): <a href='intrinsic-Boolean.html'>Boolean</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Determine if the file is currently open for reading or writing.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public get </td><td><a href='#isRegular'><b>isRegular</b></a>(): <a href='intrinsic-Boolean.html'>Boolean</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Determine if the file name is a regular file.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public get </td><td><a href='#lastAccess'><b>lastAccess</b></a>(): <a href='intrinsic-Date.html'>Date</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Get when the file was last accessed.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public get </td><td><a href='#length'><b>length</b></a>(): <a href='intrinsic-Number.html'>Number</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Get the length of the file associated with this File object.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public </td><td><a href='#makeDir'><b>makeDir</b></a>(permissions: <a href='intrinsic-Number.html'>Number</a>): <a href='intrinsic-Void.html'>Void</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Make a new directory.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public get </td><td><a href='#mode'><b>mode</b></a>(): <a href='intrinsic-Number.html'>Number</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Get the file access mode.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public get </td><td><a href='#modified'><b>modified</b></a>(): <a href='intrinsic-Date.html'>Date</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Get when the file was created or last modified.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public get </td><td><a href='#name'><b>name</b></a>(): <a href='intrinsic-String.html'>String</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Get the name of the file associated with this File object.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public get </td><td><a href='#newline'><b>newline</b></a>(): <a href='intrinsic-String.html'>String</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Return the new line characters.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public set </td><td><a href='#set-newline'><b>newline</b></a>(terminator: <a href='intrinsic-String.html'>String</a>): <a href='intrinsic-Void.html'>Void</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Set the new line characters.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public </td><td><a href='#open'><b>open</b></a>(mode: <a href='intrinsic-Number.html'>Number</a>, permissions: <a href='intrinsic-Number.html'>Number</a>): <a href='intrinsic-Void.html'>Void</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Open a file using the current file name.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public static </td><td><a href='#openBinaryStream'><b>openBinaryStream</b></a>(filename: <a href='intrinsic-String.html'>String</a>, mode: <a href='intrinsic-Number.html'>Number</a>, permissions: <a href='intrinsic-Number.html'>Number</a>): <a href='ejs.io-BinaryStream.html'>BinaryStream</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Open a file and return a BinaryStream object.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public static </td><td><a href='#openFileStream'><b>openFileStream</b></a>(filename: <a href='intrinsic-String.html'>String</a>, mode: <a href='intrinsic-Number.html'>Number</a>, permissions: <a href='intrinsic-Number.html'>Number</a>): <a href='ejs.io-File.html'>File</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Open a file and return a Stream object.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public static </td><td><a href='#openTextStream'><b>openTextStream</b></a>(filename: <a href='intrinsic-String.html'>String</a>, mode: <a href='intrinsic-Number.html'>Number</a>, permissions: <a href='intrinsic-Number.html'>Number</a>): <a href='ejs.io-TextStream.html'>TextStream</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Open a file and return a TextStream object.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public get </td><td><a href='#parent'><b>parent</b></a>(): <a href='intrinsic-String.html'>String</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Get the parent directory of the absolute path of the file.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public get </td><td><a href='#pathDelimiter'><b>pathDelimiter</b></a>(): <a href='intrinsic-String.html'>String</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Return the path segment delimiter.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public set </td><td><a href='#set-pathDelimiter'><b>pathDelimiter</b></a>(delim: <a href='intrinsic-String.html'>String</a>): <a href='intrinsic-Void.html'>Void</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Set the path segment delimiter.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public get </td><td><a href='#permissions'><b>permissions</b></a>(): <a href='intrinsic-Number.html'>Number</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Get the file security permissions.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public set </td><td><a href='#set-permissions'><b>permissions</b></a>(mask: <a href='intrinsic-Number.html'>Number</a>): <a href='intrinsic-Void.html'>Void</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Set the file security permissions.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public get </td><td><a href='#position'><b>position</b></a>(): <a href='intrinsic-Number.html'>Number</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Get the current I/O position in the file.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public set </td><td><a href='#set-position'><b>position</b></a>(value: <a href='intrinsic-Number.html'>Number</a>): <a href='intrinsic-Void.html'>Void</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Seek to a new location in the file and set the File marker to a new read/write position.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public static </td><td><a href='#put'><b>put</b></a>(path: <a href='intrinsic-String.html'>String</a>, permissions: <a href='intrinsic-Number.html'>Number</a>, args: <a href='intrinsic-Array.html'>Array</a>): <a href='intrinsic-Void.html'>Void</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Put the file contents.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public </td><td><a href='#read'><b>read</b></a>(buffer: <a href='intrinsic-ByteArray.html'>ByteArray</a>, offset: <a href='intrinsic-Number.html'>Number</a>, count: <a href='intrinsic-Number.html'>Number</a>): <a href='intrinsic-Number.html'>Number</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Read a block of data from a file into a byte array.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public </td><td><a href='#readBytes'><b>readBytes</b></a>(count: <a href='intrinsic-Number.html'>Number</a>): <a href='intrinsic-ByteArray.html'>ByteArray</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Read data bytes from a file and return a byte array containing the data.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public get </td><td><a href='#relativePath'><b>relativePath</b></a>()</tr><tr class='apiBrief'><td>&nbsp;</td><td>Return a relative path name for the file.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public </td><td><a href='#remove'><b>remove</b></a>(): <a href='intrinsic-Void.html'>Void</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Delete the file associated with the File object.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public </td><td><a href='#removeDir'><b>removeDir</b></a>(recursive: <a href='intrinsic-Boolean.html'>Boolean</a>): <a href='intrinsic-Void.html'>Void</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Removes a directory.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public </td><td><a href='#rename'><b>rename</b></a>(toFile: <a href='intrinsic-String.html'>String</a>): <a href='intrinsic-Void.html'>Void</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Rename a file.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public </td><td><a href='#setCallback'><b>setCallback</b></a>(callback: <a href='intrinsic-Function.html'>Function</a>): <a href='intrinsic-Void.html'>Void</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Put the file stream into async mode and define a completion callback.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public get </td><td><a href='#unixPath'><b>unixPath</b></a>(): <a href='intrinsic-String.html'>String</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Return an absolute unix style path name for the file.</td></tr>
+   <tr class='apiDef'><td class='apiType'>public </td><td><a href='#write'><b>write</b></a>(items: <a href='intrinsic-Array.html'>Array</a>): <a href='intrinsic-Number.html'>Number</a></tr><tr class='apiBrief'><td>&nbsp;</td><td>Write data to the file.</td></tr>
+</table>
+
+<p class='inheritedLink'><a href='intrinsic-Object.html#Methods'><i>Inherited Methods</i></a></p>
+
+<hr />
+<h2>Method Detail</h2>
+<a name='absolutePath'></a>
+<div class='api'>
+<div class='apiSig'>get  public absolutePath(): <a href='intrinsic-String.html'>String</a>
+</div>
+<div class='apiDetail'>
+<p>Return an absolute path name for the file.</p>
+<dl><dt>Returns</dt>
+<dd>A string containing an absolute file name relative to the file system's root directory.  The file name is canonicalized such that multiple directory separators and ".." segments are removed.</dd></dl>
+<dl><dt>See Also</dt>
+<dd>
+<a href='relativePath.html'>relativePath</a>
+</dd></dl>
+</div>
+</div>
+<hr />
+<a name='basename'></a>
+<div class='api'>
+<div class='apiSig'>get  public basename(): <a href='intrinsic-String.html'>String</a>
+</div>
+<div class='apiDetail'>
+<p>Get the base name of a file.</p>
+<dl><dt>Description</dt><dd>Returns the base name portion of a file name. The base name portion is the  trailing portion without any directory elements.</dd></dl>
+<dl><dt>Returns</dt>
+<dd>A string containing the base name portion of the file name.</dd></dl>
+</div>
+</div>
+<hr />
+<a name='close'></a>
+<div class='api'>
+<div class='apiSig'> public close(graceful: <a href='intrinsic-Boolean.html'>Boolean</a>): <a href='intrinsic-Void.html'>Void</a>
+</div>
+<div class='apiDetail'>
+<p>Close the input stream and free up all associated resources.</p>
+<dl><dt>Parameters</dt>
+<dd><table class='parameters' summary ='parameters'>
+<tr><td class='param'>graceful: <a href='intrinsic-Boolean.html'>Boolean</a> </td><td>if true, then close the file gracefully after writing all pending data. [default: true]</td></tr></table></dd>
+</dl></div>
+</div>
+<hr />
+<a name='copy'></a>
+<div class='api'>
+<div class='apiSig'> public copy(toPath: <a href='intrinsic-String.html'>String</a>): <a href='intrinsic-Void.html'>Void</a>
+</div>
+<div class='apiDetail'>
+<p>Copy a file.</p>
+<dl><dt>Description</dt><dd>If the destination file already exists, the old copy will be overwritten as part of the copy  operation.</dd></dl>
+<dl><dt>Parameters</dt>
+<dd><table class='parameters' summary ='parameters'>
+<tr><td class='param'>toPath: <a href='intrinsic-String.html'>String</a> </td><td>New destination file path name.</td></tr></table></dd>
+</dl><h3 class='methodSection'>Throws</h3>
+<p class='detail'>
+<a href='IOError.html'>IOError</a>: if the copy is not successful.
+</p>
+</div>
+</div>
+<hr />
+<a name='created'></a>
+<div class='api'>
+<div class='apiSig'>get  public created(): <a href='intrinsic-Date.html'>Date</a>
+</div>
+<div class='apiDetail'>
+<p>Get when the file was created.</p>
+<dl><dt>Returns</dt>
+<dd>A date object with the date and time or null if the method fails.</dd></dl>
+</div>
+</div>
+<hr />
+<a name='createTempFile'></a>
+<div class='api'>
+<div class='apiSig'>static  public createTempFile(directory: <a href='intrinsic-String.html'>String</a>): <a href='ejs.io-File.html'>File</a>
+</div>
+</div>
+<hr />
+<a name='dirname'></a>
+<div class='api'>
+<div class='apiSig'>get  public dirname(): <a href='intrinsic-String.html'>String</a>
+</div>
+<div class='apiDetail'>
+<p>Get the directory name portion of a file.</p>
+<dl><dt>Description</dt><dd>The dirname name portion is the leading portion including all  directory elements and excluding the base name. On some systems, it will include a drive specifier.</dd></dl>
+<dl><dt>Returns</dt>
+<dd>A string containing the directory name portion of the file name.</dd></dl>
+</div>
+</div>
+<hr />
+<a name='exists'></a>
+<div class='api'>
+<div class='apiSig'>get  public exists(): <a href='intrinsic-Boolean.html'>Boolean</a>
+</div>
+<div class='apiDetail'>
+<p>Test to see if this file exists.</p>
+<dl><dt>Returns</dt>
+<dd>True if the file exists.</dd></dl>
+</div>
+</div>
+<hr />
+<a name='extension'></a>
+<div class='api'>
+<div class='apiSig'>get  public extension(): <a href='intrinsic-String.html'>String</a>
+</div>
+<div class='apiDetail'>
+<p>Get the file extension portion of the file name.</p>
+<dl><dt>Returns</dt>
+<dd>String containing the file extension.</dd></dl>
+</div>
+</div>
+<hr />
+<a name='File'></a>
+<div class='api'>
+<div class='apiSig'> File(path: <a href='intrinsic-String.html'>String</a>)
+</div>
+<div class='apiDetail'>
+<p>Create a new File object and set the file object's path.</p>
+<dl><dt>Parameters</dt>
+<dd><table class='parameters' summary ='parameters'>
+<tr><td class='param'>path: <a href='intrinsic-String.html'>String</a> </td><td>the name of the file to associate with this file object.</td></tr></table></dd>
+</dl></div>
+</div>
+<hr />
+<a name='flush'></a>
+<div class='api'>
+<div class='apiSig'> public flush(): <a href='intrinsic-Void.html'>Void</a>
+</div>
+<div class='apiDetail'>
+<p>Flush the stream and the underlying file data.</p>
+<dl><dt>Description</dt><dd>Will block while flushing. Note: may complete before the data is actually written to disk.</dd></dl>
+</div>
+</div>
+<hr />
+<a name='freeSpace'></a>
+<div class='api'>
+<div class='apiSig'> public freeSpace(path: <a href='intrinsic-String.html'>String</a>): <a href='intrinsic-Number.html'>Number</a>
+</div>
+<div class='apiDetail'>
+<p>Return the free space in the file system.</p>
+<dl><dt>Parameters</dt>
+<dd><table class='parameters' summary ='parameters'>
+<tr><td class='param'>path: <a href='intrinsic-String.html'>String</a> </td><td></td></tr></table></dd>
+</dl><dl><dt>Returns</dt>
+<dd>The number of 1M blocks (1024 *  1024 bytes) of free space in the file system.</dd></dl>
+</div>
+</div>
+<hr />
+<a name='get'></a>
+<div class='api'>
+<div class='apiSig'>override  iterator get(deep: <a href='intrinsic-Boolean.html'>Boolean</a>): <a href='iterator-Iterator.html'>Iterator</a>
+</div>
+<div class='apiDetail'>
+<p>Get an iterator for this file to be used by "for (v in files)".</p>
+<dl><dt>Description</dt><dd>Return the seek positions for each byte.</dd></dl>
+<dl><dt>Parameters</dt>
+<dd><table class='parameters' summary ='parameters'>
+<tr><td class='param'>deep: <a href='intrinsic-Boolean.html'>Boolean</a> </td><td>Follow the prototype chain. Only implemented in ECMA compliance mode.. [default: false]</td></tr></table></dd>
+</dl><dl><dt>Returns</dt>
+<dd>An iterator object.</dd></dl>
+<dl><dt>Specified</dt>
+<dd>Ejs-11.</dd></dl>
+</div>
+</div>
+<hr />
+<a name='getBytes'></a>
+<div class='api'>
+<div class='apiSig'>static  public getBytes(path: <a href='intrinsic-String.html'>String</a>): <a href='intrinsic-ByteArray.html'>ByteArray</a>
+</div>
+<div class='apiDetail'>
+<p>Get the file contents as an array of lines.</p>
+<dl><dt>Description</dt><dd>Each line is a string. This is a static method that opens the file,  reads the contents and closes the file.</dd></dl>
+<dl><dt>Parameters</dt>
+<dd><table class='parameters' summary ='parameters'>
+<tr><td class='param'>path: <a href='intrinsic-String.html'>String</a> </td><td>the name of the file to read.</td></tr></table></dd>
+</dl><dl><dt>Returns</dt>
+<dd>An array of strings.</dd></dl>
+<h3 class='methodSection'>Throws</h3>
+<p class='detail'>
+<a href='IOError.html'>IOError</a>: if the file cannot be read
+</p>
+</div>
+</div>
+<hr />
+<a name='getFiles'></a>
+<div class='api'>
+<div class='apiSig'> public getFiles(enumDirs: <a href='intrinsic-Boolean.html'>Boolean</a>): <a href='intrinsic-Array.html'>Array</a>
+</div>
+<div class='apiDetail'>
+<p>Get a list of files in a directory.</p>
+<dl><dt>Description</dt><dd>The returned array contains the base file name portion only.</dd></dl>
+<dl><dt>Parameters</dt>
+<dd><table class='parameters' summary ='parameters'>
+</td></tr><tr><td class='param'>enumDirs: <a href='intrinsic-Boolean.html'>Boolean</a> </td><td>If set to true, then dirList will include sub-directories in the returned list of files. [default: false]</td></tr></table></dd>
+</dl><dl><dt>Returns</dt>
+<dd>An Array of strings containing the filenames in the directory.</dd></dl>
+</div>
+</div>
+<hr />
+<a name='getLines'></a>
+<div class='api'>
+<div class='apiSig'>static  public getLines(path: <a href='intrinsic-String.html'>String</a>, encoding: <a href='intrinsic-String.html'>String</a>): <a href='intrinsic-Array.html'>Array</a>
+</div>
+<div class='apiDetail'>
+<p>Get the file contents as an array of lines.</p>
+<dl><dt>Description</dt><dd>Each line is a string. This is a static method that  opens the file, reads the contents and closes the file.</dd></dl>
+<dl><dt>Parameters</dt>
+<dd><table class='parameters' summary ='parameters'>
+<tr><td class='param'>path: <a href='intrinsic-String.html'>String</a> </td><td>the name of the file to read.</td></tr></table></dd>
+</dl><dl><dt>Returns</dt>
+<dd>An array of strings.</dd></dl>
+<h3 class='methodSection'>Throws</h3>
+<p class='detail'>
+<a href='IOError.html'>IOError</a>: if the file cannot be read
+</p>
+</div>
+</div>
+<hr />
+<a name='getString'></a>
+<div class='api'>
+<div class='apiSig'>static  public getString(path: <a href='intrinsic-String.html'>String</a>, encoding: <a href='intrinsic-String.html'>String</a>): <a href='intrinsic-String.html'>String</a>
+</div>
+<div class='apiDetail'>
+<p>Get the file contents as a string.</p>
+<dl><dt>Description</dt><dd>This is a static method that opens the file, reads the contents and  closes the file.</dd></dl>
+<dl><dt>Parameters</dt>
+<dd><table class='parameters' summary ='parameters'>
+<tr><td class='param'>path: <a href='intrinsic-String.html'>String</a> </td><td>the name of the file to read.</td></tr></table></dd>
+</dl><dl><dt>Returns</dt>
+<dd>A string.</dd></dl>
+<h3 class='methodSection'>Throws</h3>
+<p class='detail'>
+<a href='IOError.html'>IOError</a>: if the file cannot be read
+</p>
+</div>
+</div>
+<hr />
+<a name='getValues'></a>
+<div class='api'>
+<div class='apiSig'>override  iterator getValues(deep: <a href='intrinsic-Boolean.html'>Boolean</a>): <a href='iterator-Iterator.html'>Iterator</a>
+</div>
+<div class='apiDetail'>
+<p>Get an iterator for this file to be used by "for each (v in obj)".</p>
+<dl><dt>Description</dt><dd>Return each byte of the file in turn.</dd></dl>
+<dl><dt>Parameters</dt>
+<dd><table class='parameters' summary ='parameters'>
+<tr><td class='param'>deep: <a href='intrinsic-Boolean.html'>Boolean</a> </td><td>Follow the prototype chain. Only implemented in ECMA compliance mode.. [default: false]</td></tr></table></dd>
+</dl><dl><dt>Returns</dt>
+<dd>An iterator object.</dd></dl>
+<dl><dt>Specified</dt>
+<dd>Ejs-11.</dd></dl>
+</div>
+</div>
+<hr />
+<a name='getXML'></a>
+<div class='api'>
+<div class='apiSig'>static  public getXML(path: <a href='intrinsic-String.html'>String</a>): <a href='intrinsic-XML.html'>XML</a>
+</div>
+<div class='apiDetail'>
+<p>Get the file contents as an XML object.</p>
+<dl><dt>Description</dt><dd>This is a static method that opens the file, reads the contents  and closes the file.</dd></dl>
+<dl><dt>Parameters</dt>
+<dd><table class='parameters' summary ='parameters'>
+<tr><td class='param'>path: <a href='intrinsic-String.html'>String</a> </td><td>the name of the file to read.</td></tr></table></dd>
+</dl><dl><dt>Returns</dt>
+<dd>An XML object.</dd></dl>
+<h3 class='methodSection'>Throws</h3>
+<p class='detail'>
+<a href='IOError.html'>IOError</a>: if the file cannot be read
+</p>
+</div>
+</div>
+<hr />
+<a name='hasDriveSpec'></a>
+<div class='api'>
+<div class='apiSig'>get  public hasDriveSpec(): <a href='intrinsic-Boolean.html'>Boolean</a>
+</div>
+<div class='apiDetail'>
+<p>Determine if the file path has a drive spec (C:) in it's name.</p>
+<dl><dt>Description</dt><dd>Only relevant on Windows like systems.</dd></dl>
+<dl><dt>Returns</dt>
+<dd>True if the file path has a drive spec.</dd></dl>
+</div>
+</div>
+<hr />
+<a name='isDir'></a>
+<div class='api'>
+<div class='apiSig'>get  public isDir(): <a href='intrinsic-Boolean.html'>Boolean</a>
+</div>
+<div class='apiDetail'>
+<p>Determine if the file name is a directory.</p>
+<dl><dt>Returns</dt>
+<dd>True if the file is a directory.</dd></dl>
+</div>
+</div>
+<hr />
+<a name='isOpen'></a>
+<div class='api'>
+<div class='apiSig'>get  public isOpen(): <a href='intrinsic-Boolean.html'>Boolean</a>
+</div>
+<div class='apiDetail'>
+<p>Determine if the file is currently open for reading or writing.</p>
+<dl><dt>Returns</dt>
+<dd>True if the file is currently open via.</dd></dl>
+</div>
+</div>
+<hr />
+<a name='isRegular'></a>
+<div class='api'>
+<div class='apiSig'>get  public isRegular(): <a href='intrinsic-Boolean.html'>Boolean</a>
+</div>
+<div class='apiDetail'>
+<p>Determine if the file name is a regular file.</p>
+<dl><dt>Returns</dt>
+<dd>True if the file is a regular file and not a directory.</dd></dl>
+</div>
+</div>
+<hr />
+<a name='lastAccess'></a>
+<div class='api'>
+<div class='apiSig'>get  public lastAccess(): <a href='intrinsic-Date.html'>Date</a>
+</div>
+<div class='apiDetail'>
+<p>Get when the file was last accessed.</p>
+<dl><dt>Returns</dt>
+<dd>A date object with the date and time or null if the method fails.</dd></dl>
+</div>
+</div>
+<hr />
+<a name='length'></a>
+<div class='api'>
+<div class='apiSig'>get  public length(): <a href='intrinsic-Number.html'>Number</a>
+</div>
+<div class='apiDetail'>
+<p>Get the length of the file associated with this File object.</p>
+<dl><dt>Returns</dt>
+<dd>The number of bytes in the file or -1 if length determination failed.</dd></dl>
+</div>
+</div>
+<hr />
+<a name='makeDir'></a>
+<div class='api'>
+<div class='apiSig'> public makeDir(permissions: <a href='intrinsic-Number.html'>Number</a>): <a href='intrinsic-Void.html'>Void</a>
+</div>
+<div class='apiDetail'>
+<p>Make a new directory.</p>
+<dl><dt>Description</dt><dd>Makes a new directory and all required intervening directories. If the directory  already exists, the function returns without throwing an exception.</dd></dl>
+<dl><dt>Parameters</dt>
+<dd><table class='parameters' summary ='parameters'>
+</td></tr></table></dd>
+</dl><h3 class='methodSection'>Throws</h3>
+<p class='detail'>
+<a href='IOError.html'>IOError</a>: if the directory cannot be created.
+</p>
+</div>
+</div>
+<hr />
+<a name='mode'></a>
+<div class='api'>
+<div class='apiSig'>get  public mode(): <a href='intrinsic-Number.html'>Number</a>
+</div>
+<div class='apiDetail'>
+<p>Get the file access mode.</p>
+<dl><dt>Returns</dt>
+<dd>File access mode with values ored from: Read, Write, Append, Create, Open, Truncate.</dd></dl>
+</div>
+</div>
+<hr />
+<a name='modified'></a>
+<div class='api'>
+<div class='apiSig'>get  public modified(): <a href='intrinsic-Date.html'>Date</a>
+</div>
+<div class='apiDetail'>
+<p>Get when the file was created or last modified.</p>
+<dl><dt>Returns</dt>
+<dd>A date object with the date and time or null if the method fails.</dd></dl>
+</div>
+</div>
+<hr />
+<a name='name'></a>
+<div class='api'>
+<div class='apiSig'>get  public name(): <a href='intrinsic-String.html'>String</a>
+</div>
+<div class='apiDetail'>
+<p>Get the name of the file associated with this File object.</p>
+<dl><dt>Returns</dt>
+<dd>The name of the file or null if there is no associated file.</dd></dl>
+</div>
+</div>
+<hr />
+<a name='newline'></a>
+<div class='api'>
+<div class='apiSig'>get  public newline(): <a href='intrinsic-String.html'>String</a>
+</div>
+<div class='apiDetail'>
+<p>Return the new line characters.</p>
+<dl><dt>Returns</dt>
+<dd>The new line delimiting characters Usually "\n" or "\r\n".</dd></dl>
+</div>
+</div>
+<hr />
+<a name='set-newline'></a>
+<div class='api'>
+<div class='apiSig'>set  public newline(terminator: <a href='intrinsic-String.html'>String</a>): <a href='intrinsic-Void.html'>Void</a>
+</div>
+<div class='apiDetail'>
+<p>Set the new line characters.</p>
+<dl><dt>Parameters</dt>
+<dd><table class='parameters' summary ='parameters'>
+<tr><td class='param'>terminator: <a href='intrinsic-String.html'>String</a> </td><td>the new line termination characters Usually "\n" or "\r\n"</td></tr></table></dd>
+</dl></div>
+</div>
+<hr />
+<a name='open'></a>
+<div class='api'>
+<div class='apiSig'> public open(mode: <a href='intrinsic-Number.html'>Number</a>, permissions: <a href='intrinsic-Number.html'>Number</a>): <a href='intrinsic-Void.html'>Void</a>
+</div>
+<div class='apiDetail'>
+<p>Open a file using the current file name.</p>
+<dl><dt>Description</dt><dd>This method requires a file instance.</dd></dl>
+<dl><dt>Parameters</dt>
+<dd><table class='parameters' summary ='parameters'>
+</td></tr><tr><td class='param'>mode: <a href='intrinsic-Number.html'>Number</a> </td><td>optional file access mode with values ored from: Read, Write, Append, Create, Open, Truncate. Defaults to Read. [default: Read]</td></tr><tr><td class='param'>permissions: <a href='intrinsic-Number.html'>Number</a> </td><td>optional permissions. Defaults to the App.permissions.</td></tr></table></dd>
+</dl><h3 class='methodSection'>Throws</h3>
+<p class='detail'>
+<a href='IOError.html'>IOError</a>: if the path or file cannot be created.
+</p>
+</div>
+</div>
+<hr />
+<a name='openBinaryStream'></a>
+<div class='api'>
+<div class='apiSig'>static  public openBinaryStream(filename: <a href='intrinsic-String.html'>String</a>, mode: <a href='intrinsic-Number.html'>Number</a>, permissions: <a href='intrinsic-Number.html'>Number</a>): <a href='ejs.io-BinaryStream.html'>BinaryStream</a>
+</div>
+<div class='apiDetail'>
+<p>Open a file and return a BinaryStream object.</p>
+<dl><dt>Description</dt><dd>This is a static method.</dd></dl>
+<dl><dt>Parameters</dt>
+<dd><table class='parameters' summary ='parameters'>
+<tr><td class='param'>filename: <a href='intrinsic-String.html'>String</a> </td><td>The name of the file to create.</td></tr><tr><td class='param'>mode: <a href='intrinsic-Number.html'>Number</a> </td><td>optional file access mode with values ored from: Read, Write, Append, Create, Open, Truncate.  Defaults to Read. [default: Read]</td></tr><tr><td class='param'>permissions: <a href='intrinsic-Number.html'>Number</a> </td><td>optional permissions. Defaults to the App.permissions.</td></tr></table></dd>
+</dl><dl><dt>Returns</dt>
+<dd>A BinaryStream object which implements the Stream interface.</dd></dl>
+<h3 class='methodSection'>Throws</h3>
+<p class='detail'>
+<a href='IOError.html'>IOError</a>: if the path or file cannot be created.
+</p>
+</div>
+</div>
+<hr />
+<a name='openFileStream'></a>
+<div class='api'>
+<div class='apiSig'>static  public openFileStream(filename: <a href='intrinsic-String.html'>String</a>, mode: <a href='intrinsic-Number.html'>Number</a>, permissions: <a href='intrinsic-Number.html'>Number</a>): <a href='ejs.io-File.html'>File</a>
+</div>
+<div class='apiDetail'>
+<p>Open a file and return a Stream object.</p>
+<dl><dt>Description</dt><dd>This is a static method.</dd></dl>
+<dl><dt>Parameters</dt>
+<dd><table class='parameters' summary ='parameters'>
+<tr><td class='param'>filename: <a href='intrinsic-String.html'>String</a> </td><td>The name of the file to create.</td></tr><tr><td class='param'>mode: <a href='intrinsic-Number.html'>Number</a> </td><td>optional file access mode with values ored from: Read, Write, Append, Create, Open, Truncate. Defaults  to Read. [default: Read]</td></tr><tr><td class='param'>permissions: <a href='intrinsic-Number.html'>Number</a> </td><td>optional permissions. Defaults to the App.permissions.</td></tr></table></dd>
+</dl><dl><dt>Returns</dt>
+<dd>A File object which implements the Stream interface.</dd></dl>
+<h3 class='methodSection'>Throws</h3>
+<p class='detail'>
+<a href='IOError.html'>IOError</a>: if the path or file cannot be created.
+</p>
+</div>
+</div>
+<hr />
+<a name='openTextStream'></a>
+<div class='api'>
+<div class='apiSig'>static  public openTextStream(filename: <a href='intrinsic-String.html'>String</a>, mode: <a href='intrinsic-Number.html'>Number</a>, permissions: <a href='intrinsic-Number.html'>Number</a>): <a href='ejs.io-TextStream.html'>TextStream</a>
+</div>
+<div class='apiDetail'>
+<p>Open a file and return a TextStream object.</p>
+<dl><dt>Description</dt><dd>This is a static method.</dd></dl>
+<dl><dt>Parameters</dt>
+<dd><table class='parameters' summary ='parameters'>
+<tr><td class='param'>filename: <a href='intrinsic-String.html'>String</a> </td><td>The name of the file to create.</td></tr><tr><td class='param'>mode: <a href='intrinsic-Number.html'>Number</a> </td><td>optional file access mode with values ored from: Read, Write, Append, Create, Open, Truncate.  Defaults to Read. [default: Read]</td></tr><tr><td class='param'>permissions: <a href='intrinsic-Number.html'>Number</a> </td><td>optional permissions. Defaults to the App.permissions.</td></tr></table></dd>
+</dl><dl><dt>Returns</dt>
+<dd>A TextStream object which implements the Stream interface.</dd></dl>
+<h3 class='methodSection'>Throws</h3>
+<p class='detail'>
+<a href='IOError.html'>IOError</a>: if the path or file cannot be created.
+</p>
+</div>
+</div>
+<hr />
+<a name='parent'></a>
+<div class='api'>
+<div class='apiSig'>get  public parent(): <a href='intrinsic-String.html'>String</a>
+</div>
+<div class='apiDetail'>
+<p>Get the parent directory of the absolute path of the file.</p>
+<dl><dt>Returns</dt>
+<dd>The parent directory.</dd></dl>
+</div>
+</div>
+<hr />
+<a name='pathDelimiter'></a>
+<div class='api'>
+<div class='apiSig'>get  public pathDelimiter(): <a href='intrinsic-String.html'>String</a>
+</div>
+<div class='apiDetail'>
+<p>Return the path segment delimiter.</p>
+<dl><dt>Returns</dt>
+<dd>The path segment delimiter. Usually "/" or "\\".</dd></dl>
+</div>
+</div>
+<hr />
+<a name='set-pathDelimiter'></a>
+<div class='api'>
+<div class='apiSig'>set  public pathDelimiter(delim: <a href='intrinsic-String.html'>String</a>): <a href='intrinsic-Void.html'>Void</a>
+</div>
+<div class='apiDetail'>
+<p>Set the path segment delimiter.</p>
+<dl><dt>Parameters</dt>
+<dd><table class='parameters' summary ='parameters'>
+<tr><td class='param'>delim: <a href='intrinsic-String.html'>String</a> </td><td>the new path segment delimiter. Usually "/" or "\\"</td></tr></table></dd>
+</dl></div>
+</div>
+<hr />
+<a name='permissions'></a>
+<div class='api'>
+<div class='apiSig'>get  public permissions(): <a href='intrinsic-Number.html'>Number</a>
+</div>
+<div class='apiDetail'>
+<p>Get the file security permissions.</p>
+<dl><dt>Returns</dt>
+<dd>The file permission mask. This is a POSIX file creation mask.</dd></dl>
+</div>
+</div>
+<hr />
+<a name='set-permissions'></a>
+<div class='api'>
+<div class='apiSig'>set  public permissions(mask: <a href='intrinsic-Number.html'>Number</a>): <a href='intrinsic-Void.html'>Void</a>
+</div>
+<div class='apiDetail'>
+<p>Set the file security permissions.</p>
+<dl><dt>Returns</dt>
+<dd>The file permission mask. This is a POSIX file creation mask.</dd></dl>
+</div>
+</div>
+<hr />
+<a name='position'></a>
+<div class='api'>
+<div class='apiSig'>get  public position(): <a href='intrinsic-Number.html'>Number</a>
+</div>
+<div class='apiDetail'>
+<p>Get the current I/O position in the file.</p>
+<dl><dt>Returns</dt>
+<dd>The current read / write position in the file.</dd></dl>
+<h3 class='methodSection'>Throws</h3>
+<p class='detail'>
+<a href='IOError.html'>IOError</a>: if the seek failed.
+</p>
+</div>
+</div>
+<hr />
+<a name='set-position'></a>
+<div class='api'>
+<div class='apiSig'>set  public position(value: <a href='intrinsic-Number.html'>Number</a>): <a href='intrinsic-Void.html'>Void</a>
+</div>
+<div class='apiDetail'>
+<p>Seek to a new location in the file and set the File marker to a new read/write position.</p>
+<dl><dt>Parameters</dt>
+<dd><table class='parameters' summary ='parameters'>
+</td></tr></table></dd>
+</dl><h3 class='methodSection'>Throws</h3>
+<p class='detail'>
+<a href='IOError.html'>IOError</a>: if the seek failed.
+</p>
+</div>
+</div>
+<hr />
+<a name='put'></a>
+<div class='api'>
+<div class='apiSig'>static  public put(path: <a href='intrinsic-String.html'>String</a>, permissions: <a href='intrinsic-Number.html'>Number</a>, args: <a href='intrinsic-Array.html'>Array</a>): <a href='intrinsic-Void.html'>Void</a>
+</div>
+<div class='apiDetail'>
+<p>Put the file contents.</p>
+<dl><dt>Description</dt><dd>This is a static method that opens the file, writes the contents and closes the file.</dd></dl>
+<dl><dt>Parameters</dt>
+<dd><table class='parameters' summary ='parameters'>
+<tr><td class='param'>path: <a href='intrinsic-String.html'>String</a> </td><td>the name of the file to write.</td></tr></td></tr><tr><td class='param'>permissions: <a href='intrinsic-Number.html'>Number</a> </td><td>optional permissions. Defaults to the App.permissions.</td></tr></table></dd>
+</dl><dl><dt>Returns</dt>
+<dd>An XML object.</dd></dl>
+<h3 class='methodSection'>Throws</h3>
+<p class='detail'>
+<a href='IOError.html'>IOError</a>: if the file cannot be written
+</p>
+</div>
+</div>
+<hr />
+<a name='read'></a>
+<div class='api'>
+<div class='apiSig'> public read(buffer: <a href='intrinsic-ByteArray.html'>ByteArray</a>, offset: <a href='intrinsic-Number.html'>Number</a>, count: <a href='intrinsic-Number.html'>Number</a>): <a href='intrinsic-Number.html'>Number</a>
+</div>
+<div class='apiDetail'>
+<p>Read a block of data from a file into a byte array.</p>
+<dl><dt>Description</dt><dd>This will advance the read position.</dd></dl>
+<dl><dt>Parameters</dt>
+<dd><table class='parameters' summary ='parameters'>
+<tr><td class='param'>buffer: <a href='intrinsic-ByteArray.html'>ByteArray</a> </td><td>Destination byte array for the read data.</td></tr><tr><td class='param'>offset: <a href='intrinsic-Number.html'>Number</a> </td><td>Offset in the byte array to place the data.</td></tr><tr><td class='param'>count: <a href='intrinsic-Number.html'>Number</a> </td><td>Number of bytes to read.</td></tr></table></dd>
+</dl><dl><dt>Returns</dt>
+<dd>A count of the bytes actually read.</dd></dl>
+<h3 class='methodSection'>Throws</h3>
+<p class='detail'>
+<a href='IOError.html'>IOError</a>: if the file could not be read.
+</p>
+</div>
+</div>
+<hr />
+<a name='readBytes'></a>
+<div class='api'>
+<div class='apiSig'> public readBytes(count: <a href='intrinsic-Number.html'>Number</a>): <a href='intrinsic-ByteArray.html'>ByteArray</a>
+</div>
+<div class='apiDetail'>
+<p>Read data bytes from a file and return a byte array containing the data.</p>
+<dl><dt>Parameters</dt>
+<dd><table class='parameters' summary ='parameters'>
+<tr><td class='param'>count: <a href='intrinsic-Number.html'>Number</a> </td><td>Number of bytes to read.</td></tr></table></dd>
+</dl><dl><dt>Returns</dt>
+<dd>A byte array containing the read data.</dd></dl>
+<h3 class='methodSection'>Throws</h3>
+<p class='detail'>
+<a href='IOError.html'>IOError</a>: if the file could not be read.
+</p>
+</div>
+</div>
+<hr />
+<a name='relativePath'></a>
+<div class='api'>
+<div class='apiSig'>get  public relativePath()
+</div>
+<div class='apiDetail'>
+<p>Return a relative path name for the file.</p>
+<dl><dt>Returns</dt>
+<dd>A string containing a file path name relative to the application's current working directory.</dd></dl>
+</div>
+</div>
+<hr />
+<a name='remove'></a>
+<div class='api'>
+<div class='apiSig'> public remove(): <a href='intrinsic-Void.html'>Void</a>
+</div>
+<div class='apiDetail'>
+<p>Delete the file associated with the File object.</p>
+<dl><dt>Description</dt><dd>If the file is opened, it is first closed.</dd></dl>
+<h3 class='methodSection'>Throws</h3>
+<p class='detail'>
+<a href='IOError.html'>IOError</a>: if the file exists and could not be deleted.
+</p>
+</div>
+</div>
+<hr />
+<a name='removeDir'></a>
+<div class='api'>
+<div class='apiSig'> public removeDir(recursive: <a href='intrinsic-Boolean.html'>Boolean</a>): <a href='intrinsic-Void.html'>Void</a>
+</div>
+<div class='apiDetail'>
+<p>Removes a directory.</p>
+<dl><dt>Parameters</dt>
+<dd><table class='parameters' summary ='parameters'>
+</td></tr><tr><td class='param'>recursive: <a href='intrinsic-Boolean.html'>Boolean</a> </td><td> [default: false]</td></tr></table></dd>
+</dl><h3 class='methodSection'>Throws</h3>
+<p class='detail'>
+<a href='IOError.html'>IOError</a>: if the directory exists and cannot be removed.
+</p>
+</div>
+</div>
+<hr />
+<a name='rename'></a>
+<div class='api'>
+<div class='apiSig'> public rename(toFile: <a href='intrinsic-String.html'>String</a>): <a href='intrinsic-Void.html'>Void</a>
+</div>
+<div class='apiDetail'>
+<p>Rename a file.</p>
+<dl><dt>Description</dt><dd>If the new file name exists it is removed before the rename.</dd></dl>
+<dl><dt>Parameters</dt>
+<dd><table class='parameters' summary ='parameters'>
+</td></tr></table></dd>
+</dl><h3 class='methodSection'>Throws</h3>
+<p class='detail'>
+<a href='IOError.html'>IOError</a>: if the original file does not exist or cannot be renamed.
+</p>
+</div>
+</div>
+<hr />
+<a name='setCallback'></a>
+<div class='api'>
+<div class='apiSig'> public setCallback(callback: <a href='intrinsic-Function.html'>Function</a>): <a href='intrinsic-Void.html'>Void</a>
+</div>
+<div class='apiDetail'>
+<p>Put the file stream into async mode and define a completion callback.</p>
+<dl><dt>Description</dt><dd>When in async mode, I/O will be  non-blocking and the callback function will be invoked when the there is read data available or when  the write side can accept more data.</dd></dl>
+<dl><dt>Parameters</dt>
+<dd><table class='parameters' summary ='parameters'>
+<tr><td class='param'>callback: <a href='intrinsic-Function.html'>Function</a> </td><td>Callback function to invoke when the pending I/O is complete. The callback is invoked  with the signature: function callback(e: Event): void.  Where e.data == stream.</td></tr></table></dd>
+</dl></div>
+</div>
+<hr />
+<a name='unixPath'></a>
+<div class='api'>
+<div class='apiSig'>get  public unixPath(): <a href='intrinsic-String.html'>String</a>
+</div>
+<div class='apiDetail'>
+<p>Return an absolute unix style path name for the file.</p>
+<dl><dt>Description</dt><dd>Used on Windows when using cygwin to return a cygwin styled path without drive specifiers.</dd></dl>
+<dl><dt>Returns</dt>
+<dd>A string containing an absolute file name relative to the cygwin file system's root directory. The file  name is canonicalized such that drive specifiers, multiple directory separators and ".." segments are removed.</dd></dl>
+<dl><dt>See Also</dt>
+<dd>
+<a href='absolutePath,.html'>absolutePath,</a>, 
+<a href='relativePath.html'>relativePath</a>
+</dd></dl>
+</div>
+</div>
+<hr />
+<a name='write'></a>
+<div class='api'>
+<div class='apiSig'> public write(items: <a href='intrinsic-Array.html'>Array</a>): <a href='intrinsic-Number.html'>Number</a>
+</div>
+<div class='apiDetail'>
+<p>Write data to the file.</p>
+<dl><dt>Description</dt><dd>If the stream is in sync mode, the write call blocks until the underlying stream or  endpoint absorbes all the data. If in async-mode, the call accepts whatever data can be accepted immediately  and returns a count of the elements that have been written.</dd></dl>
+<dl><dt>Parameters</dt>
+<dd><table class='parameters' summary ='parameters'>
+<tr><td class='param'>items: <a href='intrinsic-Array.html'>Array</a> </td><td>The data argument can be ByteArrays, strings or Numbers. All other types will call serialize first before writing. Note that numbers will not be written in a cross platform manner. If that is required, use the BinaryStream class to write Numbers.</td></tr></table></dd>
+</dl><dl><dt>Returns</dt>
+<dd>The number of bytes written.</dd></dl>
+<h3 class='methodSection'>Throws</h3>
+<p class='detail'>
+<a href='IOError.html'>IOError</a>: if the file could not be written.
+</p>
+</div>
+</div>
+<hr />
+<div class="terms">
+   <p class="terms">
+       <a href="http://www.embedthis.com/">       Embedthis Software LLC, 2003-2009. All rights reserved. Embedthis is a trademark of Embedthis Software LLC.</a>
+   </p>
+</div></div>
+</div>
+</body>
+</html>

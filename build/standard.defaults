@@ -1,0 +1,149 @@
+#!/bin/bash
+#
+#	standard.defaults -- Default configuration settings when building 
+#		Embedthis Ejscript from source.
+#
+#	Copyright (c) Embedthis Software LLC, 2003-2009. All Rights Reserved.
+#
+#	These defaults build a normal GPL Ejscript. It is multi-threaded, 
+#	dynamically linked with the ability to load modules. 
+#
+#	These initial defaults are read by configure when first creating the
+#	configuration files: buildConfig.make, buildConfig.sh and buildConfig.h
+#
+###############################################################################
+#
+#	Primary Configuration Section
+#
+BLD_TYPE="DEBUG" 						# The build type: (DEBUG), (RELEASE)
+BLD_TUNE="MPR_TUNE_SIZE" 			    # The tune type: (SIZE), (BALANCED), (SPEED)
+BLD_DEFAULTS="standard"					# Name of this defaults file
+BLD_DEBUG=1								# Set to 1 if DEBUG
+BLD_CLEAN_INSTALL=0						# Overwrite existing installations
+BLD_LICENSE=gpl
+BLD_COMMERCIAL=0
+
+#
+#
+#   Include settings common to all configurations
+#
+. "${BLD_TOP}/build/product.config"
+. "${BLD_TOP}/build/env.config"
+
+###############################################################################
+#
+#   Components (order matters. Dependencies first)
+#   See build/components/* for component configuration scripts
+#
+
+with --optional regexp 
+with mpr
+with --host --optional matrixssl openssl ssl
+with --optional sqlite 
+with --optional apache appweb
+with ejs
+
+###############################################################################
+#
+#	Feature Section
+#
+
+#
+#   Remote command execution
+#
+BLD_FEATURE_CMD=1
+
+#
+#	Turn assert checking on. Good for a debug build
+#
+BLD_FEATURE_ASSERT=1
+
+#
+#	Disable decimal (128 bit integers) support
+#
+BLD_FEATURE_DECIMAL=0
+
+#
+#	Enable building documentation
+#
+BLD_FEATURE_DOC=1
+
+#
+#	Ejscript documentation generation from script code
+#
+BLD_FEATURE_EJS_DOC=1
+
+#
+#	E4X Ejscript Extensions 
+#
+BLD_FEATURE_EJS_E4X=1
+
+#
+#	Language specification level
+#
+BLD_FEATURE_EJS_LANG=EJS_LANG_FIXED
+
+#
+#	Web framework
+#
+BLD_FEATURE_EJS_WEB=1
+
+#
+#	Floating point support
+#
+BLD_FEATURE_FLOATING_POINT=1
+
+#
+#   HTTP support (minimal http defines and http status code support)
+#
+BLD_FEATURE_HTTP=1
+
+#
+#   HTTP client support
+#
+BLD_FEATURE_HTTP_CLIENT=1
+
+#
+#	Disable building the Java Ejscript VM. Currently incomplete.
+#
+BLD_FEATURE_JAVA_VM=0
+
+#
+#	Disable the Legacy code for backward compatibility (back one major revision).
+#
+BLD_FEATURE_LEGACY_API=0
+
+#
+#	Build for systems with virutal memory (MMU)
+#
+BLD_FEATURE_MMU=1
+
+#
+#	Compile single-threaded
+#
+BLD_FEATURE_MULTITHREAD=0
+
+#
+#	Default number type. Valid types are: int, long, int64 or double
+#
+BLD_FEATURE_NUM_TYPE=double
+
+#
+#	Build the samples
+#
+BLD_FEATURE_SAMPLES=1
+
+#
+#   Build shared by default. Only enable one of shared or static.
+#
+if [ "$BLD_HOST_OS" = VXWORKS ] ; then
+	BLD_FEATURE_STATIC=1
+else
+	BLD_FEATURE_STATIC=0
+fi
+
+#
+#	Build the test suite
+#
+BLD_FEATURE_TEST=1
+

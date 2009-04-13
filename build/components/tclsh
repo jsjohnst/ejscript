@@ -1,0 +1,8 @@
+#
+#   Tclsh
+#
+defineComponent() {
+    local file
+    eval file=\$BLD_${KIND}_TCLSH
+    configureComponent --name tclsh --path "`probe --path "$1" --base $file`"
+}

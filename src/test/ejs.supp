@@ -1,0 +1,56 @@
+{
+   Pthread
+   Memcheck:Cond
+   fun:strstr
+   fun:__pthread_initialize_minimal
+   obj:/lib/libpthread-2.3.5.so
+   obj:/lib/libpthread*.so*
+}
+{
+   dl lib invalid read
+   Memcheck:Addr8
+   obj:/lib/ld-2.6.1.so
+   obj:/lib/ld-2.6.1.so
+   obj:/lib/ld-2.6.1.so
+   obj:/lib/ld-2.6.1.so
+   obj:/lib/ld-2.6.1.so
+   obj:/lib/ld-2.6.1.so
+   obj:/lib/ld-2.6.1.so
+   obj:/lib/libdl-2.6.1.so
+   obj:/lib/ld-2.6.1.so
+   obj:/lib/libdl-2.6.1.so
+   fun:dlopen
+   fun:mprLoadModule
+}
+{
+   ld invalid read
+   Memcheck:Addr4
+   obj:/lib/ld-2.7.so
+   obj:/lib/ld-2.7.so
+   obj:/lib/ld-2.7.so
+   obj:/lib/ld-2.7.so
+   obj:/lib/ld-2.7.so
+   obj:/lib/ld-2.7.so
+   obj:/lib/tls/i686/cmov/libdl-2.7.so
+   obj:/lib/ld-2.7.so
+   obj:/lib/tls/i686/cmov/libdl-2.7.so
+   fun:dlopen
+   fun:mprLoadModule
+   fun:ejsLoadModule
+}
+{
+   ld invalid read on ub64
+   Memcheck:Addr8
+   obj:/lib/ld-2.7.so
+   obj:/lib/ld-2.7.so
+   obj:/lib/ld-2.7.so
+   obj:/lib/ld-2.7.so
+   obj:/lib/ld-2.7.so
+   obj:/lib/ld-2.7.so
+   obj:/lib/ld-2.7.so
+   obj:/lib/libdl-2.7.so
+   obj:/lib/ld-2.7.so
+   obj:/lib/libdl-2.7.so
+   fun:dlopen
+   fun:mprLoadModule
+}

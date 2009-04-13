@@ -1,0 +1,11 @@
+	/**
+	 *	per application
+	 */
+	class Route {
+	/*
+			//	URL								  Controller		Action		  ID
+			[ "articles/${year}/${month}/${day}", "controllerName", "actionName", "id", 
+	*/
+	}
+
+

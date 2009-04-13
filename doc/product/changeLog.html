@@ -1,0 +1,303 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- BeginDsi "dsi/head.html" -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Embedthis Ejscript 0.9.8 Documentation</title>
+    <meta name="keywords" content="Ejscript, JavaScript, ECMAScript, Server-Side JavaScript, Dynamic languages, 
+        Embedded, AJAX, language"/>
+	<meta name="description" content="Ejscript -- Embedded Server-Side JavaScript Language."/>
+	<meta name="robots" content="index,follow" />
+	<link href="../doc.css" rel="stylesheet" type="text/css" />
+	<link href="../print.css" rel="stylesheet" type="text/css" media="print"/>
+    <!--[if IE]>
+    <link href="../iehacks.css" rel="stylesheet" type="text/css" />
+    <![endif]-->
+</head>
+
+<body>
+    <div class="top">
+        <a class="logo"  href="http://www.ejscript.org/">&nbsp;</a>
+        <div class="topRight">
+             <div class="search">
+                 <form method="get" action="http://www.google.com/search" title="Search www.embedthis.com">
+                     <p>
+                        <label title="Search">Search</label> 
+                        <input type="text" id="q" name="q" size="15" maxlength="255" />
+                        <input type="submit" id="submit" value="Go" /> 
+                        <input type="hidden" name="domains" value="embedthis.com" /> 
+                        <input type="hidden" name="sitesearch" value="embedthis.com" />
+                    </p>
+                 </form>
+              </div>
+            <!--TITLE-->Embedthis Ejscript 0.9.8
+        </div>
+        <div class="crumbs">
+            <a href="../product/index.html">Home</a>
+<!-- EndDsi -->
+             &gt; <b>Change Log</b>
+        </div>
+    </div>
+    <div class="content">
+        <div class="contentRight">
+            <h2>Quick Nav</h2>
+            <ul>
+                <li><a href="#r098">Release 0.9.8</a></li>
+                <li><a href="#r097">Release 0.9.7</a></li>
+                <li><a href="#r096">Release 0.9.6</a></li>
+                <li><a href="#r095">Release 0.9.5</a></li>
+                <li><a href="#r093">Release 0.9.3</a></li>
+                <li><a href="#r092">Release 0.9.2</a></li>
+                <li><a href="#r091">Release 0.9.1</a></li>
+                <li><a href="#r090">Release 0.9.0</a></li>
+            </ul>
+            <h2>See Also</h2>
+            <ul>
+                <li><a href="releaseNotes.html">Release Notes</a></li>
+                <li><a href="roadmap.html">Roadmap</a></li>
+                <li><a href="../guide/ejs/source/porting.html"></a></li>
+                <li><a href="install/index.html">Installation</a></li>
+            </ul>
+        </div>
+        <div class="contentLeft">
+            <h1>Ejscript Change Log</h1>
+            <p>This release is a development release on the road to our planned 1.0 release. The 0.9.7-0.9.8 releases
+            have focussed on the web framework with many new additions including: Ajax controls, support for jQuery,
+            database migrations, Controller hooks and much more.</p>
+            <h3>Preview Release</h3>
+            <p>This release is a preview release to provide developers a chance to evaluate Ejscript language and to
+            provide testing prior to production release. Ejscript is still under active development. Some features are
+            incomplete and compliance with the ECMAScript 262 standard is lacking in a couple of areas. Major areas of
+            current work include: ES-262 compliance, prototype inheritance, unicode and runtime type checking.</p>
+            <!--
+            <p>This release makes good strides toward our goal of full ECMA-262 compliance. We've started using 
+            the Mozilla JavaScript test suite and are progressively fixing issues. The ejs
+            command has been modified so it can be used from the Mozilla JavaScript test suite.</p>
+            -->
+            <a name="r098" id="r098"></a>
+            <h2 class="section">Changes in 0.9.8</h2>
+            <h3>Major Features</h3>
+            <ul>
+            </ul>
+            <h3><strong>Minor Features</strong></h3>
+            <ul>
+                <li>Added Cross compilation byte ordering control. New ejsc switches --cross and --endian.</li>
+                <li>Fix source code tabbing.</li>
+                <li>Added error code to Error class.</li>
+            </ul>
+            <h3><strong>Fixes</strong></h3>
+            <ul>
+                <li>Fixed ejsweb migrations.</li>
+                <li>Fixed ejsweb to be smarter when creating the web server command string. Now works for 
+                    installed builds and from a debug tree..</li>
+                <li>Fixed poor error message from ejsweb when if fails to run the web server</li>
+                <li>Fix 64 bit MD5 encodings.</li>
+            </ul>
+            <a name="r097" id="r097"></a>
+            <h2 class="section">Changes in 0.9.7</h2>
+            <h3>Major Features</h3>
+            <ul>
+                <li>Added CGI gateway program (ejscgi).</li>
+                <li>Added Appweb web server for local and proxied hosting.</li>
+                <li>Added Apache reverse proxy support.</li>
+                <li>Added Appweb in-memory module.</li>
+                <li>Added model validations.</li>
+                <li>Added database migrations.</li>
+                <li>Added controller life-cycle filter hooks.</li>
+                <li>Enhanced ejsweb generator. Added migration, model and scaffold generation. Also migrate application
+                and running in-built web server.</li>
+                <li>Added native JSON support.</li>
+                <li>Added flash[] inter-action storage.</li>
+                <li>Added jQuery support for Ajax and effects.</li>
+                <li>Enhance user controls.</li>
+                <li>Add async form and async link support.</li>
+            </ul>
+            <h3><strong>Minor Features</strong></h3>
+            <ul>
+                <li>Simplified building for cross-compilation.</li>
+                <li>Documentation updates.</li>
+                <li>Uninstall on MAC OS X.</li>
+                <li>Improved ECMA-262 compliance: Added Function.apply() and Function.call().</li>
+                <li>More documentation for the Web Framework.</li>
+                <li>Added input view control for smart rendering based on data type.</li>
+                <li>Added improved style sheets and themes for use by framework generator.</li>
+                <li>Enhanced configure program to intelligently search for dependent components and packages.</li>
+                <li>Added block-less function declarations. Can define functions without {} and return. The body is just
+                    a simple expression.</li>
+                    <li>Optimized ejsweb command to directly run pre-compiled byte code.</li>
+            </ul>
+            <h3><strong>Fixes</strong></h3>
+            <ul>
+                <li>Renamed compiler from ec to ejsc.</li>
+                <li>Renamed web generator from egen ejsweb.</li>
+                <li>Installation and removal fixes.</li>
+                <li>Fix cross compilation build system.</li>
+                <li>Fix setting of LD_LIBRARY_PATH when building cross.</li>
+                <li>Fixed Mips compilation switches.</li>
+                <li>Fixed System.run. Now uses inbuilt MprCmd instead of popen.</li>
+                <li>Fixed native JSON encoding of null, undefined and \\.</li>
+                <li>Several VM evaluation fixes.</li>
+                <li>Fixed session encoding.</li>
+                <li>Fixed cross-request preservation of flash[].</li>
+                <li>Fixed textarea control.</li>
+                <li>Fixed SQLite datatype mapping.</li>
+                <li>Fixed serialize/deserialize. Fixed backquoting and embedded quotes.</li>
+                <li>Moved modules to /usr/lib/ejs/modules and binaries to /usr/local/bin.</li>
+                <li>Fixed compiler bug not warning when accessing instance properties from static code.</li>
+                <li>Fixed property lookup to use all open namespaces in all blocks.</li>
+            </ul>
+            
+            <a name="r096" id="r096"></a>
+            <h2 class="section">Changes in 0.9.6</h2>
+            <h3>Major Features</h3>
+            <ul>
+                <li>Improved ECMA-262 compatibility.</li>
+                <li>Added language compliance controls. Added --lang switches to the configure, ejs, and ec programs.
+                Added "use lang" pragma directive for scripts.</li>
+                <li>Extensive updates to the documentation. Especially in language and web framework guides.</li>
+            </ul>
+            <h3><strong>Minor Features</strong></h3>
+            <ul>
+                <li>Added typeof operator.</li>
+                <li>Added Number and Boolean function constructors.</li>
+                <li>Added typeOf() global function for easily determing the type of an object.</li>
+                <li>Make ejs support -f switch for compatibility with Mozilla test suites.</li>
+            </ul>
+            <h3><strong>Fixes</strong></h3>
+            <ul>
+                <li>Fix Reflect().typeName not returning correct results.</li>
+                <li>Fixed String(number) constructor pattern. Updated doc.</li>
+                <li>Fixed parser with typeof operator as the first input token.</li>
+                <li>Cleanup error reporting in compiler.</li>
+                <li>Fix prefix and postfix operators on literals. Now warns appropriately.</li>
+                <li>Fix the "in" operator when searching in arrays or instance objects.</li>
+            </ul><a name="r095" id="r095"></a>
+            <h2 class="section">Changes in 0.9.5</h2>
+            <h3>Major Features</h3>
+            <ul>
+                <li>Garbage collector changed to a non-compacting, generational mark and sweep with pooled object
+                allocations.</li>
+                <li>New hierarchical virtual memory allocator offering arena and slab memory allocation services.</li>
+                <li>VM Byte codes optimized for direct access and early binding.</li>
+                <li>Object memory layout optimized and compacted.</li>
+                <li>Class library extended with enhancements for Date, Regular expressions and other types.</li>
+                <li>SQLite API.</li>
+                <li>Ejscript web framework for "rails" style server side JavaScripting.</li>
+                <li>Simple reflection API.</li>
+                <li>More unit tests.</li>
+                <li>Interfaces including interfaces with bodies.</li>
+                <li>Streams classes including TextStream, BinaryStream.</li>
+                <li>Enhanced Http. Now supports SSL, authentication, chunked transfers and post data.</li>
+            </ul>
+            <h3><strong>Minor Features</strong></h3>
+            <ul>
+                <li>Enhanced and debugged ByteArray class.</li>
+                <li>Master interpreter and clone interpreter support.</li>
+                <li>XMLHttp class.</li>
+                <li>More documentation.</li>
+            </ul>
+            <h3><strong>Fixes</strong></h3>
+            <ul>
+                <li>Improve error reporting for ec.</li>
+                <li>Fixes for stack trace reporting on exceptions.</li>
+                <li>Fixed garbage collection bug for array elements in some cases.</li>
+                <li>Fixed some compiler crashes on illegal programs.</li>
+                <li>Fixed some code generation issues.</li>
+            </ul><a name="r093" id="r093"></a>
+            <h2 class="section">Changes in 0.9.3</h2>
+            <h3>Major Features</h3>
+            <ul>
+                <li>Major performance work for memory and CPU utilization.</li>
+                <li>Extended Date, Array and String classes.</li>
+                <li>Improved documentation.</li>
+                <li>Extended suite of unit tests including load, benchmark and valgrind tests.</li>
+            </ul>
+            <h3><strong>Minor Features</strong></h3>
+            <ul>
+                <li>Add open, close, read, write file I/O convenience routines. These wrap the more comprehensive File
+                class capabilities.</li>
+                <li>Complete the installation and removal packaging for major operating systems.</li>
+            </ul>
+            <h3><strong>Fixes</strong></h3>
+            <ul>
+                <li>Continued push to drive quality higher using a continuous integration build farm.</li>
+            </ul><a name="r092" id="r092"></a>
+            <h2 class="section">Changes in 0.9.2</h2>
+            <h3>Major Features</h3>
+            <ul>
+                <li>Added web ESP (rails-like) framework.</li>
+                <li>Added SQLite support.</li>
+                <li>Added RegExp regular expression class.</li>
+                <li>Added Http client class.</li>
+                <li>Added with statement.</li>
+                <li>Lots of bug fixes.</li>
+            </ul>
+            <h3><strong>Minor Features</strong></h3>
+            <ul>
+                <li>Updated MPR portable runtime layer.</li>
+            </ul>
+            <h3><strong>Fixes</strong></h3>
+            <ul>
+                <li>Too many to count.</li>
+            </ul><a name="r091" id="r091"></a>
+            <h2 class="section">Changes in 0.9.1</h2>
+            <h3>Major Features</h3>
+            <ul>
+                <li>First-cut product documentation.</li>
+                <li>Object, Array, String methods.</li>
+                <li>ByteArray.</li>
+                <li>ejs.io namespace including: File, BinaryStream, TextStream, IStream.</li>
+                <li>Updated ejsmod to support namespaces as packages.</li>
+                <li>Extended unit test suite.</li>
+                <li>Lots of bug fixes.</li>
+            </ul>
+            <h3><strong>Minor Features</strong></h3>
+            <ul>
+                <li>Increased unit test coverage.</li>
+                <li>Start using Trac issue tracking.</li>
+            </ul>
+            <h3><strong>Fixes</strong></h3>
+            <ul>
+                <li>Too many to count.</li>
+            </ul><a name="r090" id="r090"></a>
+            <h2 class="section">Changes in 0.9.0</h2>
+            <h3>Major Features</h3>
+            <ul>
+                <li>Supporting catch (var: type).</li>
+                <li>Supporting cast, to, instanceof, in with binary expressions.</li>
+                <li>Namespaces including "use namespace" and "use default namespaces".</li>
+                <li>Packages are removed in deference to namespaces.</li>
+                <li>Added module blocks and "use module".</li>
+                <li>Added iterator support for for/in, for each.</li>
+                <li>New ejsmod program replaces old bun program. Handles listing, slot and doc generation.</li>
+                <li>Ejsmod generates documentation based on javadoc style comments.</li>
+                <li>Enhanced assembler listings.</li>
+                <li>Improved code generation.</li>
+                <li>Completed support for block scope.</li>
+                <li>Closures and bound method capture.</li>
+                <li>System library documentation.</li>
+                <li>Object, Array and String library methods implemented.</li>
+                <li>Support class settings.</li>
+                <li>E4X support.</li>
+                <li>ECMA compliance mode.</li>
+                <li>Implemented type checking on function calls in the VM relieving native types of the burden.</li>
+                <li>Added parameter type checking and type coercion on function calls.</li>
+                <li>Implemented rest args (...rest).</li>
+            </ul>
+            <h3><strong>Minor Features</strong></h3>
+            <ul>
+                <li>Increased unit test coverage.</li>
+                <li>Code cleanup and refactoring.</li>
+            </ul>
+        </div>
+    </div>
+<!-- BeginDsi "dsi/bottom.html" -->
+	<div class="bottom">
+		<p class="footnote"> 
+            <a href="../product/copyright.html" >&copy; Embedthis Software LLC, 2003-2009. 
+            All rights reserved. Embedthis, Ejscript and Appweb are trademarks of Embedthis Software LLC.</a>
+		</p>
+	</div>
+<!-- EndDsi -->
+</body>
+</html>

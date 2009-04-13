@@ -1,0 +1,500 @@
+#!/bin/bash
+#
+#   makeInstall - Install and Uninstall a package. Also used by makePackage.
+#
+#   usage: makeInstall ROOT_DIR=/myDir TASK=Install|Remove|Package
+#
+#   Other environment variables:
+#       LAUNCH_BROWSER      0|1
+#       PACKS               {binary,source}
+#       SKIP_PERMS  
+#       TRACE   
+#
+################################################################################
+#
+#   Copyright (c) Embedthis Software LLC, 2003-2009. All Rights Reserved.
+#   The latest version of this code is available at http://www.embedthis.com
+#
+#   This software is open source; you can redistribute it and/or modify it 
+#   under the terms of the GNU General Public License as published by the 
+#   Free Software Foundation; either version 2 of the License, or (at your 
+#   option) any later version.
+#
+#   This program is distributed WITHOUT ANY WARRANTY; without even the 
+#   implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+#   See the GNU General Public License for more details at:
+#   http://www.embedthis.com/downloads/gplLicense.html
+#   
+#   This General Public License does NOT permit incorporating this software 
+#   into proprietary programs. If you are unable to comply with the GPL, a 
+#   commercial license for this software and support services are available
+#   from Embedthis Software at http://www.embedthis.com
+#
+################################################################################
+
+DRY_RUN=${DRY_RUN:-0}
+DO_BINARY=0
+DO_SOURCE=0
+DO_DEV=0
+PACKS=${*-"binary dev source"}
+HOSTNAME=`hostname`
+LAUNCH_BROWSER=${LAUNCH_BROWSER:-0}
+SKIP_PERMS=${SKIP_PERMS:-0}
+TASK=${TASK:-Install}
+TRACE=${TRACE:-0}
+DEFAULT_PERM=644
+BLD_DATE=`date '+%c'`
+SITE=127.0.0.1
+PAGE=/index.html
+URL=
+URL_FILE=
+
+################################################################################
+#
+#   Copy packages
+#
+
+processPackage() {
+    local fileList
+    
+    fileList=package/$1
+    echo -e "  #  ${VERB} ${fileList} ..."
+    set -e
+    . "${fileList}"
+    set +e
+}
+
+
+#
+#   Cleanup installed files
+#
+cleanupSystem() {
+
+    configureProduct cleanup
+
+    #
+    #   Remove some generated files if removing the source pack and we are not executing in the source tree.
+    #
+    if [ "${DO_SOURCE}" = 1 -a `pwd` != "$BLD_SRC_PREFIX" ] ; then
+        ${RM} -f "${BLD_SRC_PREFIX}/buildConfig.*"
+    fi
+    if [ "${DO_BINARY}" = 1 -a $BLD_BUILD_OS != WIN ] ; then
+        ${RM} -f "/etc/${BLD_PRODUCT}Install.conf"
+        ${RM} -fr "${BLD_PREFIX}/var/${BLD_PRODUCT}"
+    fi
+
+    #
+    #   Clean the prefix directories if we are uninstalling given packs
+    #
+    echo -e "  #  Cleaning directories"
+    clean "$BLD_LOG_PREFIX" "binary"
+    clean "$BLD_WEB_PREFIX" "binary"
+    clean "$BLD_LOG_PREFIX" "binary"
+    clean "$BLD_DOC_PREFIX" "binary"
+    clean "$BLD_MOD_PREFIX" "binary dev"
+    clean "$BLD_LIB_PREFIX" "binary dev"
+
+    clean "$BLD_INC_PREFIX" "dev"
+    clean "$BLD_SAM_PREFIX" "dev"
+    clean "$BLD_SRC_PREFIX" "source"
+    clean "$BLD_PREFIX" "binary"
+
+    #
+    #   These dirs are not unique to appweb so must not clean (except on windows)
+    #
+    if [ $BLD_BUILD_OS = WIN ] ; then
+        clean "$BLD_MAN_PREFIX" "dev"
+        clean "$BLD_BIN_PREFIX" "binary"
+        clean "$BLD_SBIN_PREFIX" "binary"
+    else
+        clean "/usr/share/${BLD_PRODUCT}" "binary"
+    fi
+}
+
+
+#
+#   Clean and remove a directory. Only done if a directory if it is in the specified packlist.
+#
+#   usage: clean dir packlist
+#
+clean() {
+
+    local dir packList
+
+    dir="$1"
+    packList="$2"
+
+    if [ "$dir" = "" -o "$dir" = "/" -o ! -d "$dir" ] ; then
+        return
+    fi
+
+    #
+    #   See if this directory is relevant for the pack list
+    #
+    found=0
+    for pack in $packList
+    do
+        if [ "`echo $PACKS | grep $pack`" != "" ] ; then
+            found=1
+            break
+        fi
+    done
+    if [ $found = 0 ] ; then
+        return
+    fi
+
+    #
+    #   Does the directory exist
+    #
+    if [ "${TRACE}" = 1 ] ; then
+        echo "  #  Cleaning $dir"
+    fi
+    if [ ! -x "$dir" ] ; then
+        return
+    fi
+
+    #
+    #   Safety check if it is a system directory
+    #
+    isSysDir "$dir"
+    if [ $? = 1 ] ; then
+        return
+    fi
+
+    #
+    #   Clean. Safer to clean inside the directory using relative paths
+    #
+    cd "${dir}"
+    cleanFiles '*.tmp *.lo *.o *.obj .makedep .dummy access.log error.log fileList.txt'
+
+    cleanDir
+    cd $home
+
+    ${RMDIR} "${dir}" >/dev/null 2>&1
+}
+
+
+#
+#   Cleanup empty directories below the current directory.
+#
+cleanDir() {
+
+    _dir=`pwd`
+    [ $BLD_BUILD_OS = WIN ] && _dir=`cygpath -m "$_dir"`
+    if [ "`pwd`" = "/" ] ; then
+        echo "Configuration error: clean directory was '/'"
+        return
+    fi
+    find . -type d -print | sort -r | grep -v '^\.$' | while read d
+    do
+        count=`ls "$d" | wc -l | sed -e 's/ *//'`
+        if [ "$count" = "0" ] ; then
+            [ "${TRACE}" = 1 ] && echo "  rmdir `pwd`/$d"
+            ${RMDIR} "$d"
+        fi
+        if [ "$count" != "0" ] ; then 
+            f=`echo "$d" | sed -e 's/\.\///'`
+            if [ "${TRACE}" = 1 ] ; then
+                echo -e "Directory \"`pwd`/${f}\", still has user data"
+            fi
+            return
+        fi
+    done 
+}
+
+
+#
+#   Cleanup intermediate files in the current directory and below
+#   Usage: cleanFiles patterns
+#
+cleanFiles() {
+
+    if [ "`pwd`" = "/" ] ; then
+        echo "Configuration error: clean directory was '/'"
+        return
+    fi
+    find "`pwd`" -type d -print | while read d
+    do
+        before=`pwd`
+        cd "${d}"
+        if [ "${TRACE}" = 1 ] ; then
+             echo "  cd $d"
+             echo "  rm -f $*"
+        fi
+        eval ${RM} -f $*
+        cd "${before}"
+    done
+}
+
+
+#
+#   Copy or remove the files specified by the PACKS variable
+#
+copyRemoveFiles() {
+
+    local home dir packName
+
+    echo -e "  #  $VERB file packages ..."
+
+    for packName in $PACKS
+    do
+        if [ "$TASK" = Remove -a "${packName}" = source ] ; then
+            dir=`pwd`
+            if [ `getpath -a $dir` = "$BLD_SRC_PREFIX" ] ; then
+                echo "Can't uninstall the source distribution while executing scripts"
+                echo "from within the source distribution. Skipping the $packName package."
+                continue
+            elif [ -x "$BLD_SRC_PREFIX" -a -f "$BLD_SRC_PREFIX/buildConfig.make" -a \
+                    -f "$BLD_SRC_PREFIX/mpr/.makedep" ] ; then
+                echo -e "  #  Cleaning source tree ..."
+                echo "  cd $BLD_SRC_PREFIX ; make clean >/dev/null"
+                home=`pwd`
+                cd "$BLD_SRC_PREFIX" ; make clean >/dev/null 2>&1 ; cd -
+                cd $home
+            fi
+        fi
+        processPackage ${packName}.files
+    done
+
+    #
+    #   Fill empty directories. MAC and Windows packagers require directories to always have some file
+    #
+    if [ "$TASK" = Package -a "$DRY_RUN" = 0 ] ; then
+        find ${ROOT_DIR} -type d -empty | while read f
+        do
+            touch "${f}/.dummy"
+        done 
+        configureProduct --quiet copy
+    fi
+}
+
+
+setup() {
+    local dir
+
+    umask 022
+
+    . ${BLD_TOP}/build/bin/makePackage.common
+
+    #
+    #   If ROOT_DIR is set, it defines a ROOT directory under which the installation will occurr.
+    #
+    ORIGINAL_ROOT_DIR="$ROOT_DIR"
+    ROOT_DIR=${ROOT_DIR:-/}
+    ROOT_DIR=`${BLD_TOP}/build/bin/getpath -a "${ROOT_DIR}"`
+
+    cd ${BLD_TOP}
+    BLD_TOP=.
+
+    . ./buildConfig.sh
+
+    if [ "${BLD_CROSS}" = 1 ] ; then
+        BUILDING_CROSS=1
+        . ./buildConfig.sh
+    fi
+
+    . package/makeInstall.${BLD_PRODUCT}
+
+    if [ "$DRY_RUN" = 1 ] ; then
+        CHGRP="true chgrp"
+        CHOWN="true chown"
+        CHMOD="true chmod"
+        CP="true cp"
+        GZIP="true gzip"
+        LN="true ln"
+        MKDIR="true mkdir"
+        PATCH="true patchFile"
+        RM="true rm"
+        RMDIR="true rmdir"
+        UNIX2DOS="true unix2dos"
+    fi
+
+    if [ $BLD_BUILD_OS = WIN ] ; then
+        ROOT_DIR=`cygpath -u $ROOT_DIR`
+        ROOT_DIR=`cygpath -am $ROOT_DIR`
+    fi
+
+    [ $TASK = Install ] && VERB=Installing
+    [ $TASK = Package ] && VERB=Processing
+    [ $TASK = Remove ] && VERB=Removing
+
+    if [ $TASK = Package ] ; then
+        dir=$ROOT_DIR
+        if type cygpath >/dev/null 2>&1 ; then
+            dir=`cygpath -u $ROOT_DIR`
+        fi
+        if [ "$dir" = "/" -o "$dir" = "C:/" -o "$dir" = "c:/" -o "$dir" = "/cygdrive/c" ] ; then
+            echo "WARNING: ROOT_DIR not set correctly for packaging" 2>&1
+            echo "Preventing cleaning $ROOT_DIR" 2>&1
+            echo "Aborting packaging" 2>&1
+            exit 2
+        fi
+    fi
+
+    #
+    #   Determine if user has admin privileges
+    #
+    user=`id -u`
+    if [ $BLD_BUILD_OS = WIN ] ; then
+        if [ "`id | grep Administrator`" != "" ] ; then
+            user=0
+        fi
+    fi
+    if [ $user != 0 ] ; then
+        SKIP_PERMS=1
+    fi
+
+    if [ $TASK = Package ] ; then
+        ${RM} -fr $ROOT_DIR
+        ${MKDIR} -p $ROOT_DIR
+        ${CHMOD} 755 "$ROOT_DIR"
+        if [ $BLD_BUILD_OS != WIN ] ; then
+            ${CHOWN} root "${ROOT_DIR}"
+            ${CHGRP} 0 "${ROOT_DIR}"
+        fi
+    fi
+
+    if [ "$BLD_WEB_PREFIX" != "" ] ; then
+        URL="http://$SITE:$BLD_HTTP_PORT$PAGE"
+        URL_FILE=$BLD_WEB_PREFIX/$PAGE
+    else
+        URL="$BLD_DOC_PREFIX/index.html"
+        URL_FILE=$URL
+    fi
+
+    preparePrefixes
+    header
+}
+
+
+header() {
+    echo -e "  #"
+    echo -e "  #  ${TASK} \"${BLD_NAME} ${BLD_VERSION}-${BLD_NUMBER}\""
+    echo -e "  #    With sub-packages: \"${PACKS}\""
+    if [ $TASK = Package ] ; then
+        echo -e "  #    Packaging to: ${ROOT_DIR}"
+    else
+        echo -e "  #    Installing to: ${ROOT_DIR}"
+    fi
+    echo -e "  #"
+    echo -e "  #  With the file copy targets: "
+
+    if [ $user = 0 ] ; then
+        echo -e "  #    BLD_ROOT_PREFIX=$BLD_ROOT_PREFIX"
+    fi
+
+    if [ "`echo $PACKS | grep binary`" != "" ] ; then
+        echo -e "  #    BLD_PREFIX=$BLD_PREFIX"
+        echo -e "  #    BLD_BIN_PREFIX=$BLD_BIN_PREFIX"
+        echo -e "  #    BLD_MAN_PREFIX=$BLD_MAN_PREFIX"
+        echo -e "  #    BLD_LIB_PREFIX=$BLD_LIB_PREFIX"
+        echo -e "  #    BLD_MOD_PREFIX=$BLD_MOD_PREFIX"
+        if [ "$BLD_LOG_PREFIX" != "" ] ; then
+            echo -e "  #    BLD_LOG_PREFIX=$BLD_LOG_PREFIX"
+        fi
+        if [ "$BLD_WEB_PREFIX" != "" ] ; then
+            echo -e "  #    BLD_WEB_PREFIX=$BLD_WEB_PREFIX"
+        fi
+        DO_BINARY=1
+    fi
+
+    if [ "`echo $PACKS | egrep 'dev'`" != "" ] ; then
+        echo -e "  #    BLD_SAM_PREFIX=$BLD_SAM_PREFIX"
+        echo -e "  #    BLD_INC_PREFIX=$BLD_INC_PREFIX"
+        echo -e "  #    BLD_DOC_PREFIX=$BLD_DOC_PREFIX"
+        DO_DEV=1
+    fi
+
+    if [ "`echo $PACKS | egrep 'source'`" != "" ] ; then
+        echo -e "  #    BLD_SRC_PREFIX=$BLD_SRC_PREFIX"
+        DO_SOURCE=1
+    fi
+    echo -e "  #"
+}
+
+
+installRemoveLog() {
+    if [ -f "${BLD_LIB_PREFIX}" ] ; then
+        if [ $TASK = Install ] ; then
+            mv install.log "${BLD_LIB_PREFIX}/fileList.txt"
+        elif [ $TASK = Remove ] ; then
+            rm -f "${BLD_LIB_PREFIX}/fileList.txt"
+        fi
+    fi
+}
+
+
+launchBrowser() {
+
+    if [ ! -f "$URL_FILE" ] ; then
+        return
+    fi
+
+    if [ "$ROOT_DIR" != "/" ] ; then
+        return
+    fi
+
+    echo -e "  #\n  #  Starting browser to view the $BLD_NAME Documentation."
+    sleep 4
+    if [ "$BLD_OS" = MACOSX ] ; then
+        open $URL
+    else 
+        for f in /usr/bin/htmlview /usr/bin/firefox /usr/bin/mozilla /usr/bin/konqueror 
+        do
+            if [ -x ${f} ]
+            then
+                sudo -H -b ${f} $URL &
+                break
+            fi
+        done
+    fi
+}
+
+
+#
+#   Main
+#
+setup
+configureProduct --quiet initialize
+
+if [ $TASK = Remove ] ; then
+    #
+    #   Uninstall
+    #
+    if [ "$DO_BINARY" = 1 -a "$BLD_FEATURE_RUN_AS_SERVICE" = "1" ] ; then
+        configureProduct stop
+        configureProduct uninstall
+    fi
+    copyRemoveFiles
+    installRemoveLog
+    cleanupSystem
+
+else 
+    #
+    #   Installing and Packaging
+    #
+    copyRemoveFiles
+    installRemoveLog
+
+    if [ $TASK = Install -a "${DO_BINARY}" = "1" ] ; then
+
+        configureProduct configure
+
+        if [ "$ORIGINAL_ROOT_DIR" = "" ] ; then
+            if [ "$BLD_FEATURE_RUN_AS_SERVICE" = "1" -a $user = 0 ] ; then
+                configureProduct --quiet stop
+                configureProduct install
+                configureProduct start
+            fi
+        else
+            echo -e "  #  ${BLD_NAME} is ready for deployment at $ROOT_DIR"
+        fi
+        if [ "$LAUNCH_BROWSER" = 1 -a "$DRY_RUN" != 1 ] ; then
+            launchBrowser
+        fi
+    fi
+fi
+
+configureProduct complete
+
+true

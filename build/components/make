@@ -1,0 +1,8 @@
+#
+#   Make
+#
+defineComponent() {
+    local file
+    eval file=\$BLD_${KIND}_MAKE
+    configureComponent --name make --path "`probe --path "$1" --base $file`"
+}

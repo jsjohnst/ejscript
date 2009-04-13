@@ -1,0 +1,17 @@
+#
+#   Apache
+#
+defineComponent() {
+	local iflags builtin path name search
+
+    path=$1
+    name="apache"
+
+MSG="Not yet supported"
+return 0
+
+    path=`probe --dir --path "$path" --base "$name.c" --search "$search"`
+    iflags="-I$path/include"
+
+    configureComponent --name $name --libs "$name" --path "$path" --iflags "$iflags" $builtin
+}

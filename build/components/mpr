@@ -1,0 +1,12 @@
+#
+#   Mpr
+#
+defineComponent() {
+    local path
+
+    path="src"
+    [ -d src/mpr ] && path="src/mpr"
+    configureComponent --builtin --name mpr --optional-dependencies "regexp" --libs "mpr" --path "$path"
+
+    BLD_FEATURE_MPR_ALL_IN_ONE=1
+}

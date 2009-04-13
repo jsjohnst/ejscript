@@ -1,0 +1,18 @@
+#!/bin/bash
+#
+#	postflight -- Post flight script for documentation
+#	Copyright (c) Embedthis Software LLC, 2003-2009. All Rights Reserved.
+#
+###############################################################################
+
+PKG_DIR="$1"
+INS_DIR="$2"
+NAME="!!BLD_DOC_PREFIX!!"
+path="${INS_DIR}${NAME}"
+
+echo IN POST FLIGHT $path
+if [ -f "$path/index.html" ] ; then
+	open "$path/index.html"
+fi
+
+exit 0

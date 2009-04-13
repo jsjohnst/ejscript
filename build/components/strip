@@ -1,0 +1,8 @@
+#
+#   Strip
+#
+defineComponent() {
+    local file
+    eval file=\$BLD_${KIND}_STRIP
+    configureComponent --name strip --path "`probe --path "$1" --base $file`"
+}

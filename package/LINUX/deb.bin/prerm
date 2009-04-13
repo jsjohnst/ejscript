@@ -1,0 +1,77 @@
+#!/bin/bash
+#
+# 	prerm -- Pre removal script for !!BLD_NAME!!
+#
+#	Copyright (c) Embedthis Software LLC, 2003-2009. All Rights Reserved.
+#
+
+BLD_PRODUCT=!!BLD_PRODUCT!!
+BLD_NAME="!!BLD_NAME!!"
+BLD_PREFIX=!!BLD_PREFIX!!
+BLD_DOC_PREFIX=!!BLD_DOC_PREFIX!!
+BLD_SAM_PREFIX=!!BLD_SAM_PREFIX!!
+BLD_SRC_PREFIX=!!BLD_SRC_PREFIX!!
+
+###############################################################################
+
+saveConfig() {
+
+	mkdir -p $BLD_PREFIX/save
+
+	if [ -f /var/lib/dpkg/info/$BLD_PRODUCT.conffiles ]
+	then
+		cat  /var/lib/dpkg/info/$BLD_PRODUCT.conffiles | while read f
+		do
+			if [ -f $f ]
+			then
+				mv $f $BLD_PREFIX/save
+			fi
+		done
+	fi
+}
+
+
+#
+#	Modify service
+#	Usage:	configureService stop|remove
+#
+configureService() {
+	local action=$1
+
+	case $action in
+	stop)
+		;;
+
+	remove)
+		;;
+	esac
+}
+
+
+
+#
+#	Main
+#
+cd /
+action=$1
+
+case $action in
+	remove)					# when new
+		# or conflictor's prerm remove in-favor package new-version
+		oldVersion=$2
+		configureService stop
+		configureService remove
+		;;
+	upgrade)				# when old
+		# saveConfig
+		newVersion=$2
+		configureService stop
+		;;
+	failed-upgrade)			# when new
+		oldVersion=$2
+		;;
+	deconfigure)			# when old
+		# 	deconfigure in-favor package-being-installed version removing 
+		#	conflicting-package version
+	esac
+exit 0

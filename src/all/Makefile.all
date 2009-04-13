@@ -1,0 +1,96 @@
+#
+#	Makefile to build the all-in-one Ejscript distribution
+#
+#	Copyright (c) Embedthis Software LLC, 2003-2009. All Rights Reserved.
+#
+
+include 		.makedep
+
+TARGETS			+= ejs.h ejs.slots.h ec.h ejsLib.c ecLib.c ejs.c ejsc.c ejsmod.c ejssql.c ejsweb.c sqlite3.c sqlite3.h ejs.es
+
+EJS_HEADERS		+= $(patsubst %,../include/%.h, ejsTune ejsByteCode ejsGC ejsVm ejsCore ejsModule ejs ejsWeb)
+SLOT_HEADERS	+= $(shell find ../include -name 'ejs*slots.h')
+EC_HEADERS		+= $(patsubst %,../include/%.h, ecCompiler ecModuleWrite)
+EJS_SOURCES		+= $(shell find ../types ../vm -name '*.c') 
+EC_SOURCES		+= $(shell find ../compiler -name '*.c') 
+ES_SOURCES		+= $(shell find ../es/core ../es/db ../es/events ../es/io ../es/sys ../es/web ../es/xml -name '*.es' | \
+				   	egrep -v 'Archive|old|Socket.es|sample.es|XmlGlobal.es|ejsweb.es') 
+EJSMOD_HEADERS	+= ../include/ejsMod.h
+EJSMOD_SOURCES	+= $(shell find ../ejsmod -name '*.c')
+GATEWAYS		+= ejsApache.c ejsAppweb.c ejsCgi.c
+TARGETS			+= $(GATEWAYS)
+
+ifeq	($(BLD_FEATURE_EJS_DB),1)
+	DB_SOURCES		+= ../db/ejsDb.c
+	SQLITE_HEADERS	+= ../include/sqlite3.h ../include/mpr.h
+	SQLITE_SOURCES	+= ../db/sqlite/sqlite3.c ../db/sqlite/sqliteMem.c
+endif
+ifeq	($(BLD_FEATURE_EJS_WEB),1)
+	TARGETS		+= ejsweb.es
+	WEB_SOURCES	+= $(shell find ../web -name '*.c' | egrep -v '/gateways|/proto/')
+endif
+
+all-in-one:		$(TARGETS) dummy
+
+ejs.h: $(EJS_HEADERS)
+	cat $(EJS_HEADERS) | egrep -v '#include.*ejs|#include.*ec|#include.*sql' >ejs.h
+	echo '#include "ejs.slots.h"' >>ejs.h
+
+ejs.slots.h: $(SLOT_HEADERS)
+	cat $(SLOT_HEADERS) >ejs.slots.h
+
+ec.h: $(EC_HEADERS)
+	cat $(EC_HEADERS) | egrep -v '#include.*ejs|#include.*ec|#include.*sql' >ec.h
+
+ejsLib.c: $(EJS_SOURCES) $(DB_SOURCES) $(WEB_SOURCES)
+	echo '#include "ejs.h"' >ejsLib.c
+	all-in-one $(EJS_SOURCES) $(DB_SOURCES) $(WEB_SOURCES)| egrep -v '#inc.*ejs|#inc.*ec|#inc.*sqlConf' >>ejsLib.c
+
+ecLib.c: $(EJS_HEADERS) $(EC_HEADERS) $(EC_SOURCES)
+	echo '#include "ejs.h"' >ecLib.c
+	echo '#include "ec.h"' >>ecLib.c
+	all-in-one $(EC_SOURCES) | egrep -v '#inc.*ejs|#inc.*ec|#inc.*sql' >>ecLib.c
+
+ejsc.c: $(EJS_HEADERS) $(EC_HEADERS)
+	echo '#include "ejs.h"' >ejsc.c
+	echo '#include "ec.h"' >>ejsc.c
+	all-in-one ../cmd/ejsc.c | egrep -v '#inc.*ejs|#inc.*ec|#inc.*sql' >>ejsc.c
+
+ejs.c: $(EJS_HEADERS) $(EC_HEADERS)
+	echo '#include "ejs.h"' >ejs.c
+	echo '#include "ec.h"' >>ejs.c
+	all-in-one ../cmd/ejs.c $(EC_SOURCES) | egrep -v '#inc.*ejs|#inc.*ec|#inc.*sql' >>ejs.c
+
+ejsmod.c: $(EJS_HEADERS) $(EC_HEADERS)
+	echo '#include "ejs.h"' >ejsmod.c
+	all-in-one $(EJSMOD_HEADERS) $(EJSMOD_SOURCES) | egrep -v '#include.*ejs|#include.*ec|#include.*sql' >>ejsmod.c
+
+ejsweb.c: ../cmd/ejsweb.c
+	echo '#include "ejs.h"' >ejsweb.c
+	echo '#include "ec.h"' >>ejsweb.c
+	all-in-one ../cmd/ejsweb.c | egrep -v '#inc.*ejs|#inc.*ec|#inc.*sql' >>ejsweb.c
+
+ejssql.c: ../db/sqlite/ejssql.c
+	cat $(SQLITE_HEADERS) ../db/sqlite/ejssql.c | egrep -v '#include.*ejs|#include.*sqlite3' >ejssql.c
+
+sqlite3.c: $(SQLITE_SOURCES)
+	cat $(SQLITE_HEADERS) $(SQLITE_SOURCES) | egrep -v '#include.*ejs|#include.*sqlite3' >sqlite3.c
+
+sqlite3.h: $(BLD_INC_DIR)/sqlite3.h
+	cp $(BLD_INC_DIR)/sqlite3.h sqlite3.h
+
+ejs.es: $(ES_SOURCES)
+	all-in-one $(ES_SOURCES)  | egrep -v 'use strict' >ejs.es
+
+ejsweb.es: ../es/web/ejsweb.es
+	cp ../es/web/ejsweb.es .
+	cp -r $(BLD_LIB_DIR)/default-web .
+
+$(GATEWAYS): ../web/gateways/$@
+	cp ../web/gateways/$@ .
+	cp ../appweb/ejswebserver.conf .
+	cp ../appweb/mime.types .
+	chmod 644 ejswebserver.conf mime.types
+
+clobberExtra:
+	rm -f *.es *.c *.h

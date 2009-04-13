@@ -1,0 +1,882 @@
+#!/bin/bash
+#
+#   bld -- Build archives, shared libraries and executables (aka mini libtool)
+#
+#   Copyright (c) Embedthis LLC, 2003-2009. All Rights Reserved.
+#
+#   It is expected that bld is only invoked from the Embedthis build systems. It
+#   expects the Makefile and make.rules to have defined all the necessary compile 
+#   and link flag environment variables. It can't really be run on the command
+#   line as it will be missing BLD_LDFLAGS etc.
+#
+
+ARCHIVE=
+DRY_RUN=0
+ENTRY=
+EXECUTABLE=
+OBJECT_FILE_LIST=
+GRAPHICAL=
+LIBRARY=
+LIBRARY_PATHS=
+LIBS=
+MAKE_STATIC=
+MERGE_DIR=.merge
+OMITSTDLIBS=0
+RESOURCES=
+OBJECTS=
+RPATH_LIST=
+SHARED_LIBRARY=
+SONAME=0
+SYSLIBS=
+VERSION=1.0
+VERSION_SONAME=0
+VERBOSE=${VERBOSE:=0}
+
+###############################################################################
+
+parseArgs() {
+    local argc i
+
+    argc=$#
+
+    echo -en "\n# bld "
+	i=1
+    while [ $i -le $argc ] ; do
+		echo -en "\"${!i}\" "
+		i=$((i + 1))
+	done
+	echo
+
+    _INDEX=1
+    while [ $_INDEX -le $argc ] ; do
+
+        getSwitch "$@"
+
+        case "$_SWITCH" in 
+        --c++)
+            HAS_CPLUSPLUS=1
+            ;;
+        --dry-run)
+            DRY_RUN=0
+            ;;
+        --entry)
+            ENTRY="$_ARG"
+			useArg
+            ;;
+        --executable|--exe)
+            EXECUTABLE="$_ARG"
+			useArg
+            ;;
+        --graphical)
+            GRAPHICAL=1
+            ;;
+        --help)
+            usage
+            ;;
+        --library)
+            dir="${_ARG%${_ARG##*/}}"
+            # "${dir:=./}" != "/" && dir="${dir%?}"
+            : ${dir:=./}
+            basename=${_ARG##*/}
+            noExtension=${basename%\.*}
+            LIBRARY="${dir}${noExtension}"
+			useArg
+            ;;
+        --libs)
+            LIBS="$LIBS "${_ARG}""
+			useArg
+            ;;
+        --merge)
+            MERGE="$MERGE "${_ARG}""
+			useArg
+            ;;
+        --omitstdlibs)
+            OMITSTDLIBS=1
+            ;;
+        --objects)
+            echo "A DEPRECATED "
+            exit 255
+            OBJECTS="$OBJECTS "${_ARG}""
+			useArg
+            ;;
+        --objectsDir)
+            echo "B DEPRECATED "
+            exit 255
+            #
+            #   Objects may use this variable in their names
+            #
+            BLD_OBJ_DIR="${_ARG}"
+			useArg
+            ;;
+        --objectList)
+            OBJECT_FILE_LIST="$OBJECT_FILE_LIST "${_ARG}""
+			useArg
+            ;;
+        --quiet)
+            ;;
+        --resources)
+            RESOURCES="${_ARG}"
+			useArg
+            ;;
+        --rpath)
+            #   Change ' ' to $ temporarily
+            RPATH_LIST="$RPATH_LIST ${_ARG// /$}"
+			useArg
+            ;;
+        --search)
+            LIBRARY_PATHS="$LIBRARY_PATHS "${_ARG}""
+			useArg
+            ;;
+        --shared)
+            MAKE_STATIC=0
+            ;;
+        --soname)
+            SONAME=1
+            ;;
+        --static)
+            MAKE_STATIC=1
+            ;;
+        --syslibs)
+            SYSLIBS="$SYSLIBS "${_ARG}""
+			useArg
+            ;;
+        --version)
+            echo $VERSION
+            exit 0
+            ;;
+        --versionSoname)
+            SONAME=1
+            VERSION_SONAME=1
+            ;;
+        --verbose)
+            VERBOSE=1
+            ;;
+        *)  argc=0
+            ;;
+        esac
+    done
+}
+
+
+usage() {
+    cat <<!EOF
+bld: usage: bld [options] objects ....
+    Options:
+    --c++                   Program includes C++ components
+    --dry-run               Trace commands but do not execute
+    --entry name            Shared library entry point
+    --exe name              Name of executable to build
+    --graphical             Create a windowed program instead of a console.
+    --help                  Print usage information
+    --library name          Name of library to link
+    --libs libraries        Extra libraries to link with.
+    --merge libraries       Libraries to statically link with. 
+    --omitstdlibs           Don't use standard libraries
+    --objects "objects..."  String containing objects to link
+    --quiet                 Run quietly without tracing actions to stdout
+    --resources file        Resource file (menus and icons for Windows)
+    --rpath path            Specify the executable run-time library search path
+    --search "paths"        Paths to search for the libraries
+    --shared                Make a shared library
+    --soname                Create a shared library with soname.
+    --static                Make a static library
+    --syslibs libraries     Extra system libraries to link with
+    --version               Print the bld version
+    --versionSoname         Create a versioned shared library using BLD_VERSION.
+    --verbose               Verbose operation. Traces internal information.
+
+    Environment variables used:
+      BLD_TOP               Top of the source tree
+      BLD_FEATURE_STATIC    Build static libraries where relevant.
+
+    Configuration files used:
+        buildConfig.sh
+!EOF
+    exit 255
+}
+
+
+#
+#   Search for library in the specified search locations.
+#
+searchLib()
+{
+    local syslib path libName extraSysLib prefix name suffix suffixes file
+
+    name="$1"
+
+    [ "$VERBOSE" -gt 0 ] && echo -e "\nbld: searchLib for library $name" >&2
+
+    suffixes="${SUFFIXES}"
+    if [ "${name%.*}" != "${name}" ] ; then
+        suffixes=".${name#*.}"
+        name="${name%.*}"
+    fi
+
+    if [ "$BLD_CPU" = "x86_64" -a -x /usr/lib64 ] ; then
+        syslib=/usr/lib64
+    else
+        syslib=/usr/lib
+    fi
+	extraSysLib=/usr/local/lib
+
+    for path in ${LIBRARY_PATHS} "${BLD_LIB_DIR}" "${BLD_LIB_PREFIX}" "${BLD_MOD_PREFIX}" "$syslib" "$extraSysLib"
+    do
+        for suffix in `echo $suffixes`
+        do
+            for prefix in lib ""
+            do
+                [ "$path" = "" ] && continue
+
+				for file in "${path}/${prefix}${name}${suffix}"* "${path}/${prefix}${name}"*${suffix}* ; do
+					[ "$VERBOSE" -gt 0 ] && echo "bld: TESTING ${file}" >&2
+
+					[ -d "${file}" ] && continue
+
+					if [ -f "${file}" -o -L "${file}" ] ; then
+						[ "$VERBOSE" -gt 0 ] && echo -e "bld: FOUND ${file}\n" >&2
+
+						if [ "$OS" = "WIN" ] ; then
+							echo "${file}"
+						else 
+							if [ "${name%${BLD_ARCH}}" != "${name}" ] ; then
+								echo "${file}"
+							else
+								canonPath "${file}"
+							fi
+						fi
+						return
+					fi
+				done
+            done
+        done
+    done
+    echo ""
+}
+
+
+#
+#   Find a library. Look in the library paths with a "lib" prefix first.
+#
+findLib()
+{
+    local path libName static suffixes base
+
+    libName="$1"
+
+    [ "$VERBOSE" -gt 0 ] && echo -e "\nbld: findLib: search for $libName using suffixes \"$SUFFIXES\"" >&2
+    newName=`searchLib ${libName}`
+
+	if [ "$BLD_OS" = WIN ] ; then
+        if [ "$newName" != "" ] ; then
+            echo "$newName"
+            return
+        fi
+		echo -e "\nWarning: bld could not find library \"$libName\". Build may not complete." >&2
+	fi
+
+    if [ "$newName" != "" ] ; then
+		base="${newName##*/}"
+		if [ "$newName" != "${newName%$BLD_ARCH}" -o "$base" = "${base#lib}" ] ; then
+			#
+			#   If static library, use actual path. Fix for MAC OS X which insists on dynamic lib priority
+			#	or if a module not starting with "lib"
+			#
+			echo "$newName"
+			return
+		fi
+    fi
+
+    libName="${libName%$BLD_ARCH}"
+    libName="${libName%$BLD_SHLIB}"
+    if [ "${BLD_SHLIB}" != "" -a "$BLD_UNIX_LIKE" = 1 ] ; then
+        echo "-l${libName}"
+    else
+        echo "${libName}.lib"
+    fi
+}
+
+
+#
+#   Convert a path to a canonical form: absolute (Windows: with drive spec)
+#
+canonPath() {
+
+    local file="$1"
+
+    #
+    #   Windows path conversion utility
+    #
+    type -p cygpath >/dev/null 2>&1
+    if [ $? = 0 ] ; then
+        HAS_CYGPATH=1
+    else
+        HAS_CYGPATH=0
+    fi
+
+    if [ $HAS_CYGPATH = 1 ] ; then
+        #
+        #   These conversions will ensure we get a drive spec and that we have
+        #    forward slashes instead of back slashes
+        #
+        d=`cygpath -am "${file}"`
+        d=`cygpath -u "${d}"`
+        cygpath -am "${d}"
+        return
+    fi
+
+    type -p getpath >/dev/null 2>&1
+    if [ $? = 0 ] ; then
+        getpath -a $file
+        return
+    fi
+
+    local home=`pwd`
+    local dir=`dirname $file`
+    local base=`basename $file`
+    cd "$dir" >/dev/null
+    echo $PWD/$base
+    cd - 2>&1 >/dev/null
+}
+
+
+basename() {
+    local name="${1##*/}"
+    echo "${name%$2}"
+}
+
+
+#
+#   Find the top level directory
+#
+findTop() {
+    local top level
+
+    top=$BLD_TOP
+    if [ "$top" = "" ] ; then
+        top=.
+        level=0
+        while [ $level -lt 30 ] ; do
+            if [ -d $top/build -a -d $top/build/bin -a -d $top/bin ] ; then
+                break
+            fi
+            top=$top/..
+            level=$((level + 1))
+        done
+        top=${top#./}
+
+        if [ $level -ge 30 ] ; then
+            echo "Can't find top level directory with build and bin directories" >&2
+            exit 255
+        fi
+    fi
+    echo $top
+}
+
+
+run() {
+    local i argc
+
+    i=1
+    argc=$#
+    while [ $i -le $argc ] ; do
+        echo -en "\"${!i}\" "
+        i=$((i + 1))
+    done
+    echo
+
+    if [ "$DRY_RUN" != 1 ] ; then
+        #
+        #   This expands all args with quotes around each arg
+        #
+        "$@"
+    fi
+}
+
+
+#
+#   Get next command line argument. Uses globals _INDEX, _SWITCH, _ARG.
+#
+getSwitch()
+{
+    local i sw arg
+
+    : =${_INDEX:=1}
+
+    _ARG=
+    _EQUALS_ARG=
+    _SWITCH=
+
+    if [ "${!_INDEX##--}" = "${!_INDEX}" ] ; then
+		#
+		#	Not a switch
+		#
+		return
+	fi
+
+	#
+	#	Extract the value when the format is: --switch=value
+	#
+    _SWITCH=${!_INDEX%%=*}
+    _EQUALS_ARG=${!_INDEX##*=}
+    _INDEX=$((_INDEX + 1))
+    if [ "$_EQUALS_ARG" != "$_SWITCH" ] ; then
+		_ARG="$EQUALS_ARG"
+	else
+		_EQUALS_ARG=
+		_ARG=${!_INDEX}
+	fi
+}
+
+
+useArg() {
+	_INDEX=$((_INDEX + 1))
+}
+
+###############################################################################
+#
+#   Main
+#
+
+BLD_TOP=`findTop`
+. ${BLD_TOP}/buildConfig.sh
+
+parseArgs "$@"
+argc=$#
+shift $((_INDEX - 1))
+
+OS=${BLD_OS}
+
+if [ "$MAKE_STATIC" = "" ] ; then
+    MAKE_STATIC=$BLD_FEATURE_STATIC
+fi
+
+#
+#   Prioritize library suffix search order
+#
+SUFFIXES=
+if [ $MAKE_STATIC = 0 ] ; then
+    SUFFIXES="$SUFFIXES ${BLD_SHLIB} ${BLD_ARCH}"
+else
+    SUFFIXES="$SUFFIXES ${BLD_ARCH} ${BLD_SHLIB}"
+fi
+
+if [ "${OBJECT_FILE_LIST}" ] ; then
+    for f in ${OBJECT_FILE_LIST}
+    do
+        OBJECTS="$OBJECTS `cat ${f}`"
+    done
+fi
+
+#
+#   Add remaining args as objects. And fixup objects to add object extension and object directory
+#
+OBJECTS="${OBJECTS} $*"
+objs=$OBJECTS
+OBJECTS=
+for o in $objs
+do
+    o=`eval echo ${o}`
+    if [ "${o%${BLD_OBJ}}" = "${o}" ] ; then
+        o="${o}${BLD_OBJ}"
+    fi
+    if [ "${o##*/}" = "${o}" ] ; then
+        o="${BLD_OBJ_DIR}/${o}"
+    fi
+    OBJECTS="${OBJECTS} $o"
+done
+
+if [ "${MERGE}" ] ; then
+    rm -f $MERGE_DIR/* 
+    for f in ${MERGE}
+    do
+        mergeName=`searchLib ${f}`
+        if [ "$mergeName" = "" ] ; then
+            echo -e "\nWarning: bld could not find merge library $f. Build may not complete." >&2
+        fi
+        mkdir -p $MERGE_DIR ; cd $MERGE_DIR
+        ar x ${mergeName} ; rm -f *SYMDEF* ; cd ..
+        OBJECTS="$OBJECTS `ls -1d $MERGE_DIR/*`"
+    done
+fi
+
+#
+#   Expand make variables in the objects
+#
+OBJECTS=`eval echo ${OBJECTS}`
+
+#
+#   Make paths unique
+#
+LIBRARY_PATHS=`echo ${LIBRARY_PATHS} | tr ' ' '\n' | uniq | tr '\n' ' '`
+LIBS=`echo ${LIBS} | tr ' ' '\n' | uniq | tr '\n' ' '`
+
+#
+#   Prepare for action
+#
+if [ "$OS" = "WIN" -o "$OS" = "BREW" -o "$OS" = "BREWSIM" ] ; then
+    paths=
+    for p in ${LIBRARY_PATHS} ; do
+        if [ "${p}" != "" ] ; then
+            paths="${paths} -libpath:${p}"
+        fi
+    done
+    LINK_LIBRARY_PATHS=${paths}
+
+    LIB_LIST=
+    
+    for l in ${LIBS} ; do
+        if [ "${l}" != "" ] ; then
+            libName=`findLib "$l"` 
+            LIB_LIST="${LIB_LIST} ${libName}"
+        fi
+    done
+
+    #
+    #   System libraries are treated the same, but we don't try to find them.
+    #
+    for l in ${SYSLIBS} ; do
+        if [ "${l}" != "" ] ; then
+            LIB_LIST="${LIB_LIST} ${l}"
+        fi
+    done
+
+    if [ "$LIBRARY" != "" ] ; then
+        if [ $MAKE_STATIC = 0 -a "$ENTRY" = "" ] ; then
+            ENTRY="_DllMainCRTStartup@12"
+        fi
+    fi
+
+    if [ "$EXECUTABLE" ] ; then
+        if [ "$GRAPHICAL" ] ; then
+            ENTRY=WinMainCRTStartup
+            SUBSYSTEM="WINDOWS"
+        else 
+            ENTRY=mainCRTStartup
+            SUBSYSTEM="CONSOLE"
+        fi
+    fi
+
+else
+    #
+    #   Unix / Linux / MacOS / FreeBSD
+    #
+    paths=
+    for p in ${LIBRARY_PATHS} ; do
+        if [ "${p}" != "" ] ; then
+            paths="${paths} -L${p}"
+        fi
+    done
+    LINK_LIBRARY_PATHS=${paths}
+
+    #
+    #   On VxWorks, we ignore libraries except if build an executable.
+    #   We must also use an absolute path to the library
+    #
+    LIB_LIST=
+    if [ "$OS" != "VXWORKS" -o "$EXECUTABLE" ] ; then
+        for l in ${LIBS}
+        do
+            if [ "${l}" != "" ] ; then
+                libName=`findLib $l` 
+                LIB_LIST="${LIB_LIST} $libName"
+            fi
+        done
+    fi
+
+    if [ "$BLD_TYPE" = "RELEASE" ] ; then
+        RPATH_LIST="${BLD_LIB_PREFIX} ${BLD_MOD_PREFIX} $RPATH_LIST"
+#        if [ $OS = "MACOSX" ] ; then
+#            RPATH_LIST="${RPATH_LIST} @loader_path/../lib"
+#        elif [ $OS = "LINUX" ] ; then
+#            RPATH_LIST="${RPATH_LIST} ${BLD_LIB_DIR}"
+#        fi
+    else
+        RPATH_LIST="`canonPath \"${BLD_LIB_DIR}\"` `canonPath \"${BLD_MOD_DIR}\"` ${BLD_LIB_PREFIX} ${BLD_MOD_PREFIX} $RPATH_LIST"
+    fi
+    if [ "$RPATH_LIST" != "" ] ; then
+        for path in $RPATH_LIST
+        do
+            if [ "$OS" = "SOLARIS" ] ; then
+                RPATH="$RPATH -R$path"
+            elif [ "$OS" = "LINUX" ] ; then
+                RPATH="$RPATH -Wl,--enable-new-dtags -Wl,-rpath=$path"
+            else
+                RPATH="$RPATH -Wl,-rpath,$path"
+            fi
+            RPATH="${RPATH//$/\\ /}"
+        done
+    fi
+fi
+
+
+if [ "$OMITSTDLIBS" = "0" -o "$BLD_UNIX_LIKE" != 1 ] ; then
+    STND_LIBS="$_LIBS ${MAKE_LIBS}"
+fi
+
+
+if [ "$HAS_CPLUSPLUS" = "1" ] ; then
+    if [ "${BLD_OS}" = WIN ] ; then
+        LINKER=${BLD_LDXX}
+    else
+        LINKER=${BLD_CXX}
+    fi
+else
+    if [ "${BLD_OS}" = WIN ] ; then
+        LINKER=${BLD_LD}
+    else
+        LINKER=${BLD_CC}
+    fi
+fi
+
+if [ "${BLD_OS}" = WIN ] ; then
+	DSO=-dll
+elif [ "${BLD_OS}" = MACOSX ] ; then
+	DSO=-dynamiclib
+elif [ "${BLD_OS}" != VXWORKS ] ; then
+	DSO=-shared
+fi
+
+#
+#   Now we do the actual work
+#
+if [ "$OS" = "WIN" -o "$OS" = "BREW" -o "$OS" = "BREWSIM" ] ; then
+    if [ "$LIBRARY" != "" ] ; then
+
+        if [ $MAKE_STATIC = 1 ] ; then
+            ARCHIVE=${LIBRARY}${BLD_ARCH}
+            run "${BLD_AR}" -nologo "-out:${ARCHIVE}" ${OBJECTS}
+        else
+            DEF=${LIBRARY}.def
+            SHARED_LIBRARY=${LIBRARY}.dll
+            run dumpext -o ${DEF} `basename ${SHARED_LIBRARY}` ${OBJECTS}
+            echo
+
+            if [ "$OS" = "WIN" ] ; then
+                ENTRY_SW="-entry:${ENTRY}"
+                DEF_SW="-def:${DEF}"
+            else
+                ENTRY_SW=""
+                DEF_SW=""
+            fi
+            #
+            #   Test if using VS 2005 linker with manifests
+            #
+            run "${LINKER}" ${DSO} "-out:${SHARED_LIBRARY}" ${ENTRY_SW} ${DEF_SW} ${MAKE_LDFLAGS} ${BLD_LDFLAGS} \
+                ${LINK_SWITCHES} ${_LDFLAGS} ${LINK_LIBRARY_PATHS} "-libpath:${_LDPATH}" \
+                ${OBJECTS} ${LIB_LIST} ${STND_LIBS} >/tmp/link$$.tmp
+            status=$?
+            if [ $status = 0 ] ; then
+                cat /tmp/link$$.tmp | grep -v "Creating library"
+                rm -f /tmp/link$$.tmp 
+            else
+                cat /tmp/link$$.tmp 
+                rm -f /tmp/link$$.tmp 
+                exit 255
+            fi
+
+            if [ "${BLD_MT}" != "" -a -f ${SHARED_LIBRARY}.manifest ] ; then
+                run "${BLD_MT}" /nologo /manifest ${SHARED_LIBRARY}.manifest "/outputresource:${SHARED_LIBRARY};#2"
+				if [ $? != 0 ] ; then
+					echo "bld: mt failed"
+					exit 255
+				fi
+                rm -f ${SHARED_LIBRARY}.manifest
+            fi
+        fi
+    fi
+
+    if [ "$EXECUTABLE" ] ; then
+        if [ "$RESOURCES" ] ; then
+            RES_OBJ=`echo $RESOURCES | sed s/\.rc//`.res
+			#TODO - should use BLD_RC
+            run rc -fo $RES_OBJ $RESOURCES
+        else 
+            RES_OBJ=.dummy.res
+			echo >.dummy.rc
+			#TODO - should use BLD_RC
+            rc /r .dummy.rc >/dev/null
+        fi
+
+        rm -f ${EXECUTABLE%${BLD_EXE}}.pdb
+
+        run "${LINKER}" "-out:${EXECUTABLE}" -entry:${ENTRY} -subsystem:${SUBSYSTEM} ${RES_OBJ} \
+			${MAKE_LDFLAGS} ${BLD_LDFLAGS} ${_LDFLAGS} ${LINK_LIBRARY_PATHS} "-libpath:${_LDPATH}" ${OBJECTS} \
+            ${LIB_LIST} ${STND_LIBS}
+		if [ $? != 0 ] ; then
+			echo "bld: link failed"
+			exit 255
+		fi
+
+        #
+        #   Test if using VS linker with manifests
+        #
+        if [ "${BLD_MT}" != "" -a -f ${EXECUTABLE}.manifest ] ; then
+            run "${BLD_MT}" /nologo /manifest ${EXECUTABLE}.manifest "/outputresource:${EXECUTABLE};#1"
+			if [ $? != 0 ] ; then
+				echo "bld: mt failed"
+				exit 255
+			fi
+            rm -f ${EXECUTABLE}.manifest
+        fi
+		rm -f .dummy.res .dummy.rc
+    fi
+
+else
+    #
+    #   Unix (Linux, Solaris, VxWorks, MacOSX)
+    #
+    if [ "$LIBRARY" ] ; then
+        if [ $MAKE_STATIC = 1 ] ; then
+            ARCHIVE=${LIBRARY}${BLD_ARCH}
+            rm -f ${ARCHIVE}
+            run "${BLD_AR}" cr ${ARCHIVE} ${OBJECTS} 2>.err.out
+            status=$?
+            if [ $status != 0 ] ; then
+                cat .err.out
+            fi
+            rm -f .err.out
+            if [ "${BLD_RANLIB}" != "" -a $OS != "VXWORKS" ] ; then
+                run "${BLD_RANLIB}" ${ARCHIVE}
+            fi
+        fi
+
+        if [ $MAKE_STATIC = 0 ] ; then
+            if [ $OS != "VXWORKS" -a $OS != "CYGWIN" ] ; then
+                LOBJS=`echo ${OBJECTS} | sed "s/\.o/${BLD_PIOBJ}/g"`
+            else
+                LOBJS=${OBJECTS}
+            fi
+
+            if [ $SONAME = 1 ] ; then
+                if [ $OS = "LINUX" -o $OS = "SOLARIS" ] ; then
+                    if [ $VERSION_SONAME = 1 ] ; then
+                        SHARED_LIBRARY=${LIBRARY}${BLD_SHOBJ}.${BLD_VERSION}
+                        SONAME_LIBRARY=${LIBRARY}${BLD_SHOBJ}.${BLD_VERSION%????}
+                    else
+                        SHARED_LIBRARY=${LIBRARY}${BLD_SHOBJ}
+                        SONAME_LIBRARY=${LIBRARY}${BLD_SHOBJ}
+                    fi
+                    if [ "$OS" = "SOLARIS" ] ; then
+                        SONAME_SWITCH="-h=`basename $SONAME_LIBRARY`"
+                    else
+                        SONAME_SWITCH="-Wl,-soname=`basename $SONAME_LIBRARY`"
+                    fi
+
+                elif [ $OS = "MACOSX" ] ; then
+                    SHARED_LIBRARY=${LIBRARY}${BLD_SHOBJ}
+                    if [ "$VERSION_SONAME" = 1 ] ; then
+                        SHARED_LIBRARY=${LIBRARY}.${BLD_VERSION}.dylib
+                        SONAME_LIBRARY=${LIBRARY}.${BLD_VERSION%????}.dylib
+                    else
+                        SHARED_LIBRARY=${LIBRARY}.dylib
+                        SONAME_LIBRARY=${LIBRARY}.dylib
+                    fi
+                    SONAME_SWITCH=""
+
+                else 
+                    SHARED_LIBRARY=${LIBRARY}${BLD_SHOBJ}
+                    SONAME_LIBRARY=${LIBRARY}${BLD_SHOBJ}
+                fi
+
+            else
+                SHARED_LIBRARY=${LIBRARY}${BLD_SHOBJ}
+                SONAME_SWITCH=""
+            fi
+
+            #
+            #   MAC OS X now uses -install_name to set a rpath relative name.
+            #
+            if [ "$OS" = MACOSX ] ; then
+                INSTALL_NAME="-install_name @rpath/`basename $SHARED_LIBRARY`"
+            fi
+            run "${LINKER}" -o ${SHARED_LIBRARY} ${SONAME_SWITCH} ${INSTALL_NAME} ${DSO} ${LOBJS} ${MAKE_LDFLAGS} \
+                ${MAKE_CFLAGS} ${_CFLAGS} ${BLD_CFLAGS} ${_LDFLAGS} ${LINK_LIBRARY_PATHS} -L${_LDPATH} ${RPATH} ${LIB_LIST} \
+                ${STND_LIBS}
+			if [ $? != 0 ] ; then
+				echo "bld: link failed"
+				exit 255
+			fi
+
+            if [ $OS != VXWORKS -a $OS != CYGWIN -a $SONAME = 1 -a $VERSION_SONAME = 1 ] ; then
+                rm -f ${SONAME_LIBRARY}
+                LINK_LIBRARY=${LIBRARY}${BLD_SHOBJ}
+                rm -f ${LINK_LIBRARY}
+                ln -s `basename ${SHARED_LIBRARY}` ${SONAME_LIBRARY} 2>/dev/null
+                if [ $? != 0 ] ; then
+                    cp ${SHARED_LIBRARY} ${SONAME_LIBRARY}
+                fi
+                ln -s `basename ${SONAME_LIBRARY}` ${LINK_LIBRARY} 2>/dev/null
+                if [ $? != 0 ] ; then
+                    cp ${SONAME_LIBRARY} ${LINK_LIBRARY}
+                fi
+            fi
+        fi
+    fi
+
+    if [ "$EXECUTABLE" ] ; then
+		run ${LINKER} -o ${EXECUTABLE} ${OBJECTS} ${LINK_LIBRARY_PATHS} -L${_LDPATH} ${RPATH} ${LIB_LIST} ${MAKE_LDFLAGS} \
+            ${_LDFLAGS} ${BLD_LDFLAGS} ${STND_LIBS}
+        if [ $? != 0 ] ; then
+            echo "bld: link failed"
+            exit 255
+        fi
+    fi
+
+    #
+    #   Need to "munch" the C++ programs and libraries to ensure constructors and desructors are called
+    #
+    if [ $OS = VXWORKS -a "${HAS_CPLUSPLUS}" = 0 ] ; then
+
+        if [ "$EXECUTABLE" ] ; then
+            ORIG=${EXECUTABLE}
+        fi
+        if [ "$SHARED_LIBRARY" ] ; then
+            ORIG=${SHARED_LIBRARY}
+        fi
+        if [ "$ORIG" ] ; then
+            if [ "${BLD_DIST_VER}" = "5.4" ] ; then
+                #
+                #   VxWorks 5.4 uses wtxtcl instead of tclsh 
+                #
+                BLD_TCLSH=${BLD_TCLSH/tclsh/wtxtcl}
+            fi
+            type -p cygpath >/dev/null 2>&1
+            if [ $? = 0 ] ; then
+                #
+                #   Must be a dos path
+                #
+                BLD_MUNCH=`cygpath -m ${BLD_MUNCH}`
+            fi
+
+            echo ${BLD_NM} ${ORIG} \| ${BLD_TCLSH} ${BLD_MUNCH} -asm ${BLD_BUILD_CPU_VX} \> ctdt.c
+            ${BLD_NM} ${ORIG} | ${BLD_TCLSH} ${BLD_MUNCH} -asm ${BLD_BUILD_CPU_VX} > ctdt.c
+
+            run ${LINKER} -c ${MAKE_CFLAGS} ${_CFLAGS} ${BLD_CFLAGS} ${MAKE_IFLAGS} ${BLD_IFLAGS} ${_IFLAGS} ctdt.c -o ctdt.o
+            if [ $? != 0 ] ; then
+                echo "bld: link failed"
+                exit 255
+            fi
+            run mv ${ORIG} ${ORIG}.orig
+
+            #   if [ "$BLD_BUILD_CPU_VX" = "simpc" ] ; then
+			#       FLAGS="--subsystem=windows -r -Wl,-X -Wl,--force-stabs-reloc"
+			#   fi
+			#
+			#   Removed: ${DSO} 
+            run "${LINKER}" -o ${ORIG} ${SONAME_SWITCH} ${MAKE_LDFLAGS} ${BLD_LDFLAGS} ${_LDFLAGS} ${LINK_LIBRARY_PATHS} \
+                -L${_LDPATH} ${RPATH} ctdt.o ${ORIG}.orig
+            if [ $? != 0 ] ; then
+                echo "bld: link failed"
+                exit 255
+            fi
+            rm -f ${ORIG}.orig ctdt.* 
+        fi
+    fi
+fi
+
+if [ "${MERGE}" ] ; then
+    rm -fr $MERGE_DIR
+fi
+
+exit 0

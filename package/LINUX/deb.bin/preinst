@@ -1,0 +1,55 @@
+#!/bin/bash
+#
+# 	preinst -- Pre installation script
+#
+#	Copyright (c) Embedthis Software LLC, 2003-2009. All Rights Reserved.
+#
+
+BLD_PRODUCT=!!BLD_PRODUCT!!
+BLD_NAME="!!BLD_NAME!!"
+BLD_PREFIX=!!BLD_PREFIX!!
+BLD_DOC_PREFIX=!!BLD_DOC_PREFIX!!
+BLD_SAM_PREFIX=!!BLD_SAM_PREFIX!!
+BLD_SRC_PREFIX=!!BLD_SRC_PREFIX!!
+
+###############################################################################
+
+saveConfig() {
+
+	mkdir -p $BLD_PREFIX/save
+
+	if [ -f /var/lib/dpkg/info/!!BLD_PRODUCT!!.conffiles ]
+	then
+		cat  /var/lib/dpkg/info/!!BLD_PRODUCT!!.conffiles | while read f
+		do
+			if [ -f $f ]
+			then
+				cp $f $BLD_PREFIX/save
+			fi
+		done
+	fi
+}
+
+
+#
+#	Main
+#
+cd /
+action=$1
+
+case $action in
+upgrade)					# when new
+	oldVersion=$2
+	;;
+configure)
+	;;
+install)					# when new
+	oldVersion=$2
+	;;
+abort-upgrade)				# when old
+	;;
+abort-remove)
+	;;
+esac
+
+exit 0

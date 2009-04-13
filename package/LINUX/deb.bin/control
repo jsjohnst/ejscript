@@ -1,0 +1,14 @@
+Package: !!BLD_PRODUCT!!
+Version: !!BLD_VERSION!!
+Section: devel
+Priority: optional
+Architecture: !!BLD_HOST_CPU_MAPPED!!
+Depends: libc6
+Installed-Size: 10
+Maintainer: Embedthis Development <dev@embedthis.com>
+Description: !!BLD_NAME!! ECMAScript (Javascript) language
+ Ejscript is a modular, high performance implementation of ECMAScript suitable for use outside of browsers.
+ .
+ more information about !!BLD_NAME!! can be found at:
+ <URL:http://www.ejscript.org>
+ <URL:http://www.embedthis.com>

@@ -1,0 +1,233 @@
+#
+#	configure.ejs -- Build configuration script for Embedthis Ejscript
+#
+#	Copyright (c) Embedthis Software LLC, 2003-2009. All Rights Reserved.
+#	This script is included by configure and is never run stand-alone.
+#
+
+#
+#	Fix feature dependencies
+#
+fixDependencies()
+{
+    BLD_FEATURE_MPR=1
+
+    if [ "$CFG_WITHOUT_SSL" = 1 ] ; then
+        without matrixssl
+        without openssl
+    fi
+    if [ "$CFG_WITHOUT_SQLITE" = 1 ] ; then
+        BLD_FEATURE_FEATURE_DB=0
+    fi
+	if [ "$BLD_FEATURE_NUM_TYPE" = "double" ] ; then
+		BLD_FEATURE_FLOATING_POINT=1
+	fi
+    if [ "$BLD_FEATURE_EJS_E4X" = 1 ] ; then
+        BLD_FEATURE_XML=1
+    else
+        BLD_FEATURE_XML=0
+    fi
+    if [ "$BLD_FEATURE_EJS_WEB" = 1 ] ; then
+		BLD_FEATURE_HTTP=1
+		BLD_FEATURE_CMD=1
+    fi
+}
+
+
+createFeatureConfig()
+{
+	NAME=$1
+
+	cat >>$NAME <<!EOF_FEATURE_CONFIG1
+#
+#	Feature Selection
+#
+BLD_FEATURE_ASSERT=$BLD_FEATURE_ASSERT
+BLD_FEATURE_CMD=$BLD_FEATURE_CMD
+BLD_FEATURE_DOC=$BLD_FEATURE_DOC
+BLD_FEATURE_EJS_DOC=$BLD_FEATURE_EJS_DOC
+BLD_FEATURE_EJS_E4X=$BLD_FEATURE_EJS_E4X
+BLD_FEATURE_EJS_LANG=$BLD_FEATURE_EJS_LANG
+BLD_FEATURE_EJS_DB=$BLD_FEATURE_EJS_DB
+BLD_FEATURE_EJS_WEB=$BLD_FEATURE_EJS_WEB
+BLD_FEATURE_FLOATING_POINT=$BLD_FEATURE_FLOATING_POINT
+BLD_FEATURE_HTTP=$BLD_FEATURE_HTTP
+BLD_FEATURE_HTTP_CLIENT=$BLD_FEATURE_HTTP_CLIENT
+BLD_FEATURE_JAVA_VM=$BLD_FEATURE_JAVA_VM
+BLD_FEATURE_LEGACY_API=$BLD_FEATURE_LEGACY_API
+BLD_FEATURE_MMU=$BLD_FEATURE_MMU
+BLD_FEATURE_MULTITHREAD=$BLD_FEATURE_MULTITHREAD
+BLD_FEATURE_NUM_TYPE=$BLD_FEATURE_NUM_TYPE
+BLD_FEATURE_SAMPLES=$BLD_FEATURE_SAMPLES
+BLD_FEATURE_STATIC=$BLD_FEATURE_STATIC
+BLD_FEATURE_TEST=$BLD_FEATURE_TEST
+BLD_FEATURE_XML=$BLD_FEATURE_XML
+
+#
+#   Appweb features
+#
+BLD_FEATURE_CONFIG_PARSE=$BLD_FEATURE_CONFIG_PARSE
+
+#
+#	Required features
+#
+BLD_FEATURE_SERVICES=1
+!EOF_FEATURE_CONFIG1
+}
+
+
+help()
+{
+	cat <<!EOF_HELP
+
+Additional Ejscript Features:
+  --enable-cmd             Include ability to run commands
+  --enable-compiler        Include the compiler (default).
+  --enable-db              Include the EJS DB extensions.
+  --enable-e4x             Include the EJS E4X extensions.
+  --enable-http-client     Build with http client support.
+  --enable-java-vm         Include the Java Ejscript Virutal Machine 
+                           (Not currently supported).
+  --enable-web             Build with the Ejscript web framework.
+  --lang=LEVEL             Set the language specification level where LEVEL is 
+                           "ecma" for strict ECMA-262, "plus" for ECMA-262
+                           plus compatible enhancements or "fixed" for 
+                           ECMA-262 plus enhancements and breaking fixes.
+  --number=TYPE            Set the EJS numeric type where TYPE is int, long, int64 
+                           and double
+
+  
+Optional Components: apache, appweb, matrixssl, mysql, openssl, regexp, sqlite
+
+  --with-NAME=[DIR]        Add support for the NAME. The build/components/NAME
+                           file will describe compile and linker switches. DIR 
+                           is the base directory to find the module.
+  --without-NAME           Do not include support for NAME.
+
+Examples:
+  ./configure --with-openssl=/usr/src/openssl
+
+!EOF_HELP
+}
+
+
+parseArg()
+{
+    local ARG
+
+	ARG="${1#*=}"
+	[ "$ARG" = "$1" ] && ARG=
+
+    case "${1#--}" in
+	disable-all)
+        BLD_DISABLE_ALL=1
+        BLD_FEATURE_ASSERT=0
+        BLD_FEATURE_CMD=0
+        BLD_FEATURE_EJS_COMPIELR=1
+        BLD_FEATURE_EJS_DB=0
+        BLD_FEATURE_EJS_DOC=0
+        BLD_FEATURE_EJS_E4X=0
+        BLD_FEATURE_EJS_LANG=EJS_SPEC_ECMA
+        BLD_FEATURE_EJS_WEB=0
+        BLD_FEATURE_FLOATING_POINT=0
+        BLD_FEATURE_DOC=0
+        BLD_FEATURE_HTTP=0
+        BLD_FEATURE_HTTP_CLIENT=0
+        BLD_FEATURE_JAVA_VM=0
+        BLD_FEATURE_LEGACY_API=0
+        BLD_FEATURE_MULTITHREAD=0
+        BLD_FEATURE_NUM_TYPE=int
+        BLD_FEATURE_SAMPLES=0
+        BLD_FEATURE_TEST=0
+        BLD_FEATURE_XML=0
+        ;;
+	disable-compiler)
+		BLD_FEATURE_EJS_COMPILER=0
+		;;
+	disable-db)
+		BLD_FEATURE_EJS_DB=0
+		;;
+	disable-e4x)
+		BLD_FEATURE_EJS_E4X=0
+		BLD_FEATURE_XML=0
+		;;
+	disable-web)
+		BLD_FEATURE_EJS_WEB=0
+		;;
+	disable-http-client)
+		BLD_FEATURE_HTTP=0
+		BLD_FEATURE_HTTP_CLIENT=0
+		;;
+	disable-java-vm)
+		BLD_FEATURE_JAVA_VM=0
+		;;
+	enable-all)
+        BLD_FEATURE_ASSERT=1
+        BLD_FEATURE_CMD=1
+        BLD_FEATURE_EJS_COMPILER=1
+        BLD_FEATURE_EJS_DOC=1
+        BLD_FEATURE_EJS_E4X=1
+        BLD_FEATURE_EJS_LANG=EJS_SPEC_FIXED
+        BLD_FEATURE_EJS_DB=1
+        BLD_FEATURE_EJS_WEB=1
+        BLD_FEATURE_FLOATING_POINT=1
+        BLD_FEATURE_DOC=1
+        BLD_FEATURE_HTTP=1
+        BLD_FEATURE_HTTP_CLIENT=1
+        BLD_FEATURE_JAVA_VM=0
+        BLD_FEATURE_LEGACY_API=1
+        BLD_FEATURE_MULTITHREAD=0
+        BLD_FEATURE_NUM_TYPE=double
+        BLD_FEATURE_SAMPLES=1
+        BLD_FEATURE_TEST=1
+        BLD_FEATURE_XML=1
+        ;;
+	enable-cmd)
+		BLD_FEATURE_CMD=1
+		;;
+	enable-compiler)
+		BLD_FEATURE_COMPILER=1
+		;;
+	enable-db)
+		BLD_FEATURE_EJS_DB=1
+		;;
+	enable-e4x)
+		BLD_FEATURE_EJS_E4X=1
+		BLD_FEATURE_XML=1
+		;;
+	enable-web)
+		BLD_FEATURE_EJS_WEB=1
+		BLD_FEATURE_HTTP=1
+		;;
+	enable-http-client)
+		BLD_FEATURE_HTTP=1
+		BLD_FEATURE_HTTP_CLIENT=1
+		;;
+	enable-java-vm)
+		BLD_FEATURE_JAVA_VM=1
+		;;
+	lang=*)
+        local level
+		if [ "$ARG" = ecma ] ; then
+            level=EJS_SPEC_ECMA
+		elif [ "$ARG" = plus ] ; then
+            level=EJS_SPEC_PLUS
+		elif [ "$ARG" = fixed ] ; then
+            level=EJS_SPEC_FIXED
+        else
+			echo "Unknown language specification level. Only supported levels are: ecma, plus or fixed"
+		fi
+		BLD_FEATURE_EJS_LANG="${level}"
+		;;
+	number=*)
+		if [ "$ARG" != int -a "$ARG" != long -a "$ARG" != int64 -a "$ARG" != double ] ; then
+			echo "Unknown number type. Only supported types are: int, long, int64 and double"
+		fi
+		BLD_FEATURE_NUM_TYPE="${ARG}"
+		;;
+	*)	
+		return 1
+		;;
+	esac
+	return 0
+}

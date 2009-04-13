@@ -1,0 +1,25 @@
+#
+#   SQLite
+#
+defineComponent() {
+	local iflags builtin path name search
+
+    path=$1
+    name="sqlite"
+    search="src/db/sqlite"
+
+    if [ "$path" != "" ] ; then
+        path=`probe --dir --path "$path" --base "sqlite3.c" --search "$search"`
+    fi
+    if [ "$path" != "" ] ; then
+        iflags="-I$path/include"
+    else 
+        builtin=--builtin
+        path="src/db/$name"
+    fi
+    configureComponent --name $name --dependencies "mpr" --libs "sqlite3" --path "$path" --iflags "$iflags" $builtin
+
+    if [ "$path" != "" ] ; then
+        BLD_FEATURE_EJS_DB=1
+    fi
+}

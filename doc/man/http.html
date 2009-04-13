@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+
+<body>
+    <pre>
+HTTP(1)                          User Commands                         HTTP(1)
+
+<b>NAME</b>
+       http - HTTP Client program
+
+<b>SYNOPSIS</b>
+       <b>http  </b>[<i>--benchmark  </i>]  [<i>--chunk  size  </i>]  [<i>--compare  dir</i>] [<i>--continue</i>]
+       [<i>--cookie cookieString</i>] [<i>--data string</i>] [<i>--datafile filename</i>]  [<i>--files</i>
+       <i>fileList</i>]  [<i>--form  string</i>]  [<i>--header  'key: value'</i>] [<i>--host hostName</i>]
+       [<i>--http  version</i>]  [<i>--iterations  count</i>]  [<i>--log   logSpec</i>]   [<i>--method</i>
+       <i>HTTP_METHOD</i>] [<i>--noout</i>] [<i>--password pass</i>] [<i>--poolThreads count</i>] [<i>--range</i>
+       <i>byteRanges</i>] [<i>--retries count</i>] [<i>--save dir</i>]  [<i>--showHeaders</i>]  [<i>--single</i>]
+       [<i>--timeout seconds</i>] [<i>--threads count</i>] [<i>--user name</i>] [<i>--verbose</i>]
+
+<b>DESCRIPTION</b>
+       The  http  command  issues  HTTP  commands to retrieve files from a web
+       server.
+
+<b>OPTIONS</b>
+       <b>--benchmark</b>
+              Output timing results after retrieving URLs.
+
+       <b>--chunk size</b>
+              Request that web  server  use  use  transfer  encoding  for  the
+              response  and  break  the  response  data  into  chunks  of  the
+              requested size. This is an Appweb web server custom  header  and
+              will be ignored by other web servers.
+
+       <b>--compare dir</b>
+              Compare  the  retrieved files against master copies in dir. Warn
+              if any retrieved files are corrupted.
+
+       <b>--continue</b>
+              Continue on errors. Default is to stop on the first error.
+
+       <b>--cookie cookieString</b>
+              Define a cookie string to send with the request.  Multiple  uses
+              okay.
+
+       <b>--data bodyData</b>
+              String of raw body data to send with the request. Assumed to not
+              be URL encoded.  You cannot use  this  switch  with  either  the
+              --datafile or --form switches.
+
+       <b>--datafile filename</b>
+              Specifies  a  filename containing the raw body data to send with
+              the the request. Assumed to not be URL encoded.  You cannot  use
+              this switch with either the --data or --form switches.
+
+       <b>--files fileList</b>
+              Retrieve  the  files  in the specified file list.  The format of
+              the file is: {GET|POST} URL If using POST, the  line  after  the
+              URL  should contain encoded POST data and it should begin with a
+              TAB.
+
+       <b>--form formData</b>
+              String of body data to send with the request. Assumed to be  URL
+              encoded. ie. "name=paul&amp;ampaddress=uk".  You cannot use this switch
+              with either the --datafile or --form switches.
+
+       <b>--header "key: value"</b>
+              Add a custom header to send with the request. Multiple  --header
+              switches can be supplied.
+
+       <b>--host name</b>
+              Prepend  all  URLs  with  the specified host. For example if '-h
+              www.myHost.com:8888" were used with the URL "/index.html",  then
+              http will retrieve http://www.myHost.com:8888.
+
+       <b>--http HTTP_VERSION</b>
+              Use  the  specified  HTTP protocol. httpVersion should be either
+              '0' for HTTP/1.0 or 1 for HTTP/1.1.
+
+       <b>--iterations count</b>
+              Retrieve the URLs iterations times.  Useful  for  load  testing.
+              This switch can also be abbreviated as <b>-i</b>.
+
+       <b>--log logSpec</b>
+              Specify  a  file  to  log  messages.  The syntax is: <b>"--log log-</b>
+              <b>Name[,moduleName][:logLevel]"</b>.  Level 3 will trace  the  request
+              and response headers.
+
+       <b>--method method</b>
+              Set  the  HTTP  method.  Values  may be "GET", "PUT", "OPTIONS",
+              "TRACE".
+
+       <b>--noout</b>
+              Run in quiet mode and do no output. Suppress  tracing  requests.
+              This switch can also be abbreviated as <b>-n</b>.
+
+       <b>--password passPhrase</b>
+              Specify  a  password  to  send with the request. Requires a user
+              name to be also specified via --user.
+
+       <b>--poolThreads count</b>
+              Specify the number of pool threads to use. Pool threads are used
+              to process callbacks.
+
+       <b>--printable</b>
+              Make  binary  output  printable  by printing hex digits for each
+              character.
+
+       <b>--range byteRange</b>
+              Request that only the specified byte range of data  be  returned
+              with  the  response.  This  will  add  a  "Range"  header to the
+              request.  The range format   is:   Range:  bytes=n1-n2,n3-n4,...
+              where  n1  is  first byte position and n2 is last byte position.
+              Multiple --range switches can be supplied.  Examples:
+
+              0-49             first 50 bytes
+              50-99,200-249    Two 50 byte ranges from 50 and 200
+              -50              Last 50 bytes
+              1-               Skip first byte then emit the rest
+
+       <b>--retries retryCount</b>
+              Retry failed requests this number of times.
+
+       <b>--save dir</b>
+              Saves retrieved files to the specified directory.
+
+       <b>--showHeaders</b>
+              Output HTTP headers. Useful for debugging.
+
+       <b>--single</b>
+              Single step between requests by pausing for  user  input  before
+              proceeding.
+
+       <b>--threads loadThreads</b>
+              Number  of  threads  to  use.  Each URL will be retrieved by all
+              threads. Useful only for load testing.
+
+       <b>--timeout seconds</b>
+              Specifies a timeout to use for each request in seconds.
+
+       <b>--username user</b>
+              Specify a user name to send with the request. If a  password  is
+              not  specified  via  --password,  the  program will prompt for a
+              password (which will not be echoed). The username  and  password
+              will  be  sent  with the request according to the authentication
+              protocol required by the requested web server and requested doc-
+              ument.
+
+       <b>--verbose</b>
+              Verbose  mode. Trace activity to stdout. Can by specified multi-
+              ple times for more verbose tracing.  This  switch  can  also  be
+              abbreviated as <b>-v</b>.
+
+<b>REPORTING BUGS</b>
+       Report bugs to dev@embedthis.com.
+
+<b>COPYRIGHT</b>
+       Copyright (C) 2003-2009 Embedthis Software.
+
+http                              March 2009                           HTTP(1)
+</pre>
+</body>
+</html>

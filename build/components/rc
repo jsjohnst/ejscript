@@ -1,0 +1,8 @@
+#
+#   RC
+#
+defineComponent() {
+    local file
+    eval file=\$BLD_${KIND}_RC
+    configureComponent --name rc --path "`probe --path "$1" --base $file`"
+}

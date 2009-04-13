@@ -1,0 +1,31 @@
+#!/bin/bash
+#
+# 	preinst -- Pre installation script for !!BLD_PRODUCT!!-src
+#
+#	Copyright (c) Embedthis Software LLC, 2003-2009. All Rights Reserved.
+#
+
+BLD_PRODUCT=!!BLD_PRODUCT!!
+BLD_NAME="!!BLD_NAME!!"
+BLD_PREFIX=!!BLD_PREFIX!!
+BLD_DOC_PREFIX=!!BLD_DOC_PREFIX!!
+BLD_SAM_PREFIX=!!BLD_SAM_PREFIX!!
+BLD_SRC_PREFIX=!!BLD_SRC_PREFIX!!
+
+action=$1
+cd /
+
+case $action in
+upgrade)					# when new
+	oldVersion=$2
+	;;
+install)					# when new
+	oldVersion=$2
+	;;
+abort-upgrade)				# when old
+	;;
+abort-remove)
+	;;
+esac
+
+exit 0

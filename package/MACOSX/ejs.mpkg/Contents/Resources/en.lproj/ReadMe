@@ -1,0 +1,71 @@
+Embedthis EJScript 
+
+Welcome to the Embedthis EJScript distribution. This document describes the procedure for installing the binary Embedthis EJScript package. This package contains the EJScript compiler, virtual machine, and module manager programs. It also contains the EJScript libraries and program headers necessary to embed EJScript in an application. Once installed, you can you may read the EJScript online documentation and samples for further information. You can also read the documentation for the latest release online at:
+
+    http://www.embedthis.com/products/ejs/doc/index.html
+
+This software is copyrighted and distributed under license. Please read the LICENSE.TXT for details.
+
+
+System Requirements
+
+To run Embedthis EJScript, your system will need at least the following:
+
+    * MAC OS X 10.4 or later
+    * 600 KB spare memory
+    * 10 MB disk space
+    * TCP/IP network stack
+
+To rebuild EJScript from source code, you will need at least:
+
+    * 20 MB disk space
+
+
+Installing Embedthis EJScript
+
+The installation distribution includes sub-packages containing pre-built binaries, development libraries, headers, documentation and samples. You can selectively install the sub-packages or you can install the complete distribution.
+
+For those looking to build from source code, you will need to download the separate source code distribution. The product documentation describes how to build from source. 
+
+
+Running EJScript
+
+The EJScript product installation includes a command line shell that can be invoked by typing:
+
+	ejs
+
+This command responds with the following prompt:
+
+ejs>
+
+EJScript commands can be entered and results will be echoed to the console.  See the user documentation for further details.
+
+To compile EJScript programs for later execution by the stand-alone EJScript virtual machine, use the "ec" compiler:
+
+    ec file.es file2.es
+
+This will create output modules with a ".mod" extension. These can be run by invoking the EJScript VM:
+
+    ejsvm default.mod
+
+
+Building the Source Code
+
+If you wish to rebuild the EJScript product from the distributed source code, please download the source code distribution from the Embedthis web site. Then read "Building from Source" in the EJScript product documentation for an explanation of the necessary steps to successfully rebuild the product.
+
+
+License and Copyright Information
+
+This software is supplied under license. Both a GNU and commercial license are available. Please read LICENSE.TXT for details. This documentation and the software described in this document may be used and copied only in accordance with the terms of the accompanying license agreement. Product and technical information in this document is subject to change without notice and does not represent a commitment on the part of Embedthis Software LLC.
+
+Copyright (c) Embedthis Software LLC, 2003-2009. All Rights Reserved.
+
+Embedthis is a trademark of Embedthis Software LLC. Embedthis, EJScript, ESP and EGI are trademarks of Embedthis Software. All other brand or product names are the trademarks or registered trademarks of their respective holders.
+
+
+Embedthis Software, LLC.
+7427 Orin Court N
+Seattle, WA 98103.
++1 (425) 329-3490
+www.embedthis.com
+info@mbedthis.com

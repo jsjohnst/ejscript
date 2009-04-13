@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+
+<config>
+	<name>mscript</name>
+	<title>Mobile JavaScript</title>
+	<version>1.0.0</version>
+	<log>
+		<path>file.txt</path>
+		<level>2</level>
+	</log>
+	<memory>
+		<redline>90%</redline>
+		<max>90%</max>
+	</memory>
+	<garbageCollect>
+		<enable>true</enable>
+		<idleCollect>true</idleCollect>
+		<demandCollect>true</demandCollect>
+		<workQuota>200</workQuota>
+	</garbageCollect>
+</config>

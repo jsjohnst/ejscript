@@ -1,0 +1,105 @@
+#
+#   VxWorks
+#
+defineComponent() {
+	local path
+
+    [ $KIND = "BUILD" -a $BLD_CROSS = 1 ] && return 0
+
+    path=`probe --dir --path "$1" --base "target/h/vxWorks.h"`
+    configureComponent --name vxworks --path "$path" --iflags "-I$path/target/h -I$path/target/h/wrn/coreip"
+
+    setVxEnv "$path"
+}
+
+
+setVxEnv()
+{
+    local file cc version file cc bldPath  path search
+
+	path="$1"
+	WIND_BASE="$path"
+
+    case $BLD_BUILD_OS in
+    WIN|CYGWIN)
+        BLD_BUILD_SYSTEM_VX=x86-win32
+        ;;
+    LINUX)
+        BLD_BUILD_SYSTEM_VX=x86-linux
+        ;;
+    SOLARIS*)
+        BLD_BUILD_SYSTEM_VX=solaris2
+        ;;
+    *)
+        echo "$BLD_BUILD_OS is an not a supported O/S for VxWorks cross compilation"
+        exit 255
+        ;;
+    esac
+
+    version="$CFG_HOST_VXWORKS"/target/h/version.h
+    if [ -f "$version" ] ; then
+        if grep 'RUNTIME_VERSION' $version >/dev/null 2>&1 ; then
+            version=`grep '^#define.RUNTIME_VERSION' "$version" | awk '{ print $3 }'`
+        else
+            version=`grep '^#define.VXWORKS_VERSION' "$version" | awk '{ print $3 }'`
+        fi
+        version=`echo $version | sed 's/"//g'`
+    else
+        echo "Cant find version.h at $version"
+        exit 255
+    fi
+
+	#
+	#	Tornado sets both HOME and BASE to /tornado
+	#	Workbench sets BASE to /WindRiver/vxworks-6.3 and HOME to /WindRiver
+	#
+	if [ "${version%.*}" -ge 6 ] ; then
+		WIND_HOME="${path%/*}"
+	else
+		WIND_HOME="$path"
+	fi
+
+    WIND_HOST_TYPE="$BLD_BUILD_SYSTEM_VX"
+    BLD_HOST_DIST_VER=$version
+
+    eval cc=\$BLD_${KIND}_CC
+    if [ "$bldPath" = "" ] ; then
+        bldPath="`dirname $cc`"
+    else
+        bldPath="$bldPath:`dirname $cc`"
+    fi
+    if [ "$KIND" = HOST ] ; then
+        CFG_HOST_PATH="$bldPath"
+    else
+        CFG_BUILD_PATH="$bldPath"
+    fi
+
+	eval BLD_${kind}_IFLAGS=\"$BLD_HOST_IFLAGS $CFG_HOST_VXWORKS_IFLAGS\"
+
+	#
+	#	Update search path for base tools to use
+	#
+    search="
+		'\$WIND_HOME/gnu/*/\$BLD_BUILD_SYSTEM_VX/bin'
+		'\$WIND_HOME/gnu/*/\$BLD_BUILD_SYSTEM_VX/\$BLD_HOST_SYSTEM/bin'
+		'\$WIND_HOME/\$BLD_HOST_DIST-\$BLD_HOST_DIST_VER/host/\$BLD_BUILD_SYSTEM_VX/bin'
+		'\$WIND_HOME/\$BLD_HOST_DIST-\$BLD_HOST_DIST_VER/host/resource/hutils/tcl'
+		'\$WIND_HOME/workbench*/foundation/*/\$BLD_BUILD_SYSTEM_VX/bin'
+		'\$WIND_HOME/host/*/bin'
+		'\$WIND_HOME/host/*/\$BLD_HOST_SYSTEM/bin'
+	"
+	SEARCH_PATH="$SEARCH_PATH:`convertSearchPath "$search"`"
+
+	#
+	#	If VxWorks 6.3, all X86 tools have "pentium" extension
+	#
+	if [ "${version%.*}" -gt 5 -a "$BLD_HOST_CPU_ARCH" = MPR_CPU_IX86 ] ; then
+		BLD_HOST_CPU=pentium
+		KIND=HOST . build/config/config.VXWORKS
+	fi
+
+	#
+	#	Export so the "cc" component file can actually run the compiler
+	#
+	export WIND_HOME WIND_BASE
+}

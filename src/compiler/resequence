@@ -1,0 +1,6 @@
+i=1
+sort | uniq | while read l
+do
+	echo "$l $i"
+	i=`expr $i + 1`
+done 

@@ -1,0 +1,219 @@
+EJSWEB(1)                        User Commands                       EJSWEB(1)
+
+
+
+NAME
+       ejsweb  - Ejscript Application Generator for Server-Side JavaScript Web
+       Applications.
+
+SYNOPSIS
+       ejsweb [--database DB]] [--keep] [--layout  layoutPage]  [--overwriteR]
+       [--verbose] [commands ...]
+
+DESCRIPTION
+       The  ejsweb  command generates Ejscript web applications, scaffolds and
+       stubs. It is useful to quickly start web  applications  and  to  manage
+       them once created.
+
+       Ejsweb  will  create  directories and generate configuration and source
+       code files which can then be manually edited as  required.   Ejsweb  is
+       intelligent  and  will  not overwrite existing files, so you can safely
+       edit and regenerate without losing your changes. You can overwrite your
+       changes if you wish to by using the --overwrite switch.
+
+       Ejsweb  can  also be used to run your application by invoking a config-
+       ured web server.
+
+GENERATING APPLICATIONS
+       To start a new web application, run ejsweb to  create  the  application
+       directory  and  generate  the  application  configuration and essential
+       script files.  Use the -v (verbose) switch to trace  which  directories
+       and files are being created.  For example:
+
+             ejsweb -v generate app myApp
+
+       This  will  will  create  a set of directories which have the following
+       meaning:
+
+             .tmp           - Temporary working directory
+             .ejs           - State files used by ejsweb
+             bin            - Programs and scripts
+             config         - Configuration files
+             controllers    - Controller source
+             db             - Databases and scripts
+             doc            - Documentation for the application
+             logs           - Log files
+             models         - Database model code
+             messages       - Internationalization messages
+             test           - Unit tests
+             src            - Extra application source code
+             utils          - Program utilities
+             views          - View source files
+             views/layouts  - View layout files
+             web            - Public web directory
+             web/images     - Public images
+             web/themes     - Application HTML themes
+
+       Most of these directories are initially empty, but  may  be  used  over
+       time.  Ejscript  follows  conventions  where specific files are stored.
+       This greatly simplifies configuring a web application.
+
+       Ejsweb will also create some files which have the following meaning:
+
+             config/config.ecf           - Application configuration file
+             config/compiler.ecf         - Compiler configuration file
+             config/database.ecf         - Database configuration file
+             config/view.ecf             - View connector configuration file
+             web/themes/default.css      - Default theme CSS file
+             web/layout.css              - Default layout CSS file
+             src/MyApp.es                - Top level application class
+             controllers/Application.es  - Application base controller class
+             views/layouts/default.ejs   - Default layout web page
+             README                      - Documentation explaining files  and
+            directories
+
+GENERATING CONTROLLERS
+       Controllers   are  the  primary  mechanism  for  responding  to  client
+       requests. To generate a controller, run:
+
+             ejsweb generate controller NAMES...
+
+       Where NAMES... are the names of the controllers you want  to  generate.
+       This  command  will create named controller source files under the con-
+       trollers directory.  Each controller will contain an  empty  controller
+       class  with  an  empty  index  action function.  Actions are controller
+       functions that are invoked in response to client requests. You can edit
+       the controller source to meet your needs.
+
+GENERATING ACTIONS
+       When  you create a controller, you can also (optionally) generate a set
+       of named action functions.  To generate actions when you create a  con-
+       troller, run:
+
+             ejsweb generate controller NAME ACTIONS...
+
+       Where  NAME is the controller name and ACTIONS ... are the names of the
+       action functions to generate.
+
+GENERATING SCAFFOLDS
+       A scaffold is a generated set of views that provides add, edit and list
+       functionality  for  a  database model.  Scaffolds are useful to quickly
+       generate prototype web pages and actions for managing a datbase  table.
+       To generate a scaffold:
+
+             ejsweb generate scaffold MODEL CONTROLLER [ACTIONS ...]
+
+       This will create a scaffold for the database model named MODEL and will
+       generate a controller named CONTROLLER.  Without any explicit  ACTIONS,
+       this  command  will  create  list and edit actions and views.  The edit
+       action and view provide add and edit capability. The  list  action  and
+       view,  provides  the ability to list the database table rows and select
+       an entry to edit.
+
+       If ACTIONS are provided, then action functions and views pages will  be
+       created for the given names.
+
+COMPILING
+       Ejscript compiles models, views and controllers into Ejscript byte code
+       modules. These are then loaded and  run  by  Ejscript  in  response  to
+       incoming  client  requests.  Code  is compiled only once but can be run
+       many times to service incoming requests.
+
+       In development mode, Ejscript will automatically compile  the  relevant
+       portions  of  the  application  if  the source code is modified. It can
+       intelligently recompile views, actions, controllers and database models
+       as required. However, you can also explicilty recompile portions or the
+       complete appliction.
+
+       Ejsweb can recompile everything via:
+             ejsweb compile ....
+       This will compile each controller  and  view  and  also  recompile  the
+       application  and  module  source  code. Module files for each component
+       will be generated.
+
+       Ejsweb also provides options  for  you  to  individually  compile  con-
+       trollers and views. To recompile named views or controllers:
+
+             ejsweb compile view NAMES....
+
+             ejsweb compile controller NAMES....
+
+
+       Models are compiled with application code into a single module file. To
+       recompile the models and application source code:
+
+             ejsweb compile app.
+
+       To compile the entire application and produce a single module file:
+
+             ejsweb compile all.
+
+       To compile stand-alone Ejscript web pages:
+
+             ejsweb compile path/name.ejs....
+
+       When compiling views, you can use the --keep  switch  to  preserve  the
+       intermediate generated Ejscript source file.
+
+RUNNING
+       To run your application:
+
+             ejsweb run
+
+       This  requires  that  your config/config.ecf file be modified to define
+       command to run your web server.
+
+CLEANING
+       To clean all generated module files:
+
+             ejsweb clean
+
+OPTIONS
+       Ejsweb has the following command usage patterns:
+
+             ejsweb clean
+             ejsweb compile [all | app | controller names | model names | view
+            names]
+             ejsweb compile path/name.ejs ...
+             ejsweb  generate  [app  name | controller name [action [, action]
+            ...]| model name]
+             ejsweb  generate   scaffold   model   [controller]   [action   [,
+            action]...]
+             ejsweb run
+
+       --database connector
+             Select  a database connector to use. Currently this switch is not
+             implemented and sqlite is the only connector supported.
+
+       --keep
+             Preserve generated  intermediate  Ejscript  source  files.  These
+             files are generated when blending views with layout pages.
+
+       --layout layoutPage
+             Change  the  name  of  the default layout page if a view does not
+             explicitly specify a layout page.
+
+       --overwrite
+             Overwrite existing files.  Ejsweb  normally  will  not  overwrite
+             existing  files.  This  is to preserve user changes to previously
+             generated files.
+
+       --verbose or -v
+             Run in verbose mode and trace actions to the console.
+
+
+REPORTING BUGS
+       Report bugs to dev@embedthis.com.
+
+
+COPYRIGHT
+       Copyright (C) 2004-2009 Embedthis Software.  Ejscript is a trademark of
+       Embedthis Software.
+
+
+SEE ALSO
+       ejsc, ejs, ejsmod, ejsvm
+
+
+
+ejsweb                            March 2009                         EJSWEB(1)

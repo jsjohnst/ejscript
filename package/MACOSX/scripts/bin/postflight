@@ -1,0 +1,15 @@
+#!/bin/bash
+#
+#	postflight -- Post flight script for binary install
+#	Copyright (c) Embedthis Software LLC, 2003-2009. All Rights Reserved.
+#
+###############################################################################
+
+PKG_DIR="$1"
+INS_DIR="$2"
+NAME="!!BLD_PREFIX!!"
+path="${INS_DIR}${NAME}"
+
+#   Nothing to do currently
+
+exit 0
